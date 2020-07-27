@@ -15,7 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                        <a class="navbar-brand" href="{{ url('/dashboard') }}">Ir al Dashboard</a>
+                        <a class="navbar-brand" href="{{ url('/dashboardTemplate') }}">Ir al Dashboard</a>
                 </div>
             </div>
 
