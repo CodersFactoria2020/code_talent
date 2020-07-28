@@ -4,7 +4,7 @@ namespace App;
 
 use Goutte\Client;
 
-class WebScrapping
+class WebScraping
 {
     public function scrap(string $url)
     {
