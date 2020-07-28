@@ -22,13 +22,8 @@
                                             <tr>
                                                 <th>Nombre</th>
 
-                                                <th>Apellidos</th>
+                                                <th>Promocion</th>
 
-                                                <th>Email</th>
-
-                                                <th>Estado</th>
-
-                                                <th>Fecha de inicio</th>
                                             </tr>
                                         </thead>
                                         @yield('content')
