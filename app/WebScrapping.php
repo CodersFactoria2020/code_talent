@@ -2,13 +2,15 @@
 
 namespace App;
 
-use Goutte\App;
+use Goutte\Client;
 
 class WebScrapping
 {
-    protected function scrap()
+    public function scrap(string $url)
     {
         $client = new Client();
-        return $client;
+        $crawler = $client->request('GET', $url);
+
+        return $crawler;
     }
 }

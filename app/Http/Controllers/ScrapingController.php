@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Goutte\Client;
+use App\WebScrapping;
 
 class ScrapingController extends Controller
 {
-    public function getData()
+    public function getSoloLearnData()
     {
         $courseData = [];
-        $client = new Client();
-               
-        $crawler = $client->request('GET', 'https://www.sololearn.com/Profile/6700255');
+        $webScrapper = new WebScrapping();
+        $crawler = $webScrapper->scrap('https://www.sololearn.com/Profile/6700255');
         
         $course = $crawler->filter('.courseWrapper')->each(function ($courseNode) use (&$courseData)
         {   
