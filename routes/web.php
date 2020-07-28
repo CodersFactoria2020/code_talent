@@ -27,11 +27,9 @@ Route::get('/charts', function () {
 Route::get('/tables', function () {
     return view('dashboardAdmin.tables');
 });
-Route::get('/login', function () {
-    return view('dashboardAdmin.login');
-});Route::get('/password', function () {
-    return view('dashboardAdmin.password');
-});Route::get('/register', function () {
-    return view('dashboardAdmin.register');
+Route::get('/promotions', function () {
+    return view('dashboardAdmin.promotions');
 });
+
+
 

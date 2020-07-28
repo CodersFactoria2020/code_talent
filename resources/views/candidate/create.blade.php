@@ -1,5 +1,6 @@
 @extends('layouts.layouts')
 
+
 @section('content')
 
     <div class="row">
