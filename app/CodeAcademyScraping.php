@@ -22,10 +22,10 @@ class CodeAcademyScraping extends WebScraping
     }
 
     public function lastConnection($url)
-    {
+    {   
         $crawler = self::scrap($url);
-        $lastConnection = $crawler->filter('.label__2YO_cDf1Lu9PDDsn62kz6L')->text();
-        
-        return $lastConnection;
+        $lastCoded = $crawler->filter('.label__2YO_cDf1Lu9PDDsn62kz6L > span')->text();
+      
+        return $lastCoded;
     }
 }

@@ -39,13 +39,14 @@ class CodeAcademyScrapingTest extends TestCase
         $this->assertContains('Learn HTML', $completedCourses);
     }
 
-    /*
+    
     public function test_returns_last_connection()
     {
         $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
         $scraper = new CodeAcademyScraping();
-        $lastConnection = $scraper->getCompletedCourses($url);
+        $lastConnection = $scraper->lastConnection($url);
+        dd($lastConnection);
         $this->assertTrue(str_contains($lastConnection, 'Last coded'));
     }
-    */
+    
 }
