@@ -45,7 +45,6 @@ class CodeAcademyScrapingTest extends TestCase
         $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
         $scraper = new CodeAcademyScraping();
         $lastConnection = $scraper->lastConnection($url);
-        dd($lastConnection);
         $this->assertTrue(str_contains($lastConnection, 'Last coded'));
     }
     

@@ -9,10 +9,13 @@ use App\SoloLearnScraping;
 
 class SoloLearnScrapingTest extends TestCase
 {
-    public function testExample()
-    {
-        $response = $this->get('/');
+    public function test_returns_is_array()
+    {   
+        $url = "https://www.sololearn.com/Profile/6700255";
+        
+        $scrapy = new SoloLearnScraping();
+        $all_courses = $scrapy->getAllCourses($url);
 
-        $response->assertStatus(200);
+        $this->assertIsArray($all_courses);
     }
 }
