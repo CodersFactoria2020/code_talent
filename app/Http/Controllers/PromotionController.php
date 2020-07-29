@@ -25,7 +25,7 @@ class PromotionController extends Controller
     public function store(Request $request)
     {
         Promotion::create($request->all());
-        return redirect('promotion.index');
+        return redirect(route('promotion.index'));
     }
 
 

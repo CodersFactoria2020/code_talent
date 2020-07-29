@@ -79,7 +79,7 @@
 
                                         <input type="submit"  value="Guardar" class="btn btn-success btn-block">
 
-                                        <a href="{{ route('promotion.index') }}" class="btn btn-info btn-block" >Atrás</a>
+                                        <a href="{{route('promotion.index')}}" class="btn btn-info btn-block" >Atrás</a>
 
                                     </div>
 
