@@ -18,4 +18,15 @@ class SoloLearnScrapingTest extends TestCase
 
         $this->assertIsArray($all_courses);
     }
+
+    public function test_get_specific_course()
+    {
+        $url = "https://www.sololearn.com/Profile/6700255";
+
+        $scrapy = new SoloLearnScraping();
+
+        $course = $scrapy->getAllCourses($url);
+
+        $this->assertContains('PHP Tutorial', $course[4]);
+    }
 }

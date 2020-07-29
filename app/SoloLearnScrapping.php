@@ -20,6 +20,7 @@ class SoloLearnScraping extends WebScraping
             $coursePoints = $courseNode->filter('p')->text();
             array_push($all_courses, [$courseTitle, $coursePercentage, $coursePoints]);
         });
+        
         return $all_courses;
     } 
 }
