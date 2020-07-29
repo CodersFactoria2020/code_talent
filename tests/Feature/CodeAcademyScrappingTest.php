@@ -45,7 +45,21 @@ class CodeAcademyScrapingTest extends TestCase
         $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
         $scraper = new CodeAcademyScraping();
         $lastConnection = $scraper->lastConnection($url);
+       
         $this->assertTrue(str_contains($lastConnection, 'Last coded'));
     }
     
+    public function test_get_about_courses()
+    {
+        $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
+        $scraper = new CodeAcademyScraping();
+
+        $completedCourses = $scraper->getCompletedCourses($url);
+        $html_and_css_courses = $scraper->get_html_and_css_courses($completedCourses);
+
+        $this->assertContains('Learn HTML', $html_and_css_courses);
+        $this->assertContains('Learn CSS', $html_and_css_courses);
+        $this->assertEquals(2, count($html_and_css_courses));
+
+    }
 }

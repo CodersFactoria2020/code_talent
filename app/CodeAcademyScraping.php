@@ -28,4 +28,19 @@ class CodeAcademyScraping extends WebScraping
       
         return $lastCoded;
     }
+
+    public function get_html_and_css_courses($completedCourses)
+    {
+        $html_or_css = [];
+        foreach($completedCourses as $course)
+        {
+            if($course == 'Learn HTML' || $course == 'Learn CSS')
+            {
+                array_push($html_or_css, $course);
+            }
+        }
+
+        return $html_or_css;
+    }
+
 }
