@@ -11,7 +11,7 @@ class CandidateController extends Controller
 
     public function index()
     {
-        $candidates=Candidate::orderBy('id','DESC')->paginate(15);
+        $candidates=Candidate::orderBy('status','ASC')->paginate(15);
 
         return view('candidate.index',compact('candidates'));
     }
@@ -37,10 +37,10 @@ class CandidateController extends Controller
 
     public function show($id)
     {
-        $candidates=Candidate::find($id);
+        $candidate=Candidate::find($id);
 
 
-        return  view('candidate.show',compact('candidates'));
+        return  view('candidate.perfil',compact('candidate'));
     }
 
     public function edit($id)

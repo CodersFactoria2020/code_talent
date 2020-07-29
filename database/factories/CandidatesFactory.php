@@ -10,6 +10,7 @@ $factory->define(Candidate::class, function (Faker $faker) {
         'name' => $faker->firstName(),
         'lastname' => $faker->lastName(),
         'email' => $faker->unique()->safeEmail(),
+        'phone_number' => $faker->phoneNumber(),
         'status' => $faker->numberBetween(0,100),
         'soloLearn' => $faker->url(),
         'codeAcademy' => $faker->url(),

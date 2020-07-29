@@ -24,8 +24,8 @@ Route::get('/dashboard', function () {
 Route::get('/charts', function () {
     return view('dashboardAdmin.charts');
 });
-Route::get('/tables', function () {
-    return view('dashboardAdmin.tables');
+Route::get('/perfil', function () {
+    return view('dashboardAdmin.perfil');
 });
 Route::get('/promotions', function () {
     return view('dashboardAdmin.promotions');

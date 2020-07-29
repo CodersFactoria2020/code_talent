@@ -23,6 +23,8 @@ class CreateListCandidates extends Migration
 
             $table->string('email')->unique();
 
+            $table->string('phone_number');
+
             $table->integer('status')->default(0);
 
             $table->string('sololearn');

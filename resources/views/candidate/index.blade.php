@@ -1,4 +1,4 @@
-@extends('layouts.layouts')
+@extends('dashboardAdmin.dashboard')
 
 @section('content')
 
@@ -29,12 +29,11 @@
                             <table id="mytable" class="table table-bordred table-striped">
 
                                 <thead>
+                                <th>ID</th>
 
                                 <th>Nombre</th>
 
                                 <th>Apellidos</th>
-
-                                <th>Email</th>
 
                                 <th>Estado</th>
 
@@ -51,16 +50,18 @@
 
 
                                         <tr>
+                                            <td><a class="btn btn-link btn-xs" href="{{action('CandidateController@show', $candidate->id)}}"><span class="glyphicon glyphicon-user"></span></a></td>
+
+                                            <td>{{$candidate->id}}</td>
 
                                             <td>{{$candidate->name}}</td>
 
                                             <td>{{$candidate->lastname}}</td>
 
-                                            <td>{{$candidate->email}}</td>
-
                                             <td>{{$candidate->status}}</td>
 
-                                            <td>{{$candidate->date}}</td>
+                                            <td>{{$candidate->created_at}}</td>
+
 
                                             <td><a class="btn btn-primary btn-xs" href="{{action('CandidateController@edit', $candidate->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
 
