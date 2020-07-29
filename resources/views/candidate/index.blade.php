@@ -8,7 +8,7 @@
 
             <div class="col-md-8 col-md-offset-2">
 
-                <div class="panel panel-default">
+                <div class=" panel panel-default">
 
                     <div class="panel-body">
 
@@ -24,11 +24,13 @@
 
                         </div>
 
-                        <div class="table-container">
+                        <div class="table-responsive">
 
                             <table id="mytable" class="table table-bordred table-striped">
 
                                 <thead>
+                                <th>Perfil</th>
+
                                 <th>ID</th>
 
                                 <th>Nombre</th>
@@ -38,6 +40,10 @@
                                 <th>Estado</th>
 
                                 <th>Fecha de inicio</th>
+
+                                <th>Editar</th>
+
+                                <th>Eliminar</th>
 
                                 </thead>
 

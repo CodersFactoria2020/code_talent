@@ -27,9 +27,9 @@ class CreateListCandidates extends Migration
 
             $table->integer('status')->default(0);
 
-            $table->string('sololearn');
+            $table->string('sololearn')->default('falta link');
 
-            $table->string('codeacademy');
+            $table->string('codeacademy')->default('falta link');
 
             $table->timestamps();
         });

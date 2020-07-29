@@ -10,25 +10,55 @@
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                       <h1>perfil</h1>
-                                        <ul>
-                                        <li>{{$candidate->id}}</li>
+                                        <table id="mytable" class="table table-bordred table-striped">
 
-                                        <li>{{$candidate->name}}</li>
+                                            <thead>
+                                            <th>ID</th>
 
-                                        <li>{{$candidate->lastname}}</li>
+                                            <th>Nombre</th>
 
-                                        <li>{{$candidate->email}}</li>
+                                            <th>Apellidos</th>
 
-                                        <li>{{$candidate->phone_number}}</li>
+                                            <th>Estado</th>
 
-                                        <li>{{$candidate->status}}</li>
+                                            <th>Fecha de inicio</th>
 
-                                        <li>{{$candidate->sololearn}}</li>
+                                            </thead>
+                                            <td>{{$candidate->id}}</td>
 
-                                        <li>{{$candidate->codeacademy}}</li>
+                                            <td>{{$candidate->name}}</td>
 
-                                        <li>{{$candidate->created_at}}</li>
-                                        </ul>
+                                            <td>{{$candidate->lastname}}</td>
+
+                                            <td>{{$candidate->status}}</td>
+
+                                            <td>{{$candidate->created_at}}</td>
+                                        </table>
+                                        <table id="mytable" class="table table-bordred table-striped">
+
+                                            <thead>
+                                            <th>Email</th>
+
+                                            <th>Teléfono</th>
+
+                                            <th>SoloLearn</th>
+
+                                            <th>CodeAcademy</th>
+
+                                            <th>Última modificación</th>
+
+                                            </thead>
+                                            <td>{{$candidate->email}}</td>
+
+                                            <td>{{$candidate->phone_number}}</td>
+
+                                            <td>{{$candidate->sololearn}}</td>
+
+                                            <td>{{$candidate->codeacademy}}</td>
+
+                                            <td>{{$candidate->updated_at}}</td>
+                                        </table>
+
                                     </table>
                                 </div>
                             </div>

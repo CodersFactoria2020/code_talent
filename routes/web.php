@@ -18,7 +18,7 @@ Route::resource('candidate', 'CandidateController');
 
 
 Route::get('/dashboard', function () {
-    return view('dashboardAdmin.dashboard');
+    return view('dashboardAdmin.promotions');
 });
 
 Route::get('/charts', function () {
