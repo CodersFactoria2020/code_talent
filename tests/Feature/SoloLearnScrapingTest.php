@@ -29,4 +29,21 @@ class SoloLearnScrapingTest extends TestCase
 
         $this->assertContains('PHP Tutorial', $course[4]);
     }
+
+    public function test_get_about_course( )
+    {
+        $url = "https://www.sololearn.com/Profile/6700255";
+
+        $scrapy = new SoloLearnScraping();
+
+        $course = $scrapy->getAllCourses($url);
+       
+        $php_course = $scrapy->get_PHP_course($course);
+        
+
+        $this->assertContains('PHP Tutorial',$php_course);
+        $this->assertContains('100',$php_course);
+        $this->assertContains('260 XP',$php_course);
+        
+    }
 }
