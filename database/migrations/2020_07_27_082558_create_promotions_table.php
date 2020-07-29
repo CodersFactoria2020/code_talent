@@ -14,7 +14,7 @@ class CreatePromotionsTable extends Migration
 
             $table->string('name');
 
-            $table->date('promotion');
+            $table->string('promotion');
 
             $table->timestamps();
         });

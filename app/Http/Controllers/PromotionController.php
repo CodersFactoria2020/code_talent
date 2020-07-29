@@ -10,7 +10,7 @@ class PromotionController extends Controller
 
     public function index()
     {
-        $promotions = Promotion::all();
+        $promotions = Promotion::orderBy('created_at', 'DESC')->paginate(15);
 
         return view('promotion.index',compact('promotions'));
     }
@@ -29,7 +29,7 @@ class PromotionController extends Controller
     }
 
 
-    public function show(Promotion $promotion)
+    public function show($id)
     {
         $promotions = Promotion::find($id);
 

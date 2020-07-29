@@ -8,9 +8,9 @@ class Promotion extends Model
 {
     protected $fillable = ['name', 'promotion'];
 
-    public function candidates()
+    public function candidate()
     {
-        return $this->hasMany(Candidate::class);
+        return $this->belongsTo(Candidate::class);
     }
 
 }

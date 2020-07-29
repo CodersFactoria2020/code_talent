@@ -11,7 +11,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::resource('/promotion', 'PromotionController');
 
 Route::get('/promotion', 'PromotionController@index')->name('promotion');
