@@ -22,7 +22,7 @@ Route::get('/candidate', 'CandidateController@index')->name('candidate');
 
 
 Route::get('/dashboard', function () {
-    return view('dashboardAdmin.promotions');
+    return view('dashboardAdmin.dashboard');
 });
 
 Route::get('/charts', function () {

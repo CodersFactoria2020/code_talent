@@ -22,7 +22,7 @@
                                             <tr>
                                                 <th>Nombre</th>
 
-                                                <th>Promocion</th>
+                                                <th>Promoción</th>
 
                                                 <th>Fecha</th>
 
