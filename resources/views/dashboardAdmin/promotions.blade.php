@@ -22,16 +22,56 @@
                                             <tr>
                                                 <th>Nombre</th>
 
-                                                <th>Apellidos</th>
+                                                <th>Promocion</th>
 
-                                                <th>Email</th>
+                                                <th>Fecha</th>
 
-                                                <th>Estado</th>
-
-                                                <th>Fecha de inicio</th>
                                             </tr>
                                         </thead>
                                         @yield('content')
+                                        <tbody>
+
+                                        @if($promotions->count())
+
+                                            @foreach($promotions as $promotion)
+
+
+                                                <tr>
+
+                                                    <td><a href="{{ route('candidate.store') }}" class="btn btn-outline-secondary" >{{$promotion->name}}</a></td>
+
+                                                    <td>{{$promotion->promotion}}</td>
+
+                                                    <td>{{$promotion->created_at}}</td>
+
+
+
+                                                    <td><a class="btn btn-primary btn-xs" href="{{action('PromotionController@edit', $promotion->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+
+                                                    <td>
+                                                        <form action="{{action('PromotionController@destroy', $promotion->id)}}" method="DELETE">
+
+                                                            @csrf
+                                                            @method('DELETE')
+
+                                                            <input name="_method" type="hidden" value="DELETE">
+
+                                                            <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                                                    </td>
+
+                                                </tr>
+
+                                            @endforeach
+                                        @else
+
+                                            <tr>
+                                                <td colspan="8">No hay registro !!</td>
+
+                                            </tr>
+
+                                        @endif
+
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

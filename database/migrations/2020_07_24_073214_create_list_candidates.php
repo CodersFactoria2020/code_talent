@@ -32,6 +32,7 @@ class CreateListCandidates extends Migration
             $table->string('codeacademy')->default('falta link');
 
             $table->timestamps();
+
         });
     }
 
