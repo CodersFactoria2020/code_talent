@@ -38,4 +38,14 @@ class CodeAcademyScrapingTest extends TestCase
         $this->assertEquals($numberOfCompletedCourses, count($completedCourses));
         $this->assertContains('Learn HTML', $completedCourses);
     }
+
+    /*
+    public function test_returns_last_connection()
+    {
+        $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
+        $scraper = new CodeAcademyScraping();
+        $lastConnection = $scraper->getCompletedCourses($url);
+        $this->assertTrue(str_contains($lastConnection, 'Last coded'));
+    }
+    */
 }

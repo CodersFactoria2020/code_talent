@@ -21,8 +21,11 @@ class CodeAcademyScraping extends WebScraping
         return $completedCourses;
     }
 
-    public function lastConnection()
+    public function lastConnection($url)
     {
-
+        $crawler = self::scrap($url);
+        $lastConnection = $crawler->filter('.label__2YO_cDf1Lu9PDDsn62kz6L')->text();
+        
+        return $lastConnection;
     }
 }
