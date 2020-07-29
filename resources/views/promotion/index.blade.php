@@ -18,7 +18,7 @@
 
                             <div class="btn-group">
 
-                                <a href="{{ route('promotion.create') }}" class="btn btn-info" >Añadir Promotion</a>
+                                <a href="{{ route('promotion.create') }}" class="btn btn-info" >Añadir Promocion</a>
 
                             </div>
 
@@ -32,11 +32,9 @@
 
                                 <th>Nombre</th>
 
-                                <th>Promotion</th>
+                                <th>Promocion</th>
 
                                 <th>Fecha</th>
-
-
 
                                 </thead>
 
@@ -50,7 +48,7 @@
 
                                         <tr>
 
-                                            <td>{{$promotion->name}}</td>
+                                            <td><a href="{{ route('candidate.store') }}" class="btn btn-outline-secondary" >{{$promotion->name}}</a></td>
 
                                             <td>{{$promotion->promotion}}</td>
 
@@ -61,9 +59,10 @@
                                             <td><a class="btn btn-primary btn-xs" href="{{action('PromotionController@edit', $promotion->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
 
                                             <td>
-                                                <form action="{{action('PromotionController@destroy', $promotion->id)}}" method="post">
+                                                <form action="{{action('PromotionController@destroy', $promotion->id)}}" method="DELETE">
 
-                                                    {{csrf_field()}}
+                                                    @csrf
+                                                    @method('DELETE')
 
                                                     <input name="_method" type="hidden" value="DELETE">
 
@@ -89,7 +88,6 @@
                         </div>
 
                     </div>
-
 
 
                 </div>

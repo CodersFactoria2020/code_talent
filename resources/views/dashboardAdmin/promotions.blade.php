@@ -24,20 +24,11 @@
 
                                                 <th>Promocion</th>
 
+
+
                                             </tr>
                                         </thead>
-
-                                        @foreach($promotions as $promotion)
-                                            <li><a href="{{Route('promotion.edit', $promotion->name)}}"> {{$promotion->promotion}} </a>
-                                                <form action="{{route('promotion.destroy', $promotion->id)}}" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <input type="submit" value="Eliminar" class="btn btn-xs btn-danger">
-                                                </form>
-                                            </li>
-                                        @endforeach
-
-
+                                        @yield('content')
                                     </table>
                                 </div>
                             </div>
