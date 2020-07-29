@@ -14,7 +14,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/promotion', 'PromotionController');
 
-Route::resource('candidate', 'CandidateController');
+Route::get('/promotion', 'PromotionController@index')->name('promotion');
+
+Route::resource('/candidate', 'CandidateController');
 
 
 Route::get('/candidate', 'CandidateController@index')->name('candidate');

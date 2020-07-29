@@ -12,7 +12,6 @@ class CreatePromotionsTable extends Migration
 
             $table->id()->nullable();
 
-
             $table->string('name');
 
             $table->date('promotion');
