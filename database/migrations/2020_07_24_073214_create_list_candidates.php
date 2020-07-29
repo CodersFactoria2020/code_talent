@@ -30,6 +30,7 @@ class CreateListCandidates extends Migration
             $table->string('codeacademy');
 
             $table->timestamps();
+
         });
     }
 

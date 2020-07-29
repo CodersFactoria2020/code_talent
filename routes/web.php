@@ -11,10 +11,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('/promotion', 'PromotionController');
+
+
+
+Route::resource('/candidate', 'CandidateController');
+
+
 Route::get('/candidate', 'CandidateController@index')->name('candidate');
-
-Route::resource('candidate', 'CandidateController');
-
 
 
 Route::get('/dashboard', function () {
@@ -30,6 +34,5 @@ Route::get('/tables', function () {
 Route::get('/promotions', function () {
     return view('dashboardAdmin.promotions');
 });
-
 
 
