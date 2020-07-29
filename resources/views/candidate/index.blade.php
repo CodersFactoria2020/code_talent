@@ -1,4 +1,4 @@
-@extends('layouts.layouts')
+@extends('dashboardAdmin.dashboard')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 
             <div class="col-md-8 col-md-offset-2">
 
-                <div class="panel panel-default">
+                <div class=" panel panel-default">
 
                     <div class="panel-body">
 
@@ -24,21 +24,26 @@
 
                         </div>
 
-                        <div class="table-container">
+                        <div class="table-responsive">
 
                             <table id="mytable" class="table table-bordred table-striped">
 
                                 <thead>
+                                <th>Perfil</th>
+
+                                <th>ID</th>
 
                                 <th>Nombre</th>
 
                                 <th>Apellidos</th>
 
-                                <th>Email</th>
-
                                 <th>Estado</th>
 
                                 <th>Fecha de inicio</th>
+
+                                <th>Editar</th>
+
+                                <th>Eliminar</th>
 
                                 </thead>
 
@@ -51,16 +56,18 @@
 
 
                                         <tr>
+                                            <td><a class="btn btn-link btn-xs" href="{{action('CandidateController@show', $candidate->id)}}"><span class="glyphicon glyphicon-user"></span></a></td>
+
+                                            <td>{{$candidate->id}}</td>
 
                                             <td>{{$candidate->name}}</td>
 
                                             <td>{{$candidate->lastname}}</td>
 
-                                            <td>{{$candidate->email}}</td>
-
                                             <td>{{$candidate->status}}</td>
 
-                                            <td>{{$candidate->date}}</td>
+                                            <td>{{$candidate->created_at}}</td>
+
 
                                             <td><a class="btn btn-primary btn-xs" href="{{action('CandidateController@edit', $candidate->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
 

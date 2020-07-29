@@ -1,7 +1,5 @@
-@extends('dashboardAdmin.dashboard')
-
+@extends('layouts.layouts')
 @section('content')
-
 
     <div class="row">
         <section class="content">
@@ -30,7 +28,7 @@
 
                     <div class="panel-heading">
 
-                        <h3 class="panel-title">Nuevo Candidato</h3>
+                        <h3 class="panel-title">Nueva Promocion</h3>
 
                     </div>
 
@@ -38,7 +36,7 @@
 
                         <div class="table-container">
 
-                            <form method="POST" action="{{ route('candidate.update',$candidate->id) }}"  role="form">
+                            <form method="POST" action="{{ route('promotion.update',$promotion->id) }}"  role="form">
 
                                 {{ csrf_field() }}
 
@@ -47,7 +45,7 @@
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
 
-                                            <input type="text" name="name" id="name" class="form-control input-sm" value="{{$candidate->name}}">
+                                            <input type="text" name="name" id="name" class="form-control input-sm" value="{{$promotion->name}}">
 
                                         </div>
                                     </div>
@@ -55,23 +53,10 @@
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
 
-                                            <input type="text" name="lastname" id="lastname" class="form-control input-sm" value="{{$candidate->lastname}}">
+                                            <input type="text" name="promotion" id="promotion" class="form-control input-sm" value="{{$promotion->promotion}}">
 
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" name="email" id="email" class="form-control input-sm" value="{{$candidate->email}}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="phone_number" id="phone_number" class="form-control input-sm" value="{{$candidate->phone_number}}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="sololearn" id="sololearn" class="form-control input-sm" value="{{$candidate->sololearn}}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="codeacademy" id="codeacademy" class="form-control input-sm" value="{{$candidate->codeacademy}}">
                                 </div>
 
                                 <div class="row">
@@ -79,7 +64,7 @@
 
                                         <input type="submit"  value="Actualizar" class="btn btn-success btn-block">
 
-                                        <a href="{{ route('candidate.index') }}" class="btn btn-info btn-block" >Atrás</a>
+                                        <a href="{{ route('promotion.index') }}" class="btn btn-info btn-block" >Atrás</a>
 
                                     </div>
                                 </div>
@@ -91,3 +76,4 @@
 
         </section>
 @endsection
+

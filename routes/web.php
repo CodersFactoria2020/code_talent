@@ -11,10 +11,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('/promotion', 'PromotionController');
+
+
+
+Route::resource('/candidate', 'CandidateController');
+
+
 Route::get('/candidate', 'CandidateController@index')->name('candidate');
-
-Route::resource('candidate', 'CandidateController');
-
 
 
 Route::get('/dashboard', function () {
@@ -24,12 +28,11 @@ Route::get('/dashboard', function () {
 Route::get('/charts', function () {
     return view('dashboardAdmin.charts');
 });
-Route::get('/tables', function () {
-    return view('dashboardAdmin.tables');
+Route::get('/perfil', function () {
+    return view('dashboardAdmin.perfil');
 });
 Route::get('/promotions', function () {
     return view('dashboardAdmin.promotions');
 });
-
 
 

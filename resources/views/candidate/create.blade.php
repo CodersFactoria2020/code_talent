@@ -1,4 +1,4 @@
-@extends('layouts.layouts')
+@extends('dashboardAdmin.dashboard')
 
 
 @section('content')
@@ -77,6 +77,21 @@
                                 <div class="form-group">
 
                                     <input name="email" class="form-control input-sm" placeholder="Email">
+
+                                </div>
+                                <div class="form-group">
+
+                                    <input name="phone_number" class="form-control input-sm" placeholder="Telefono">
+
+                                </div>
+                                <div class="form-group">
+
+                                    <input name="sololearn" class="form-control input-sm" placeholder="Link SoloLearn">
+
+                                </div>
+                                <div class="form-group">
+
+                                    <input name="codeacademy" class="form-control input-sm" placeholder="Link CodeAcademy">
 
                                 </div>
 
