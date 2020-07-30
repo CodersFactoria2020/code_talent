@@ -31,11 +31,19 @@ class SoloLearnScraping extends WebScraping
             if (in_array ('PHP Tutorial',$course )){
                 return $course;
             }           
-
-
         }
-
-        return False; 
-    
+        
+        return False;    
     }
+
+    public function get_json_data ($get_PHP_course)
+    {   
+        
+        $json_course = fopen('PHP_course.json', 'w');
+        fwrite($json_course, json_encode($get_PHP_course));
+        fclose($json_course);
+        
+        return $json_course;
+    }
+    
 }
