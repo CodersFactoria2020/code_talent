@@ -6,6 +6,11 @@
             <main>
                 <div class="container-fluid">
                     <h1 class="mt-4">Tabla Promociones</h1>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <a href="{{ route('promotion.create') }}" class="btn btn-info" >Añadir Promocion</a>
+                        </div>
+                    </div>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
                         <li class="breadcrumb-item active">Promoción</li>
@@ -15,6 +20,7 @@
                             <i class="fas fa-table mr-1"></i>
                             Tabla de datos promociones
                         </div>
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -25,6 +31,10 @@
                                         <th>Promocion</th>
 
                                         <th>Fecha</th>
+
+                                        <th>Editar</th>
+
+                                        <th>Eliminar</th>
 
                                     </tr>
                                     </thead>

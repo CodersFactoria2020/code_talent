@@ -49,10 +49,9 @@
                                                     <td><a class="btn btn-primary btn-xs" href="{{action('PromotionController@edit', $promotion->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
 
                                                     <td>
-                                                        <form action="{{action('PromotionController@destroy', $promotion->id)}}" method="DELETE">
+                                                        <form action="{{action('PromotionController@destroy', $promotion->id)}}" method="post">
 
-                                                            @csrf
-                                                            @method('DELETE')
+                                                            {{csrf_field()}}
 
                                                             <input name="_method" type="hidden" value="DELETE">
 

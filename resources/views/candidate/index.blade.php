@@ -29,6 +29,8 @@
                             <table id="mytable" class="table table-bordred table-striped">
 
                                 <thead>
+                                <th>Promoción</th>
+
                                 <th>Perfil</th>
 
                                 <th>ID</th>
@@ -56,6 +58,8 @@
 
 
                                         <tr>
+                                            <td>{{$candidate->promotion}}</td>
+
                                             <td><a class="btn btn-link btn-xs" href="{{action('CandidateController@show', $candidate->id)}}"><span class="glyphicon glyphicon-user"></span></a></td>
 
                                             <td>{{$candidate->id}}</td>

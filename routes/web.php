@@ -13,12 +13,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/promotion', 'PromotionController');
 
-
-
 Route::resource('/candidate', 'CandidateController');
 
-
-Route::get('/candidate', 'CandidateController@index')->name('candidate');
 
 
 Route::get('/dashboard', function () {
