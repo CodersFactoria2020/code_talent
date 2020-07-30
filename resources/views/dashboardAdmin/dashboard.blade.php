@@ -39,7 +39,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Vista General
                             </a>
-                            <a class="nav-link" href="{{route('promotion.index')}}">
+                            <a class="nav-link" href="/promotion">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Promociones
                             </a>
