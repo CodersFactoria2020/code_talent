@@ -56,9 +56,11 @@ class SoloLearnScrapingTest extends TestCase
         $all_courses = $scrapy->getAllCourses($url);
         $php_course = $scrapy->get_PHP_course($all_courses);
        
+        $scrapy->get_json_data($php_course);
         $json = file_get_contents('PHP_course.json');
         $json_data = json_decode($json, true);
 
+    
         $this->assertEquals($php_course, $json_data);
 
     }

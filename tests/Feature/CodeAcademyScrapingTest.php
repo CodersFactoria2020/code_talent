@@ -62,4 +62,21 @@ class CodeAcademyScrapingTest extends TestCase
         $this->assertEquals(2, count($html_and_css_courses));
 
     }
+
+    public function test_get_json_data()
+    {
+        $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
+        $scraper = new CodeAcademyScraping();
+
+        $completedCourses = $scraper->getCompletedCourses($url);
+        $html_and_css_courses = $scraper->get_html_and_css_courses($completedCourses);
+        $scraper->get_json_data($html_and_css_courses);
+
+        $json = file_get_contents('HTML_CSS_course.json');
+        $json_data = json_decode($json, true);
+
+
+        $this->assertEquals($html_and_css_courses, $json_data);
+
+    }
 }

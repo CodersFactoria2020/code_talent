@@ -43,4 +43,13 @@ class CodeAcademyScraping extends WebScraping
         return $html_or_css;
     }
 
+    public function get_json_data ($html_and_css_courses )
+    {
+        $json_course = fopen('HTML_CSS_course.json', 'w');
+        fwrite($json_course, json_encode($html_and_css_courses));
+        fclose($json_course);
+        
+        return $json_course;
+    }
+
 }
