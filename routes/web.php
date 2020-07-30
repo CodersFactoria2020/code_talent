@@ -11,6 +11,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::match(['get', 'post'], '/promotion', function () {
     return view('dashboardAdmin.promotions');
 });
@@ -18,7 +19,6 @@ Route::match(['get', 'post'], '/promotion', function () {
 
 Route::resource('/candidate', 'CandidateController');
 Route::resource('/promotion', 'PromotionController');
-
 
 
 Route::get('/dashboard', function () {
@@ -36,3 +36,4 @@ Route::get('/promotions', function () {
 });
 
 
+Route::get('/scrappy', 'ScrapingController@getData')->name('scrapy');
