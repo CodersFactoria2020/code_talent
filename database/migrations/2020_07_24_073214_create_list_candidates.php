@@ -25,6 +25,8 @@ class CreateListCandidates extends Migration
 
             $table->string('phone_number');
 
+            $table->string('promotion')->default('sin asignar');
+
             $table->integer('status')->default(0);
 
             $table->string('sololearn')->default('falta link');
