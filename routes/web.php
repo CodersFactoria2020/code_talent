@@ -11,9 +11,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/promotion', 'PromotionController');
+Route::match(['get', 'post'], '/promotion', function () {
+    return view('dashboardAdmin.promotions');
+});
+
 
 Route::resource('/candidate', 'CandidateController');
+Route::resource('/promotion', 'PromotionController');
 
 
 
