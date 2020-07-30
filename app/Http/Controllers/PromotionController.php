@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Promotion;
 use Illuminate\Http\Request;
+
+use App\Promotion;
 
 class PromotionController extends Controller
 {
 
     public function index()
     {
-        $promotions = Promotion::orderBy('created_at', 'DESC')->paginate(15);
+        $promotions=Promotion::orderBy('created_at','ASC')->paginate(15);
 
         return view('promotion.index',compact('promotions'));
     }
@@ -24,35 +25,48 @@ class PromotionController extends Controller
 
     public function store(Request $request)
     {
-        Promotion::create($request->all());
-        return redirect(route('promotion.index'));
-    }
+        $this->validate($request,[ 'name'=>'required', 'promotion'=>'required']);
 
+
+        Promotion::create($request->all());
+
+
+        return redirect()->route('promotion.index')->with('success','Registro creado satisfactoriamente');
+
+    }
 
     public function show($id)
     {
-        $promotions = Promotion::find($id);
+        $promotion=Promotion::find($id);
 
 
-        return  view('promotion.show',compact('promotions'));
+        return  view('promotion.index',compact('promotion'));
     }
 
-
-    public function edit(Promotion $promotion)
+    public function edit($id)
     {
-        return view('promotion.edit',['promotion'=>$promotion]);
+        $promotion=Promotion::find($id);
+
+
+        return view('promotion.edit',compact('promotion'));
     }
 
-    public function update(Request $request, Promotion $promotion)
+    public function update(Request $request, $id)
     {
-        $promotion->update($request->all());
-        return redirect(route('promotion.index'));
+        $this->validate($request,[ 'name'=>'required', 'promotion'=>'required']);
+
+        Promotion::find($id)->update($request->all());
+
+        return redirect()->route('promotion.index')->with('success','Registro actualizado satisfactoriamente');
+
     }
 
-
-    public function destroy(Promotion $promotion)
+    public function destroy($id)
     {
-        $promotion->delete();
-        return redirect(route(route('promotion.index')));
+        Promotion::find($id)->delete();
+
+        return redirect()->route('promotion.index')->with('success','Registro eliminado satisfactoriamente');
+
     }
+
 }
