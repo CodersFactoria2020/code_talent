@@ -39,7 +39,7 @@ class CodeAcademyScraping extends WebScraping
                 array_push($html_or_css, $course);
             }
         }
-
+        
         return $html_or_css;
     }
 
