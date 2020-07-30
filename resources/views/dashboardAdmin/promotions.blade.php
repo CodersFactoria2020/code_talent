@@ -2,81 +2,85 @@
 
 @section('content')
     <section>
-    <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid">
-                        <h1 class="mt-4">Tabla Promociones</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
-                            <li class="breadcrumb-item active">Promoción</li>
-                        </ol>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table mr-1"></i>
-                                Tabla de datos promociones
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Nombre</th>
+        <main>
+            <div class="container-fluid">
+                <h1 class="mt-4">Tabla Promociones</h1>
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <a href="{{ route('promotion.create') }}" class="btn btn-info" >Añadir Promocion</a>
+                    </div>
+                </div>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
+                    <li class="breadcrumb-item active">Promoción</li>
+                </ol>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table mr-1"></i>
+                        Tabla de datos promociones
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
 
-                                                <th>Promoción</th>
+                                        <th>Promoción</th>
 
-                                                <th>Fecha</th>
+                                        <th>Fecha</th>
 
-                                            </tr>
-                                        </thead>
-                                        @yield('content')
-                                        <tbody>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                        @if($promotions->count())
+                                @if($promotions->count())
 
-                                            @foreach($promotions as $promotion)
-
-
-                                                <tr>
-
-                                                    <td><a href="{{ route('candidate.store') }}" class="btn btn-outline-secondary" >{{$promotion->name}}</a></td>
-
-                                                    <td>{{$promotion->promotion}}</td>
-
-                                                    <td>{{$promotion->created_at}}</td>
+                                    @foreach($promotions as $promotion)
 
 
+                                        <tr>
 
-                                                    <td><a class="btn btn-primary btn-xs" href="{{action('PromotionController@edit', $promotion->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                            <td><a href="{{ route('candidate.store') }}" class="btn btn-outline-secondary" >{{$promotion->name}}</a></td>
 
-                                                    <td>
-                                                        <form action="{{action('PromotionController@destroy', $promotion->id)}}" method="post">
+                                            <td>{{$promotion->promotion}}</td>
 
-                                                            {{csrf_field()}}
+                                            <td>{{$promotion->created_at}}</td>
 
-                                                            <input name="_method" type="hidden" value="DELETE">
 
-                                                            <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
-                                                    </td>
 
-                                                </tr>
+                                            <td><a class="btn btn-primary btn-xs" href="{{action('PromotionController@edit', $promotion->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
 
-                                            @endforeach
-                                        @else
+                                            <td>
+                                                <form action="{{action('PromotionController@destroy', $promotion->id)}}" method="post">
 
-                                            <tr>
-                                                <td colspan="8">No hay registro !!</td>
+                                                    {{csrf_field()}}
 
-                                            </tr>
+                                                    <input name="_method" type="hidden" value="DELETE">
 
-                                        @endif
+                                                    <button class="btn btn-danger btn-xs" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+                                                </form>
+                                            </td>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                                        </tr>
+
+                                    @endforeach
+                                @else
+
+                                    <tr>
+                                        <td colspan="8">No hay registro !!</td>
+
+                                    </tr>
+
+                                @endif
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </main>
-        </div>
+                </div>
+            </div>
+        </main>
+
     </section>
 @endsection

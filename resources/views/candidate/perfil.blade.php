@@ -9,7 +9,8 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                      <h1>perfil</h1>
+                                      <h1>Perfil {{$candidate->name}}</h1>
+                                        <h3>Promoción {{$candidate->promotion}}</h3>
                                         <table id="mytable" class="table table-bordred table-striped">
 
                                             <thead>
@@ -60,9 +61,23 @@
                                         </table>
 
                                     </table>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+
+                                        <div class="card-header">
+                                            <i class="fas fa-chart-area mr-1"></i>
+                                            Área de progreso
+                                        </div>
+                                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
+                                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+
                                 </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
+
                     </div>
                 </main>
         </div>

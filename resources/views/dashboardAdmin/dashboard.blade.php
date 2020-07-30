@@ -43,14 +43,15 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Promociones
                             </a>
-                            <a class="nav-link" href="/charts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Progreso
-                            </a>
                             <a class="nav-link" href="/candidate">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Candidatos
                             </a>
+                            <a class="nav-link" href="/charts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Progreso
+                            </a>
+
                         </div>
                     </div>
                 </nav>
