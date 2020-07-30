@@ -61,9 +61,24 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <input type="text" name="email" id="email" class="form-control input-sm" value="{{$candidate->email}}">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+
+                                            <input type="text" name="email" id="email" class="form-control input-sm" value="{{$candidate->email}}">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="form-group">
+
+                                            <input type="text" name="promotion" id="promotion" class="form-control input-sm" value="{{$candidate->promotion}}">
+
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="form-group">
                                     <input type="text" name="phone_number" id="phone_number" class="form-control input-sm" value="{{$candidate->phone_number}}">
                                 </div>

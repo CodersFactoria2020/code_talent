@@ -55,44 +55,36 @@
                                 <div class="row">
 
                                     <div class="col-xs-6 col-sm-6 col-md-6">
-
                                         <div class="form-group">
-
                                             <input type="text" name="name" id="name" class="form-control input-sm" placeholder="Nombre">
-
                                         </div>
-
                                     </div>
 
                                     <div class="col-xs-6 col-sm-6 col-md-6">
-
                                         <div class="form-group">
-
                                             <input type="text" name="lastname" id="lastname" class="form-control input-sm" placeholder="Apellido">
-
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-
                                     <input name="email" class="form-control input-sm" placeholder="Email">
-
                                 </div>
-                                <div class="form-group">
 
+                                <div class="form-group">
                                     <input name="phone_number" class="form-control input-sm" placeholder="Telefono">
-
                                 </div>
-                                <div class="form-group">
 
+                                <div class="form-group">
+                                    <input name="promotion" class="form-control input-sm" placeholder="Promocion">
+                                </div>
+
+                                <div class="form-group">
                                     <input name="sololearn" class="form-control input-sm" placeholder="Link SoloLearn">
-
                                 </div>
+
                                 <div class="form-group">
-
                                     <input name="codeacademy" class="form-control input-sm" placeholder="Link CodeAcademy">
-
                                 </div>
 
                                 <div class="row">
