@@ -10,7 +10,7 @@ class Candidate extends Model
 
     public function promotion()
     {
-        return $this->hasMany(Promotion::class);
+        return $this->belongsTo(Promotion::class);
     }
 
 }

@@ -7,7 +7,7 @@ class PromotionSeeder extends Seeder
 {
     public function run()
     {
-        factory(Promotion::class, 10)->create();
+        factory(Promotion::class, 3)->create();
 
     }
 }

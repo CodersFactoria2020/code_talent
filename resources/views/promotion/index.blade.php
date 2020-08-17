@@ -1,4 +1,4 @@
-@extends('dashboardAdmin.dashboard')
+git @extends('dashboardAdmin.dashboard')
 
 @section('content')
 
@@ -28,8 +28,6 @@
 
                                 <th>Nombre</th>
 
-                                <th>Promotion</th>
-
                                 <th>Creacion</th>
 
                                 <th>Editar</th>
@@ -46,10 +44,7 @@
 
                                         <tr>
 
-
-                                            <td>{{$promotion->name}}</td>
-
-                                            <td>{{$promotion->promotion}}</td>
+                                            <td><a href="{{action('CandidateController@index')}}">{{$promotion->name}}</a></td>
 
                                             <td>{{$promotion->created_at}}</td>
 

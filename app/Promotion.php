@@ -10,7 +10,7 @@ class Promotion extends Model
 
     public function candidate()
     {
-        return $this->belongsTo(Candidate::class);
+        return $this->hasMany(Candidate::class);
     }
 
 }
