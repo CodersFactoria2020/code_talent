@@ -10,7 +10,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                       <h1>Perfil <strong>{{$candidate->name}}</strong></h1>
-                                        <h3>Promoción <strong>{{$candidate->promotion}}</strong></h3>
+                                        <h3>Promoción <strong>{{$candidate->promotion->name}}</strong></h3>
                                         <table id="mytable" class="table table-bordred table-striped">
 
                                             <thead>

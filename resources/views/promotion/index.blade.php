@@ -1,4 +1,4 @@
-git @extends('dashboardAdmin.dashboard')
+@extends('dashboardAdmin.dashboard')
 
 @section('content')
 
@@ -8,12 +8,12 @@ git @extends('dashboardAdmin.dashboard')
                 <h1 class="mt-4">Lista de Promotiones</h1>
                 <div class="pull-right">
                     <div class="btn-group">
-                        <a href="{{ route('candidate.create') }}" class="btn btn-info" >Añadir Promocion</a>
+                        <a href="{{ route('promotion.create') }}" class="btn btn-info" >Añadir Promocion</a>
                     </div>
                 </div>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
-                    <li class="breadcrumb-item active">Promocion</li>
+                    <li class="breadcrumb-item active">Promoción</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-header">
@@ -44,7 +44,7 @@ git @extends('dashboardAdmin.dashboard')
 
                                         <tr>
 
-                                            <td><a href="{{action('CandidateController@index')}}">{{$promotion->name}}</a></td>
+                                            <td><a href="{{action('PromotionController@show',$promotion->id)}}">{{$promotion->name}}</a></td>
 
                                             <td>{{$promotion->created_at}}</td>
 

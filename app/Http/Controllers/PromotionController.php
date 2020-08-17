@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Candidate;
 use Illuminate\Http\Request;
 
 use App\Promotion;
+
 
 class PromotionController extends Controller
 {
@@ -25,7 +27,7 @@ class PromotionController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,[ 'name'=>'required', 'promotion'=>'required']);
+        $this->validate($request,[ 'name'=>'required']);
 
 
         Promotion::create($request->all());
@@ -38,9 +40,9 @@ class PromotionController extends Controller
     public function show($id)
     {
         $promotion=Promotion::find($id);
+        $candidates = Candidate::where('promotion_id', $id)->get();
 
-
-        return  view('promotion.index',compact('promotion'));
+        return  view('promotion.index',compact('candidates','promotion'));
     }
 
     public function edit($id)
@@ -53,7 +55,7 @@ class PromotionController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request,[ 'name'=>'required', 'promotion'=>'required']);
+        $this->validate($request,[ 'name'=>'required']);
 
         Promotion::find($id)->update($request->all());
 
