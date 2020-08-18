@@ -50,13 +50,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
-                                        <div class="form-group">
-
-                                            <input type="text" name="promotion" id="promotion" class="form-control input-sm" value="{{$promotion->promotion}}">
-
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="row">

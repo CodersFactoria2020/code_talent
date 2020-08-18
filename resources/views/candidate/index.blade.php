@@ -52,7 +52,7 @@
 
 
                                     <tr>
-                                        <td>{{$candidate->promotion}}</td>
+                                        <td>{{$candidate->promotion->name}}</td>
 
                                         <td><a class="btn btn-link btn-xs" href="{{action('CandidateController@show', $candidate->id)}}"><span class="glyphicon glyphicon-user"></span></a></td>
 
