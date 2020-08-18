@@ -10,11 +10,9 @@ class CreatePromotionsTable extends Migration
     {
         Schema::create('promotions', function (Blueprint $table) {
 
-            $table->id()->nullable();
+            $table->id();
 
             $table->string('name');
-
-            $table->string('promotion');
 
             $table->timestamps();
         });

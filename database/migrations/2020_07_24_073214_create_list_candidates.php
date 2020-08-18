@@ -25,7 +25,10 @@ class CreateListCandidates extends Migration
 
             $table->string('phone_number');
 
-            $table->string('promotion')->default('sin asignar');
+            $table->foreignId('promotion_id')->default(1);
+
+            $table->foreign("promotion_id")->references("id")->on("promotions") ->onDelete("cascade")
+                ->onUpdate("cascade");
 
             $table->integer('status')->default(0);
 

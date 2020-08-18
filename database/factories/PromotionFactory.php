@@ -8,6 +8,5 @@ use Faker\Generator as Faker;
 $factory->define(Promotion::class, function (Faker $faker) {
     return [
         'name' => $faker-> word,
-        'promotion' => $faker-> randomDigit,
     ];
 });

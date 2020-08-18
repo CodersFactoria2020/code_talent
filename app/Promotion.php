@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Promotion extends Model
 {
-    protected $fillable = ['name', 'promotion'];
+    protected $fillable = ['name'];
 
     public function candidate()
     {
-        return $this->belongsTo(Candidate::class);
+        return $this->hasMany(Candidate::class);
     }
 
 }
