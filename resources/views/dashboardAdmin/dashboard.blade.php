@@ -14,7 +14,7 @@
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="/dashboard">Code_talent</a>
+            <a class="navbar-brand" href="/dashboard">{{ Auth::user()->name }} </a>
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 
             <ul class="navbar-nav ml-auto ml-md-0">
