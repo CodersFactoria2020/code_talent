@@ -9,46 +9,42 @@ use App\CodeAcademyScraping;
 
 class CodeAcademyScrapingTest extends TestCase
 {
+    private $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
+    private $completedCourses;
+    private $scraper;
+
+    public function setUp() :void
+    {
+        $this->scraper = new CodeAcademyScraping();
+        $this->completedCourses = $this->scraper->getCompletedCourses($this->url);
+    }
 
     public function test_returns_an_array()
     {
-        $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
-
-        $scraper = new CodeAcademyScraping();
-        $completedCourses = $scraper->getCompletedCourses($url);
-
-        $this->assertIsArray($completedCourses);
+        $this->assertIsArray($this->completedCourses);
     }
 
     public function test_returns_completed_courses()
     {
-        $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
         $numberOfCompletedCourses = 4;
 
-        $scraper = new CodeAcademyScraping();
-        $completedCourses = $scraper->getCompletedCourses($url);
-
-        $this->assertEquals($numberOfCompletedCourses, count($completedCourses));
-        $this->assertContains('Learn HTML', $completedCourses);
+        $this->assertEquals($numberOfCompletedCourses, count($this->completedCourses));
+        $this->assertContains('Learn HTML', $this->completedCourses);
     }
 
 
     public function test_returns_last_connection()
     {
-        $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
-        $scraper = new CodeAcademyScraping();
-        $lastConnection = $scraper->lastConnection($url);
+
+        $lastConnection = $this->scraper->lastConnection($this->url);
 
         $this->assertTrue(str_contains($lastConnection, 'Last coded'));
     }
 
     public function test_get_about_courses()
     {
-        $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
-        $scraper = new CodeAcademyScraping();
 
-        $completedCourses = $scraper->getCompletedCourses($url);
-        $html_and_css_courses = $scraper->get_html_and_css_courses($completedCourses);
+        $html_and_css_courses = $this->scraper->get_html_and_css_courses($this->completedCourses);
 
         $this->assertContains('Learn HTML', $html_and_css_courses);
         $this->assertContains('Learn CSS', $html_and_css_courses);
@@ -58,12 +54,9 @@ class CodeAcademyScrapingTest extends TestCase
 
     public function test_get_json_data()
     {
-        $url = "https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio";
-        $scraper = new CodeAcademyScraping();
 
-        $completedCourses = $scraper->getCompletedCourses($url);
-        $html_and_css_courses = $scraper->get_html_and_css_courses($completedCourses);
-        $scraper->get_json_data($html_and_css_courses);
+        $html_and_css_courses = $this->scraper->get_html_and_css_courses($this->completedCourses);
+        $this->scraper->get_json_data($html_and_css_courses);
 
         $json = file_get_contents('HTML_CSS_course.json');
         $json_data = json_decode($json, true);
