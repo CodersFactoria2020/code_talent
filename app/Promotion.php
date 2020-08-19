@@ -8,7 +8,7 @@ class Promotion extends Model
 {
     protected $fillable = ['name'];
 
-    public function candidate()
+    public function candidates()
     {
         return $this->hasMany(Candidate::class);
     }
