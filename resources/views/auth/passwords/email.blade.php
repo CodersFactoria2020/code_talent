@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Resetear Contraseña') }}</div>
+                <div class="card-header"><a class="btn btn-link" href="{{ url('login') }}">
+                        Volver
+                    </a></div>
 
                 <div class="card-body">
                     @if (session('status'))
