@@ -9,29 +9,26 @@ use App\SoloLearnScraping;
 class SoloLearnScrapingTest extends TestCase
 {
     private $scrappedCourses;
-
-    public function test_get_specific_course()
+    private $scrapy;
+    public function setUp() :void
     {
-        $scrapy = $this->partialMock(SoloLearnScraping::class, function ($mock) {
-            $allCourses = include 'tests/unit/AllCoursesMock.php';
+        parent::setUp();
+        $this->scrapy = $this->partialMock(SoloLearnScraping::class, function ($mock) {
+            $allCourses = include 'tests/Unit/AllCoursesMock.php';
             $mock->shouldReceive('getAllCourses')->andReturns($allCourses);
         });
 
-        $this->scrappedCourses = $scrapy->getAllCourses('');
+        $this->scrappedCourses = $this->scrapy->getAllCourses('');
+    }
 
+    public function test_get_specific_course()
+    {
         $this->assertContains('PHP Tutorial', $this->scrappedCourses[4]);
     }
 
     public function test_get_about_course( )
     {
-        $scrapy = $this->partialMock(SoloLearnScraping::class, function ($mock) {
-            $allCourses = include 'tests/unit/AllCoursesMock.php';
-            $mock->shouldReceive('getAllCourses')->andReturns($allCourses);
-        });
-
-        $this->scrappedCourses = $scrapy->getAllCourses('');
-
-        $php_course = $scrapy->get_PHP_course($this->scrappedCourses);
+        $php_course = $this->scrapy->get_PHP_course($this->scrappedCourses);
 
         $this->assertContains('PHP Tutorial',$php_course);
         $this->assertContains('100',$php_course);
@@ -41,15 +38,9 @@ class SoloLearnScrapingTest extends TestCase
 
     public function test_get_json_data()
     {
-        $scrapy = $this->partialMock(SoloLearnScraping::class, function ($mock) {
-            $allCourses = include 'tests/unit/AllCoursesMock.php';
-            $mock->shouldReceive('getAllCourses')->andReturns($allCourses);
-        });
+        $php_course = $this->scrapy->get_PHP_course($this->scrappedCourses);
 
-        $this->scrappedCourses = $scrapy->getAllCourses('');
-        $php_course = $scrapy->get_PHP_course($this->scrappedCourses);
-
-        $scrapy->get_json_data($php_course);
+        $this->scrapy->get_json_data($php_course);
         $json = file_get_contents('PHP_course.json');
         $json_data = json_decode($json, true);
 
