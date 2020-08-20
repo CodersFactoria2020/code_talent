@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Candidate;
+use App\Promotion;
 
 class CandidateController extends Controller
 {
@@ -19,7 +20,10 @@ class CandidateController extends Controller
 
     public function create()
     {
-        return view('candidate.create');
+        $promotions= Promotion::all();
+
+
+        return view('candidate.create',compact('promotions'));
     }
 
 
