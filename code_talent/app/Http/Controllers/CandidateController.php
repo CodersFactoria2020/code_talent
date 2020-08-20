@@ -50,9 +50,10 @@ class CandidateController extends Controller
     public function edit($id)
     {
         $candidate=Candidate::find($id);
+        $promotions= Promotion::all();
 
 
-        return view('candidate.edit',compact('candidate'));
+        return view('candidate.edit',compact('candidate','promotions'));
     }
 
     public function update(Request $request, $id)

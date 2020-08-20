@@ -62,7 +62,7 @@
 
                                         <td>{{$candidate->lastname}}</td>
 
-                                        <td>{{$candidate->status}}</td>
+                                        <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->status}}% ;" aria-valuenow="{{$candidate->status}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->status}}%</td>
 
                                         <td>{{$candidate->created_at}}</td>
 
