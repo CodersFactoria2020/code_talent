@@ -37,12 +37,10 @@ class PromotionController extends Controller
 
     }
 
-    public function show($id)
+    public function show(Promotion $promotion)
     {
-        $promotion=Promotion::find($id);
-        $candidates = Candidate::where('promotion_id', $id)->get();
 
-        return  view('promotion.index',compact('candidates','promotion'));
+        return  view('promotion.show',compact('promotion'));
     }
 
     public function edit($id)
