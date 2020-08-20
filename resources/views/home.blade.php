@@ -15,11 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                        <a class="navbar-brand" href="{{ url('/dashboard') }}">Ir al Dashboard</a>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
