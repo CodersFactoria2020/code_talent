@@ -11,57 +11,73 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                       <h1>Perfil <strong>{{$candidate->name}}</strong></h1>
                                         <h3>Promoción <strong>{{$candidate->promotion->name}}</strong></h3>
-                                        <table id="mytable" class="table table-bordred table-striped">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-                                            <thead>
-                                            <th>ID</th>
+                                                    <thead>
+                                                    <th>ID</th>
 
-                                            <th>Nombre</th>
+                                                    <th>Nombre</th>
 
-                                            <th>Apellidos</th>
+                                                    <th>Apellidos</th>
 
-                                            <th>Estado</th>
+                                                    <th>Email</th>
 
-                                            <th>Fecha de inicio</th>
+                                                    <th>Teléfono</th>
 
-                                            </thead>
-                                            <td>{{$candidate->id}}</td>
+                                                    <th>Fecha de inicio</th>
 
-                                            <td>{{$candidate->name}}</td>
+                                                    <th>Última modificación</th>
 
-                                            <td>{{$candidate->lastname}}</td>
+                                                    </thead>
+                                                    <tbody>
+                                                            <tr>
+                                                                <td>{{$candidate->id}}</td>
 
-                                            <td>{{$candidate->status}}</td>
+                                                                <td>{{$candidate->name}}</td>
 
-                                            <td>{{$candidate->created_at}}</td>
-                                        </table>
-                                        <table id="mytable" class="table table-bordred table-striped">
+                                                                <td>{{$candidate->lastname}}</td>
 
-                                            <thead>
-                                            <th>Email</th>
+                                                                <td>{{$candidate->email}}</td>
 
-                                            <th>Teléfono</th>
+                                                                <td>{{$candidate->phone_number}}</td>
 
-                                            <th>SoloLearn</th>
+                                                                <td>{{$candidate->created_at}}</td>
 
-                                            <th>CodeAcademy</th>
+                                                                <td>{{$candidate->updated_at}}</td>
 
-                                            <th>Última modificación</th>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
-                                            </thead>
-                                            <td>{{$candidate->email}}</td>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-                                            <td>{{$candidate->phone_number}}</td>
+                                                    <thead>
+                                                        <th>SoloLearn</th>
+                                                        <th>CodeAcademy</th>
+                                                    </thead>
 
-                                            <td>{{$candidate->sololearn}}</td>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><a href="{{$candidate->sololearn}}">{{$candidate->sololearn}}</a></td>
+                                                        <td><a href="{{$candidate->codeacademy}}">{{$candidate->codeacademy}}</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->status}}% ;" aria-valuenow="{{$candidate->status}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->status}}%</td>
+                                                        <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->status}}% ;" aria-valuenow="{{$candidate->status}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->status}}%</td>
+                                                    </tr>
+                                                    </tbody>
 
-                                            <td>{{$candidate->codeacademy}}</td>
+                                                </table>
+                                            </div>
+                                        </div>
 
-                                            <td>{{$candidate->updated_at}}</td>
-                                        </table>
 
                                     </table>
-                                    </div>
+                                </div>
 
                             </div>
                         </div>
