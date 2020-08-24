@@ -19,12 +19,12 @@ class LoginTest extends TestCase
 
         $response->assertStatus(200);
     }
-
+    /*
     public function test_if_login_redirect_to_dashboard()
     {
-
+        $user = factory(User::class)->create();
         $response = $this->get('/dashboard');
 
         $response->assertStatus(200);
-    }
+    } */
 }
