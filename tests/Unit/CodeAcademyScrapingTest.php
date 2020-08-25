@@ -14,7 +14,7 @@ class CodeAcademyScrapingTest extends TestCase
     {
         parent::setUp();
         $this->scrapy = $this->partialMock(CodeAcademyScraping::class, function ($mock) {
-            $allCourses = include 'tests/Unit/Mock_Coursescodeacademy.php';
+            $allCourses = include 'tests/Unit/Mock_CoursesCodeAcademy.php';
             $mock->shouldReceive('getCompletedCourses')->andReturns($allCourses);
         });
 
