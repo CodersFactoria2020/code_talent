@@ -2,6 +2,8 @@
 
 namespace Tests\Unit;
 
+use App\Candidate;
+use App\Course;
 use Tests\TestCase;
 
 use App\SoloLearnScraping;
@@ -28,7 +30,10 @@ class SoloLearnScrapingTest extends TestCase
 
     public function test_get_about_course( )
     {
-        $php_course = $this->scrapy->get_PHP_course($this->scrappedCourses);
+        $targetCourse = new Course();
+        $targetCourse->setName('PHP Tutorial');
+
+        $php_course = $this->scrapy->getCourse($this->scrappedCourses,$targetCourse);
 
         $this->assertContains('PHP Tutorial',$php_course);
         $this->assertContains('100',$php_course);
@@ -38,7 +43,7 @@ class SoloLearnScrapingTest extends TestCase
 
     public function test_get_json_data()
     {
-        $php_course = $this->scrapy->get_PHP_course($this->scrappedCourses);
+        $php_course = $this->scrapy->getCourse($this->scrappedCourses);
 
         $this->scrapy->get_json_data($php_course);
         $json = file_get_contents('PHP_course.json');

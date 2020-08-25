@@ -8,7 +8,7 @@ use Goutte\Client;
 
 class SoloLearnScraping implements WebScraping
 {
-    public function getAllCourses($candidate)
+   public function getAllCourses($candidate)
     {
         $client = new Client();
         $crawler = $client->request('GET', $candidate->soloLearn);
@@ -27,15 +27,14 @@ class SoloLearnScraping implements WebScraping
 
     }
 
-     public function getCourse($course)
+     public function getCourse($allCourses, $targetCourse)
         {
-            foreach ($course as $course){
+            foreach ($allCourses as $course){
+                if (in_array ($targetCourse->getName(),$course )){
 
-                if (in_array ('PHP Tutorial',$course )){
                     return $course;
                 }
             }
-
             return False;
         }
 
