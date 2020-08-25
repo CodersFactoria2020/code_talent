@@ -7,6 +7,6 @@ use PhpParser\Builder\Interface_;
 
 interface WebScraping
 {
-    public function getCourse($course);
+    public function getCourse($allCourses,Course $course);
 
 }
