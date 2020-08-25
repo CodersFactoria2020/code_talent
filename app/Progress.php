@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Progress extends Model
 {
-    private $data;
+    private $percentage;
 
-    public function getData()
+    public function getPercentage()
     {
-        return $this->data;
+        return $this->percentage;
     }
 
-    public function setData(string $data)
+    public function setPercentage($percentage)
     {
-        $this->data = $data;
+        $this->percentage = intval($percentage);
     }
 
 }
