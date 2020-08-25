@@ -11,7 +11,7 @@ class SoloLearnScraping implements WebScraping
    public function getAllCourses($candidate)
     {
         $client = new Client();
-        $crawler = $client->request('GET', $candidate->soloLearn);
+        $crawler = $client->request('GET', $candidate->sololearn);
 
         $all_courses = [];
 

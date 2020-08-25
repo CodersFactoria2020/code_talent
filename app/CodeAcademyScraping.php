@@ -3,36 +3,46 @@
 namespace App;
 
 use App\WebScraping;
+use Goutte\Client;
 
-class CodeAcademyScraping extends WebScraping
+class CodeAcademyScraping implements WebScraping
 {
-    public function getCompletedCourses($url)
+    public function getAllCourses($candidate)
     {
-        $crawler = self::scrap($url);
+        $client = new Client();
+        $crawler = $client->request('GET', $candidate->codeacademy);
 
-        $completedCourses = [];
-        $courses = $crawler->filter('.container__25St-wPttEa00dbsIQGsRH')->each(function ($courseNode) use (&$completedCourses)
+        $all_courses = [];
+
+        $crawler->filter('.container__25St-wPttEa00dbsIQGsRH')
+        ->each(function ($courseNode) use (&$all_courses)
         {
             $courseTitle = $courseNode->filter('.title__YKjOCEmg015vuLRonUC5l')->text();
 
-            array_push($completedCourses, $courseTitle);
+            array_push($all_courses, $courseTitle);
         });
 
-        return $completedCourses;
+        return $all_courses;
+    }
+    public function getCourse($all_courses, Course $course)
+    {
+        // TODO: Implement getCourse() method.
     }
 
-    public function lastConnection($url)
+    public function lastConnection($candidate)
     {
-        $crawler = self::scrap($url);
+        $client = new Client();
+        $crawler = $client->request('GET', $candidate->codeacademy);
+
         $lastCoded = $crawler->filter('.label__2YO_cDf1Lu9PDDsn62kz6L > span')->text();
 
         return $lastCoded;
     }
 
-    public function get_html_and_css_courses($completedCourses)
+    public function get_html_and_css_courses($all_courses)
     {
         $html_or_css = [];
-        foreach($completedCourses as $course)
+        foreach($all_courses as $course)
         {
             if($course == 'Learn HTML' || $course == 'Learn CSS')
             {
@@ -51,5 +61,6 @@ class CodeAcademyScraping extends WebScraping
 
         return $json_course;
     }
+
 
 }
