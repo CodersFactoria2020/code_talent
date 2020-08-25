@@ -31,7 +31,7 @@ class SoloLearnScrapingTest extends TestCase
     public function test_get_about_course( )
     {
         $targetCourse = new Course();
-        $targetCourse->setName('PHP Tutorial');
+        $targetCourse->setName('PHP');
 
         $php_course = $this->scrapy->getCourse($this->scrappedCourses,$targetCourse);
 
@@ -40,17 +40,34 @@ class SoloLearnScrapingTest extends TestCase
         $this->assertContains('260 XP',$php_course);
     }
 
-
-    public function test_get_json_data()
+    public function test_if_dont_exist_this_course()
     {
-        $php_course = $this->scrapy->getCourse($this->scrappedCourses);
+        $targetCourse = new Course();
+        $targetCourse->setName('Ruby');
 
-        $this->scrapy->get_json_data($php_course);
-        $json = file_get_contents('PHP_course.json');
-        $json_data = json_decode($json, true);
+        $ruby_course = $this->scrapy->getCourse($this->scrappedCourses,$targetCourse);
 
+        $this->assertEquals('No existe el curso seleccionado',$ruby_course);
+    }
 
-        $this->assertEquals($php_course, $json_data);
+     public function test_if_progress_is_equal_to_zero()
+    {
+        $targetCourse = new Course();
+        $targetCourse->setName('Java');
+
+        $java_course = $this->scrapy->getCourse($this->scrappedCourses,$targetCourse);
+
+        $this->assertContains('0',$java_course);
+    }
+
+    public function test_if_is_java_or_javascript()
+    {
+        $targetCourse = new Course();
+        $targetCourse->setName('Java');
+        $java_course = $this->scrapy->getCourse($this->scrappedCourses,$targetCourse);
+
+        $this->assertNotEquals('JavaScript Tutorial',$java_course[0]);
+        $this->assertContains('Java Tutorial',$java_course);
     }
 
 }

@@ -29,23 +29,35 @@ class SoloLearnScraping implements WebScraping
 
      public function getCourse($allCourses, $targetCourse)
         {
+
             foreach ($allCourses as $course){
-                if (in_array ($targetCourse->getName(),$course )){
+                if ($this->substring_in_array($targetCourse->getName(),$course )){
 
                     return $course;
                 }
             }
-            return False;
+            return 'No existe el curso seleccionado';
         }
 
-    public function get_json_data ($get_PHP_course)
+    private function substring_in_array($courseName, array $courses)
     {
+        $courseName = $this->if_course_is_java($courseName);
 
-        $json_course = fopen('PHP_course.json', 'w');
-        fwrite($json_course, json_encode($get_PHP_course));
-        fclose($json_course);
+        foreach ($courses as $course) {
+            if (false !== strpos($course, $courseName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-        return $json_course;
+    private function if_course_is_java($courseName)
+    {
+        if ($courseName == 'Java') {
+            return 'Java Tutorial';
+        }
+
+        return $courseName;
     }
 
 }
