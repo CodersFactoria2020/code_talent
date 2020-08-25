@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateListCandidates extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('candidates', function (Blueprint $table) {
@@ -41,11 +37,6 @@ class CreateListCandidates extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('candidates');

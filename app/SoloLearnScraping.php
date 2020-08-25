@@ -3,18 +3,20 @@
 namespace App;
 
 use App\WebScraping;
+use Goutte\Client;
 
 
-class SoloLearnScraping extends WebScraping
+class SoloLearnScraping implements WebScraping
 {
-    public function getAllCourses($url)
+    public function getAllCourses($candidate)
     {
-        $crawler = self::scrap($url);
+        $client = new Client();
+        $crawler = $client->request('GET', $candidate->soloLearn);
 
         $all_courses = [];
 
-        $courses = $crawler->filter('.courseWrapper')
-        ->each (function($courseNode) use (&$all_courses){
+        $crawler->filter('.courseWrapper')
+        ->each (function($courseNode) use (&$all_courses) {
             $courseTitle = $courseNode->filter('a[class="course"]')->attr('title');
             $coursePercentage = $courseNode->filter('div[class="chart"]')->attr('data-percent');
             $coursePoints = $courseNode->filter('p')->text();
@@ -22,28 +24,29 @@ class SoloLearnScraping extends WebScraping
         });
 
         return $all_courses;
-    } 
 
-    public function get_PHP_course($all_courses)
-    {
-        foreach ($all_courses as $course){
-
-            if (in_array ('PHP Tutorial',$course )){
-                return $course;
-            }           
-        }
-        
-        return False;    
     }
 
+     public function getCourse($course)
+        {
+            foreach ($course as $course){
+
+                if (in_array ('PHP Tutorial',$course )){
+                    return $course;
+                }
+            }
+
+            return False;
+        }
+
     public function get_json_data ($get_PHP_course)
-    {   
-        
+    {
+
         $json_course = fopen('PHP_course.json', 'w');
         fwrite($json_course, json_encode($get_PHP_course));
         fclose($json_course);
-        
+
         return $json_course;
     }
-    
+
 }

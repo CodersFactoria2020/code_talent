@@ -10,5 +10,7 @@ use Tests\TestCase;
 
 class ProgressTest extends TestCase
 {
+    public function get_a_array
+    $data = new SoloLearnScraping;
 
 }

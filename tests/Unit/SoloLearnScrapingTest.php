@@ -14,7 +14,7 @@ class SoloLearnScrapingTest extends TestCase
     {
         parent::setUp();
         $this->scrapy = $this->partialMock(SoloLearnScraping::class, function ($mock) {
-            $allCourses = include 'tests/Unit/AllCoursesMock.php';
+            $allCourses = include 'tests/Unit/Mock_CoursesSoloLearn.php';
             $mock->shouldReceive('getAllCourses')->andReturns($allCourses);
         });
 
