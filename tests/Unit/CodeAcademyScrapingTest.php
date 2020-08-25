@@ -2,23 +2,24 @@
 
 namespace Tests\Unit;
 
+use App\Course;
 use Tests\TestCase;
 use App\CodeAcademyScraping;
 
 class CodeAcademyScrapingTest extends TestCase
 {
-    private $completedCourses;
-    private $scrapy;
+    private $all_courses;
+    private $scrappy;
 
     public function setUp(): void
     {
         parent::setUp();
-        $this->scrapy = $this->partialMock(CodeAcademyScraping::class, function ($mock) {
-            $allCourses = include 'tests/Unit/Mock_CoursesCodeAcademy.php';
-            $mock->shouldReceive('getCompletedCourses')->andReturns($allCourses);
+        $this->scrappy = $this->partialMock(CodeAcademyScraping::class, function ($mock) {
+            $all_courses = include 'tests/Unit/Mock_CoursesCodeAcademy.php';
+            $mock->shouldReceive('getAllCourses')->andReturns($all_courses);
         });
 
-        $this->completedCourses= $this->scrapy->getCompletedCourses('');
+        $this->all_courses= $this->scrappy->getAllCourses('');
 
     }
 
@@ -27,33 +28,28 @@ class CodeAcademyScrapingTest extends TestCase
     {
         $numberOfCompletedCourses = 4;
 
-        $this->assertEquals($numberOfCompletedCourses, count($this->completedCourses));
-        $this->assertContains('Learn HTML', $this->completedCourses);
+        $this->assertEquals($numberOfCompletedCourses, count($this->all_courses));
+        $this->assertContains('Learn HTML', $this->all_courses);
     }
 
 
-    public function test_get_about_courses()
+    public function test_get_completed_course()
     {
+        $targetCourse = new Course();
+        $targetCourse->setName('HTML');
 
-        $html_and_css_courses = $this->scrapy->get_html_and_css_courses($this->completedCourses);
+        $course = $this->scrappy->getCourse($this->all_courses, $targetCourse);
 
-        $this->assertContains('Learn HTML', $html_and_css_courses);
-        $this->assertContains('Learn CSS', $html_and_css_courses);
-        $this->assertEquals(2, count($html_and_css_courses));
-
+        $this->assertStringContainsString( $course->getName(),'Learn HTML');
     }
 
-    public function test_get_json_data()
+    public function test_if_course_dont_exist_return_message()
     {
+        $targetCourse = new Course();
+        $targetCourse->setName('Go');
+        $course = $this->scrappy->getCourse($this->all_courses, $targetCourse);
 
-        $html_and_css_courses = $this->scrapy->get_html_and_css_courses($this->completedCourses);
-        $this->scrapy->get_json_data($html_and_css_courses);
-
-        $json = file_get_contents('HTML_CSS_course.json');
-        $json_data = json_decode($json, true);
-
-
-        $this->assertEquals($html_and_css_courses, $json_data);
-
+        $this->assertEquals('No existe el curso seleccionado',$course);
     }
+
 }

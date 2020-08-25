@@ -29,7 +29,6 @@ class SoloLearnScraping implements WebScraping
 
      public function getCourse($allCourses, $targetCourse)
         {
-
             foreach ($allCourses as $course){
                 if ($this->substring_in_array($targetCourse->getName(),$course )){
 

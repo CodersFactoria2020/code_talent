@@ -26,7 +26,22 @@ class CodeAcademyScraping implements WebScraping
     }
     public function getCourse($all_courses, Course $course)
     {
-        // TODO: Implement getCourse() method.
+        if($this->substring_in_array($course->getName(),$all_courses))
+            {
+                return $course;
+            }
+
+        return 'No existe el curso seleccionado';
+    }
+
+    private function substring_in_array($courseName, array $courses)
+    {
+        foreach ($courses as $course) {
+            if (false !== strpos($course, $courseName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public function lastConnection($candidate)
@@ -39,28 +54,6 @@ class CodeAcademyScraping implements WebScraping
         return $lastCoded;
     }
 
-    public function get_html_and_css_courses($all_courses)
-    {
-        $html_or_css = [];
-        foreach($all_courses as $course)
-        {
-            if($course == 'Learn HTML' || $course == 'Learn CSS')
-            {
-                array_push($html_or_css, $course);
-            }
-        }
-
-        return $html_or_css;
-    }
-
-    public function get_json_data ($html_and_css_courses)
-    {
-        $json_course = fopen('HTML_CSS_course.json', 'w');
-        fwrite($json_course, json_encode($html_and_css_courses));
-        fclose($json_course);
-
-        return $json_course;
-    }
 
 
 }
