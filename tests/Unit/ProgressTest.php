@@ -89,13 +89,18 @@ class ProgressTest extends TestCase
     public function test_last_connection_is_Carbon_object()
     {
         $sololearnProgress = Progress::fromSoloLearn( $this->scrappy_soloLearn, $this->php_course);
-        $sololearnProgress->setLastConnection(Carbon::now());
+        $sololearnProgress->setLastConnection(null);
 
         $codeacademyProgress = Progress::fromCodeAcademy( $this->scrappy_codeAcademy, $this->php_course);
-        $codeacademyProgress->setLastConnection('6 months ago');
 
         $this->assertInstanceOf(Carbon::class, $sololearnProgress->getLastConnection());
         $this->assertInstanceOf(Carbon::class, $codeacademyProgress->getLastConnection());
     }
+
+
+
+
+
+
 
 }
