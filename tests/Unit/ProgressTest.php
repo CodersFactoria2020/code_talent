@@ -7,6 +7,7 @@ use App\CodeAcademyScraping;
 use App\Course;
 use App\Progress;
 use App\SoloLearnScraping;
+use Carbon\Carbon;
 use Tests\TestCase;
 
 
@@ -73,6 +74,15 @@ class ProgressTest extends TestCase
         $percentage = Progress::fromCodeAcademy( $this->scrappy_codeAcademy, $this->php_course)->getPercentage();
 
         $this->assertEquals(0,$percentage);
+    }
+
+    public function test_progress_has_last_connection()
+    {
+        $progress = Progress::fromSoloLearn( $this->scrappy_soloLearn, $this->php_course);
+        $progress->setLastConnection(Carbon::now());
+
+        $this->assertClassHasAttribute('last_connection', Progress::class);
+        $this->assertNotNull($progress->getLastConnection());
     }
 
 }
