@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Candidate;
 use App\CodeAcademyScraping;
 use App\Course;
 use App\Progress;
@@ -37,6 +38,19 @@ class ProgressTest extends TestCase
         $progress_percentage = $progress->getPercentage();
 
         $this->assertIsInt($progress_percentage);
+    }
+
+    public function test_get_percentage_from_course()
+    {
+        $mock_courses = include 'tests/Unit/Mock_CoursesSoloLearn.php';
+
+        $progress = new Progress();
+        $percentage = $progress->getPercentage();
+
+        $this->assertTrue(in_array($percentage,$mock_courses));
+        $this->assertEquals($percentage, $mock_courses[4]->[1]);
+
+
     }
 
 
