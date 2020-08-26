@@ -7,7 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Progress extends Model
 {
     private $percentage;
-    //private $last_connection;
+
+    public static function fromSoloLearn(SoloLearnScraping $scraping, $targetCourse)
+    {
+        $scrapped = $scraping->getCourse($targetCourse);
+        $get_position_percentage = $scrapped[1];
+
+        $progress = new Progress();
+        $progress->setPercentage($get_position_percentage);
+
+
+        return $progress;
+    }
 
     public function getPercentage()
     {
@@ -19,14 +30,10 @@ class Progress extends Model
         $this->percentage = intval($percentage);
     }
 
-    /*public function getLastConnection()
-    {
-        return $this->last_connection;
-    }
 
-    public function setLastConnection()
-    {
-        $this->last_connection = $last_connection;
-    }*/
+
+
+
+
 
 }

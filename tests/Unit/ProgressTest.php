@@ -12,32 +12,30 @@ use Tests\TestCase;
 
 class ProgressTest extends TestCase
 {
+    private $scrappy;
+    private $course;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        $candidate = factory(Candidate::class)->make(['sololearn' => 'https://www.sololearn.com/Profile/6700255']);
+        $this->scrappy = new SoloLearnScraping($candidate);
+
+        $this->course = new Course('PHP');
+    }
 
     public function test_if_course_has_a_percentage()
     {
-        $course = new Course();
-        $course->setName('PHP');
-
-        $candidate = factory(Candidate::class)->make(['sololearn' => 'https://www.sololearn.com/Profile/6700255']);
-
-        $scrappy = new SoloLearnScraping($candidate);
-        $data = $scrappy->getCourse($course);
-
-
-        $progress = new Progress();
-        $progress->setPercentage('100');
-        $progress_percentage = $progress->getPercentage();
+        $data = $this->scrappy->getCourse($this->course);
+        $progress_percentage = Progress::fromSoloLearn($this->scrappy, $this->course)->getPercentage();
 
         $this->assertClassHasAttribute('percentage',Progress::class);
         $this->assertEquals($data[1],$progress_percentage);
-
     }
 
     public function test_convert_percentage_string_to_integer()
     {
-        $progress = new Progress();
-        $progress->setPercentage('100');
-        $progress_percentage = $progress->getPercentage();
+        $progress_percentage = Progress::fromSoloLearn($this->scrappy, $this->course)->getPercentage();
 
         $this->assertIsInt($progress_percentage);
     }
@@ -46,14 +44,10 @@ class ProgressTest extends TestCase
     {
         $mock_courses = include 'tests/Unit/Mock_CoursesSoloLearn.php';
 
-        $progress = new Progress();
-        $percentage = $progress->getPercentage();
+        $percentage = Progress::fromSoloLearn( $this->scrappy, $this->course)->getPercentage();
 
-        $this->assertTrue(in_array($percentage,$mock_courses));
+        $this->assertTrue(in_array($percentage,$mock_courses[4]));
         $this->assertEquals($percentage, $mock_courses[4][1]);
-
-
     }
-
 
 }
