@@ -12,6 +12,7 @@ class SoloLearnScrapingTest extends TestCase
 {
     private $scrappedCourses;
     private $scrapy;
+
     public function setUp() :void
     {
         parent::setUp();
@@ -23,17 +24,12 @@ class SoloLearnScrapingTest extends TestCase
         $this->scrappedCourses = $this->scrapy->getAllCourses('');
     }
 
-    public function test_get_specific_course()
-    {
-        $this->assertContains('PHP Tutorial', $this->scrappedCourses[4]);
-    }
-
     public function test_get_about_course( )
     {
         $targetCourse = new Course();
         $targetCourse->setName('PHP');
 
-        $php_course = $this->scrapy->getCourse($this->scrappedCourses,$targetCourse);
+        $php_course = $this->scrapy->getCourse($targetCourse);
 
         $this->assertContains('PHP Tutorial',$php_course);
         $this->assertContains('100',$php_course);
@@ -45,7 +41,7 @@ class SoloLearnScrapingTest extends TestCase
         $targetCourse = new Course();
         $targetCourse->setName('Ruby');
 
-        $ruby_course = $this->scrapy->getCourse($this->scrappedCourses,$targetCourse);
+        $ruby_course = $this->scrapy->getCourse($targetCourse);
 
         $this->assertEquals('No existe el curso seleccionado',$ruby_course);
     }
@@ -55,7 +51,7 @@ class SoloLearnScrapingTest extends TestCase
         $targetCourse = new Course();
         $targetCourse->setName('Java');
 
-        $java_course = $this->scrapy->getCourse($this->scrappedCourses,$targetCourse);
+        $java_course = $this->scrapy->getCourse($targetCourse);
 
         $this->assertContains('0',$java_course);
     }
@@ -64,7 +60,7 @@ class SoloLearnScrapingTest extends TestCase
     {
         $targetCourse = new Course();
         $targetCourse->setName('Java');
-        $java_course = $this->scrapy->getCourse($this->scrappedCourses,$targetCourse);
+        $java_course = $this->scrapy->getCourse($targetCourse);
 
         $this->assertNotEquals('JavaScript Tutorial',$java_course[0]);
         $this->assertContains('Java Tutorial',$java_course);
