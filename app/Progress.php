@@ -9,6 +9,7 @@ class Progress extends Model
 {
     private $percentage;
     private $last_connection;
+    private $course_id;
 
     public static function fromSoloLearn(SoloLearnScraping $scrappy_soloLearn, Course $course)
     {
@@ -20,6 +21,7 @@ class Progress extends Model
 
         $progress->setPercentage($course_percentage);
         $progress->setLastConnection($updated_at);
+        $progress->setCourseId($course->id);
 
         return $progress;
     }
@@ -33,6 +35,7 @@ class Progress extends Model
 
         $progress->setLastConnection($lastConnection);
         $progress->setPercentage($percentage);
+        $progress->setCourseId($course->id);
 
         return $progress;
     }
@@ -56,6 +59,16 @@ class Progress extends Model
     {
         $formattedDate = $this->checkFormat($last_connection);
         $this->last_connection = $formattedDate;
+    }
+
+    public function getCourseId()
+    {
+        return $this->course_id;
+    }
+
+    public function setCourseId($course_id)
+    {
+        $this->course_id = $course_id;
     }
 
     private function calculatePercentage($scrapped_course): int

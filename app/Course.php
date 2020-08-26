@@ -8,8 +8,9 @@ class Course extends Model
 {
     private $name;
 
-    public function __construct( string $name)
+    public function __construct(string $name)
     {
+        parent::__construct();
         $this->setName($name);
     }
 
