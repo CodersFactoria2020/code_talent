@@ -1,6 +1,6 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+
 
 use App\Candidate;
 use Faker\Generator as Faker;
@@ -12,7 +12,7 @@ $factory->define(Candidate::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail(),
         'phone_number' => $faker->phoneNumber(),
         'status' => $faker->numberBetween(0,100),
-        'soloLearn' => $faker->url(),
-        'codeAcademy' => $faker->url(),
+        'sololearn' => $faker->url(),
+        'codeacademy' => $faker->url(),
          ];
 });

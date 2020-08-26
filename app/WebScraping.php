@@ -3,14 +3,10 @@
 namespace App;
 
 use Goutte\Client;
+use PhpParser\Builder\Interface_;
 
-class WebScraping
+interface WebScraping
 {
-    public function scrap(string $url)
-    {
-        $client = new Client();
-        $crawler = $client->request('GET', $url);
+    public function getCourse(Course $course);
 
-        return $crawler;
-    }
 }

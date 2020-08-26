@@ -3,18 +3,27 @@
 namespace App;
 
 use App\WebScraping;
+use Goutte\Client;
 
 
-class SoloLearnScraping extends WebScraping
+class SoloLearnScraping implements WebScraping
 {
-    public function getAllCourses($url)
+    private $candidate;
+
+    public function __construct(Candidate $candidate)
     {
-        $crawler = self::scrap($url);
+        $this->candidate = $candidate;
+    }
+
+    public function getAllCourses($candidate)
+    {
+        $client = new Client();
+        $crawler = $client->request('GET', $candidate->sololearn);
 
         $all_courses = [];
 
-        $courses = $crawler->filter('.courseWrapper')
-        ->each (function($courseNode) use (&$all_courses){
+        $crawler->filter('.courseWrapper')
+        ->each (function($courseNode) use (&$all_courses) {
             $courseTitle = $courseNode->filter('a[class="course"]')->attr('title');
             $coursePercentage = $courseNode->filter('div[class="chart"]')->attr('data-percent');
             $coursePoints = $courseNode->filter('p')->text();
@@ -22,28 +31,40 @@ class SoloLearnScraping extends WebScraping
         });
 
         return $all_courses;
-    } 
 
-    public function get_PHP_course($all_courses)
-    {
-        foreach ($all_courses as $course){
+    }
 
-            if (in_array ('PHP Tutorial',$course )){
-                return $course;
-            }           
+     public function getCourse($targetCourse)
+        {
+            $allCourses = $this->getAllCourses($this->candidate);
+            foreach ($allCourses as $course){
+                if ($this->substring_in_array($targetCourse->getName(),$course )){
+
+                    return $course;
+                }
+            }
+            return 'No existe el curso seleccionado';
         }
-        
-        return False;    
+
+    private function substring_in_array($courseName, array $courses)
+    {
+        $courseName = $this->if_course_is_java($courseName);
+
+        foreach ($courses as $course) {
+            if (false !== strpos($course, $courseName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public function get_json_data ($get_PHP_course)
-    {   
-        
-        $json_course = fopen('PHP_course.json', 'w');
-        fwrite($json_course, json_encode($get_PHP_course));
-        fclose($json_course);
-        
-        return $json_course;
+    private function if_course_is_java($courseName)
+    {
+        if ($courseName == 'Java') {
+            return 'Java Tutorial';
+        }
+
+        return $courseName;
     }
-    
+
 }
