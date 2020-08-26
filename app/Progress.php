@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Progress extends Model
 {
@@ -54,6 +55,11 @@ class Progress extends Model
 
     public function setLastConnection($last_connection)
     {
+        if(is_string($last_connection))
+        {
+            $this->last_connection = Carbon::now()->sub($last_connection);
+            return;
+        }
         $this->last_connection = $last_connection;
     }
 
