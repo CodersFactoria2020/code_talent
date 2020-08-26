@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Progress extends Model
 {
     private $percentage;
+    //private $last_connection;
 
     public function getPercentage()
     {
@@ -17,5 +18,15 @@ class Progress extends Model
     {
         $this->percentage = intval($percentage);
     }
+
+    /*public function getLastConnection()
+    {
+        return $this->last_connection;
+    }
+
+    public function setLastConnection()
+    {
+        $this->last_connection = $last_connection;
+    }*/
 
 }

@@ -20,7 +20,7 @@ class PromotionTest extends TestCase
         $promotion = factory(Promotion::class)->create();
         $response = $this->get('/promotion/'.$promotion->id);
 
-        $response->assertStatus(200);
+
         $response->assertSee($promotion->name);
     }
 

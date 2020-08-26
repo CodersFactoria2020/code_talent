@@ -12,14 +12,16 @@ use Tests\TestCase;
 
 class ProgressTest extends TestCase
 {
+
     public function test_if_course_has_a_percentage()
     {
-        $mock_courses = include 'tests/Unit/Mock_CoursesSoloLearn.php';
         $course = new Course();
         $course->setName('PHP');
 
-        $scrappy = new SoloLearnScraping();
-        $data = $scrappy->getCourse($mock_courses, $course);
+        $candidate = factory(Candidate::class)->make(['sololearn' => 'https://www.sololearn.com/Profile/6700255']);
+
+        $scrappy = new SoloLearnScraping($candidate);
+        $data = $scrappy->getCourse($course);
 
 
         $progress = new Progress();
@@ -48,7 +50,7 @@ class ProgressTest extends TestCase
         $percentage = $progress->getPercentage();
 
         $this->assertTrue(in_array($percentage,$mock_courses));
-        $this->assertEquals($percentage, $mock_courses[4]->[1]);
+        $this->assertEquals($percentage, $mock_courses[4][1]);
 
 
     }
