@@ -76,7 +76,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input name="promotion" class="form-control input-sm" placeholder="Promocion">
+
+                                   <select name="promotion" class="form-control" id="promotionSelect"  placeholder="Promocion">
+                                       <option selected>Promociones...</option>
+                                       @foreach($promotions as $promotion)
+                                        <option>{{$promotion->name}}</option>
+                                       @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="form-group">

@@ -72,16 +72,21 @@
 
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-
-                                            <input type="text" name="promotion" id="promotion" class="form-control input-sm" value="{{$candidate->promotion->name}}">
-
+                                            <input type="text" name="phone_number" id="phone_number" class="form-control input-sm" value="{{$candidate->phone_number}}">
                                         </div>
+
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="text" name="phone_number" id="phone_number" class="form-control input-sm" value="{{$candidate->phone_number}}">
+                                    <select name="promotion_id" class="form-control" id="promotion_id"  placeholder="Promocion">
+                                        <option selected>Promociones...</option>
+                                        @foreach($promotions as $promotion)
+                                            <option value="{{$promotion->id}}" >{{$promotion->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+
                                 <div class="form-group">
                                     <input type="text" name="sololearn" id="sololearn" class="form-control input-sm" value="{{$candidate->sololearn}}">
                                 </div>
