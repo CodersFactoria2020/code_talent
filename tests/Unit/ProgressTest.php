@@ -20,8 +20,11 @@ class ProgressTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $candidate = factory(Candidate::class)->make(['sololearn' => 'https://www.sololearn.com/Profile/6700255',
-            'codeacademy'=>'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
+        $candidate = factory(Candidate::class)->make([
+            'sololearn' => 'https://www.sololearn.com/Profile/6700255',
+            'codeacademy'=>'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio'
+        ]);
+
         $this->scrappy_soloLearn = new SoloLearnScraping($candidate);
         $this->scrappy_codeAcademy = new CodeAcademyScraping($candidate);
 
@@ -48,11 +51,13 @@ class ProgressTest extends TestCase
     public function test_get_percentage_from_sololearn_course()
     {
         $mock_courses = include 'tests/Unit/Mock_CoursesSoloLearn.php';
+        $php_course = $mock_courses[4];
+        $php_course_percentage = $mock_courses[4][1];
 
         $percentage = Progress::fromSoloLearn( $this->scrappy_soloLearn, $this->php_course)->getPercentage();
 
-        $this->assertTrue(in_array($percentage,$mock_courses[4]));
-        $this->assertEquals($percentage, $mock_courses[4][1]);
+        $this->assertTrue(in_array($percentage, $php_course));
+        $this->assertEquals($percentage, $php_course_percentage);
     }
 
     public function test_get_percentage_from_codeacademy_course_is_one_hundred()
