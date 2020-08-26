@@ -8,6 +8,7 @@ use App\Course;
 use App\Progress;
 use App\SoloLearnScraping;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Date;
 use Tests\TestCase;
 
 
@@ -83,6 +84,18 @@ class ProgressTest extends TestCase
 
         $this->assertClassHasAttribute('last_connection', Progress::class);
         $this->assertNotNull($progress->getLastConnection());
+    }
+
+    public function test_last_connection_is_Carbon_object()
+    {
+        $sololearnProgress = Progress::fromSoloLearn( $this->scrappy_soloLearn, $this->php_course);
+        $sololearnProgress->setLastConnection(Carbon::now());
+
+        $codeacademyProgress = Progress::fromCodeAcademy( $this->scrappy_codeAcademy, $this->php_course);
+        $codeacademyProgress->setLastConnection('6 months ago');
+
+        $this->assertInstanceOf(Carbon::class, $sololearnProgress->getLastConnection());
+        $this->assertInstanceOf(Carbon::class, $codeacademyProgress->getLastConnection());
     }
 
 }
