@@ -14,6 +14,8 @@ use Tests\TestCase;
 
 class ProgressTest extends TestCase
 {
+
+
     private $scrappy_soloLearn;
     private $scrappy_codeAcademy;
     private $php_course;
@@ -95,6 +97,15 @@ class ProgressTest extends TestCase
 
         $this->assertInstanceOf(Carbon::class, $sololearnProgress->getLastConnection());
         $this->assertInstanceOf(Carbon::class, $codeacademyProgress->getLastConnection());
+    }
+
+    public function test_progress_has_a_course_id()
+    {
+        $progress = Progress::fromSoloLearn($this->scrappy_soloLearn, $this->php_course);
+        $progress->setCourseId(100);
+
+        $this->assertClassHasAttribute('course_id', Progress::class);
+        $this->assertNotNull($progress->getCourseId());
     }
 
 
