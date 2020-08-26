@@ -14,7 +14,7 @@ class SoloLearnScrapingTest extends TestCase
     {
         $mockedCourses = include 'tests/Unit/Mock_CoursesSoloLearn.php';
         $candidate = factory(Candidate::class)->make(['sololearn' => 'https://www.sololearn.com/Profile/6700255']);
-        $scrappy = new SoloLearnScraping();
+        $scrappy = new SoloLearnScraping($candidate);
         $this->scrappedCourses = $scrappy->getAllCourses($candidate);
         $this->assertIsArray($this->scrappedCourses);
         $this->assertEquals($mockedCourses, $this->scrappedCourses);

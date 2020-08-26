@@ -14,7 +14,7 @@ class CodeAcademyScrapingTest extends TestCase
     {
         $mockedCourses = include 'tests/Unit/Mock_CoursesCodeAcademy.php';
         $candidate = factory(Candidate::class)->make(['codeacademy' => 'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
-        $scraper = new CodeAcademyScraping();
+        $scraper = new CodeAcademyScraping($candidate);
 
         $scrappedCourses = $scraper->getAllCourses($candidate);
         $this->assertIsArray($scrappedCourses);
@@ -25,7 +25,7 @@ class CodeAcademyScrapingTest extends TestCase
     {
         $candidate = factory(Candidate::class)->make(['codeacademy' => 'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
 
-        $scraper = new CodeAcademyScraping();
+        $scraper = new CodeAcademyScraping($candidate);
         $lastConnection = $scraper->lastConnection($candidate);
 
         $this->assertTrue(str_contains($lastConnection, 'Last coded'));
