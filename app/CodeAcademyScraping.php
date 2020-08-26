@@ -7,18 +7,17 @@ use Goutte\Client;
 
 class CodeAcademyScraping implements WebScraping
 {
-    private $candidate;
+    private Candidate $candidate;
 
     public function __construct(Candidate $candidate)
     {
         $this->candidate = $candidate;
     }
 
-    public function getAllCourses($candidate)
+    public function getAllCourses()
     {
         $client = new Client();
-        $crawler = $client->request('GET', $candidate->codeacademy);
-
+        $crawler = $client->request('GET', $this->candidate->codeacademy);
         $all_courses = [];
 
         $crawler->filter('.container__25St-wPttEa00dbsIQGsRH')
@@ -33,7 +32,7 @@ class CodeAcademyScraping implements WebScraping
     }
     public function getCourse(Course $course)
     {
-        $all_courses = $this->getAllCourses($this->candidate);
+        $all_courses = $this->getAllCourses();
 
         if($this->substring_in_array($course->getName(),$all_courses))
             {
@@ -53,10 +52,10 @@ class CodeAcademyScraping implements WebScraping
         return false;
     }
 
-    public function lastConnection($candidate)
+    public function lastConnection()
     {
         $client = new Client();
-        $crawler = $client->request('GET', $candidate->codeacademy);
+        $crawler = $client->request('GET', $this->candidate->codeacademy);
 
         $lastCoded = $crawler->filter('.label__2YO_cDf1Lu9PDDsn62kz6L > span')->text();
 

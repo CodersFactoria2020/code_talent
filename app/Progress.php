@@ -10,33 +10,32 @@ class Progress extends Model
     private $percentage;
     private $last_connection;
 
-    public static function fromSoloLearn(SoloLearnScraping $scraping, Course $targetCourse)
+    public static function fromSoloLearn(SoloLearnScraping $scrappy_soloLearn, Course $course)
     {
-        $scrapped = $scraping->getCourse($targetCourse);
-        $get_position_percentage = $scrapped[1];
+        $scrapped = $scrappy_soloLearn->getCourse($course);
+        $course_percentage = $scrapped[1];
 
         $progress = new Progress();
-        $progress->setPercentage($get_position_percentage);
+        $updated_at = $progress->getAttribute('updated_at');
+
+        $progress->setPercentage($course_percentage);
+        $progress->setLastConnection($updated_at);
 
         return $progress;
     }
 
-    public static function fromCodeAcademy(CodeAcademyScraping $scrappy_codeAcademy, Course $html_course)
+    public static function fromCodeAcademy(CodeAcademyScraping $scrappy_codeAcademy, Course $course)
     {
         $progress = new Progress();
+        $scrapped_course = $scrappy_codeAcademy->getCourse($course);
+        $lastConnection = $scrappy_codeAcademy->lastConnection();
+        $percentage = $progress->calculatePercentage($scrapped_course);
 
-
-        $scrapped = $scrappy_codeAcademy->getCourse($html_course);
-            if ($scrapped === 'No existe el curso seleccionado')
-            {
-                $progress->setPercentage(0);
-                return $progress;
-            }
-            $progress->setPercentage(100);
+        $progress->setLastConnection($lastConnection);
+        $progress->setPercentage($percentage);
 
         return $progress;
     }
-
 
     public function getPercentage()
     {
@@ -55,18 +54,33 @@ class Progress extends Model
 
     public function setLastConnection($last_connection)
     {
-        if(is_string($last_connection))
-        {
-            $this->last_connection = Carbon::now()->sub($last_connection);
-            return;
-        }
-        $this->last_connection = $last_connection;
+        $formattedDate = $this->checkFormat($last_connection);
+        $this->last_connection = $formattedDate;
     }
 
+    private function calculatePercentage($scrapped_course): int
+    {
+        if ($scrapped_course === 'No existe el curso seleccionado')
+        {
+            return 0;
+        }
+        return 100;
+    }
 
+    private function checkFormat($last_connection): Carbon
+    {
+        if (is_null($last_connection))
+        {
+            return Carbon::now();
+        }
 
+        if (is_string($last_connection))
+        {
+            return Carbon::now()->sub($last_connection);
+        }
 
-
+        return $last_connection;
+    }
 
 
 }
