@@ -34,11 +34,12 @@ class ProgressTest extends TestCase
 
     public function test_if_course_has_a_percentage()
     {
-        $data = $this->scrappy_soloLearn->getCourse($this->php_course);
+        $scrappedCourse = $this->scrappy_soloLearn->getCourse($this->php_course);
+        $course_percentage = $scrappedCourse[1];
         $progress_percentage = Progress::fromSoloLearn($this->scrappy_soloLearn, $this->php_course)->getPercentage();
 
         $this->assertClassHasAttribute('percentage',Progress::class);
-        $this->assertEquals($data[1],$progress_percentage);
+        $this->assertEquals($course_percentage,$progress_percentage);
     }
 
     public function test_convert_percentage_string_to_integer()
