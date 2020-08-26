@@ -7,6 +7,13 @@ use Goutte\Client;
 
 class CodeAcademyScraping implements WebScraping
 {
+    private $candidate;
+
+    public function __construct(Candidate $candidate)
+    {
+        $this->candidate = $candidate;
+    }
+
     public function getAllCourses($candidate)
     {
         $client = new Client();
@@ -24,8 +31,10 @@ class CodeAcademyScraping implements WebScraping
 
         return $all_courses;
     }
-    public function getCourse($all_courses, Course $course)
+    public function getCourse(Course $course)
     {
+        $all_courses = $this->getAllCourses($this->candidate);
+
         if($this->substring_in_array($course->getName(),$all_courses))
             {
                 return $course;

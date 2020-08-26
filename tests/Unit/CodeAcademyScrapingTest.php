@@ -38,7 +38,7 @@ class CodeAcademyScrapingTest extends TestCase
         $targetCourse = new Course();
         $targetCourse->setName('HTML');
 
-        $course = $this->scrappy->getCourse($this->all_courses, $targetCourse);
+        $course = $this->scrappy->getCourse($targetCourse);
 
         $this->assertStringContainsString( $course->getName(),'Learn HTML');
     }
@@ -47,7 +47,7 @@ class CodeAcademyScrapingTest extends TestCase
     {
         $targetCourse = new Course();
         $targetCourse->setName('Go');
-        $course = $this->scrappy->getCourse($this->all_courses, $targetCourse);
+        $course = $this->scrappy->getCourse($targetCourse);
 
         $this->assertEquals('No existe el curso seleccionado',$course);
     }
