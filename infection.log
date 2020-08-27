@@ -1,0 +1,1379 @@
+Escaped mutants:
+================
+
+1) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Candidate.php:11    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+ class Candidate extends Model
+ {
+     protected $fillable = ['name', 'lastname', 'email', 'promotion_id', 'phone_number', 'status', 'soloLearn', 'codeAcademy'];
+-    protected function promotion()
++    private function promotion()
+     {
+         return $this->belongsTo(Promotion::class);
+     }
+ }
+
+
+2) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Console/Kernel.php:37    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     protected function commands()
+     {
+-        $this->load(__DIR__ . '/Commands');
++        
+         require base_path('routes/console.php');
+     }
+ }
+
+
+3) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Exceptions/Handler.php:39    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     public function report(Throwable $exception)
+     {
+-        parent::report($exception);
++        
+     }
+     /**
+      * Render an exception into an HTTP response.
+
+
+4) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:40    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+         Promotion::create($request->all());
+         return redirect()->route('promotion.index')->with('success', 'Registro creado satisfactoriamente');
+     }
+-    protected function show(Promotion $promotion)
++    private function show(Promotion $promotion)
+     {
+         return view('promotion.show', compact('promotion'));
+     }
+
+
+5) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Promotion.php:11    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+ class Promotion extends Model
+ {
+     protected $fillable = ['name'];
+-    protected function candidates()
++    private function candidates()
+     {
+         return $this->hasMany(Candidate::class);
+     }
+ }
+
+
+6) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Providers/AuthServiceProvider.php:26    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     public function boot()
+     {
+-        $this->registerPolicies();
++        
+         //
+     }
+ }
+
+
+7) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Providers/EventServiceProvider.php:30    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     public function boot()
+     {
+-        parent::boot();
++        
+         //
+     }
+ }
+
+
+8) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Providers/RouteServiceProvider.php:45    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     public function map()
+     {
+-        $this->mapApiRoutes();
++        
+         $this->mapWebRoutes();
+         //
+     }
+
+
+9) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Providers/RouteServiceProvider.php:59    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+      *
+      * @return void
+      */
+-    protected function mapWebRoutes()
++    private function mapWebRoutes()
+     {
+         Route::middleware('web')->namespace($this->namespace)->group(base_path('routes/web.php'));
+     }
+
+
+10) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Providers/RouteServiceProvider.php:73    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+      *
+      * @return void
+      */
+-    protected function mapApiRoutes()
++    private function mapApiRoutes()
+     {
+         Route::prefix('api')->middleware('api')->namespace($this->namespace)->group(base_path('routes/api.php'));
+     }
+ }
+
+
+11) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Providers/RouteServiceProvider.php:75    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     protected function mapApiRoutes()
+     {
+-        Route::prefix('api')->middleware('api')->namespace($this->namespace)->group(base_path('routes/api.php'));
++        
+     }
+ }
+
+
+Timed Out mutants:
+==================
+
+Not Covered mutants:
+====================
+
+1) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/ConfirmPasswordController.php:38    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     public function __construct()
+     {
+-        $this->middleware('auth');
++        
+     }
+ }
+
+
+2) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/LoginController.php:38    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     public function __construct()
+     {
+-        $this->middleware('guest')->except('logout');
++        
+     }
+ }
+
+
+3) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/RegisterController.php:41    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     public function __construct()
+     {
+-        $this->middleware('guest');
++        
+     }
+     /**
+      * Get a validator for an incoming registration request.
+
+
+4) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/RegisterController.php:50    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  array  $data
+      * @return \Illuminate\Contracts\Validation\Validator
+      */
+-    protected function validator(array $data)
++    private function validator(array $data)
+     {
+         return Validator::make($data, ['name' => ['required', 'string', 'max:255'], 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'password' => ['required', 'string', 'min:8', 'confirmed']]);
+     }
+
+
+5) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/RegisterController.php:52    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     protected function validator(array $data)
+     {
+-        return Validator::make($data, ['name' => ['required', 'string', 'max:255'], 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'password' => ['required', 'string', 'min:8', 'confirmed']]);
++        return Validator::make($data, ['email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'password' => ['required', 'string', 'min:8', 'confirmed']]);
+     }
+     /**
+      * Create a new user instance after a valid registration.
+
+
+6) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/RegisterController.php:53    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     protected function validator(array $data)
+     {
+-        return Validator::make($data, ['name' => ['required', 'string', 'max:255'], 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'password' => ['required', 'string', 'min:8', 'confirmed']]);
++        return Validator::make($data, ['name' => ['string', 'max:255'], 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'password' => ['required', 'string', 'min:8', 'confirmed']]);
+     }
+     /**
+      * Create a new user instance after a valid registration.
+
+
+7) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/RegisterController.php:54    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     protected function validator(array $data)
+     {
+-        return Validator::make($data, ['name' => ['required', 'string', 'max:255'], 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'password' => ['required', 'string', 'min:8', 'confirmed']]);
++        return Validator::make($data, ['name' => ['required', 'string', 'max:255'], 'email' => ['string', 'email', 'max:255', 'unique:users'], 'password' => ['required', 'string', 'min:8', 'confirmed']]);
+     }
+     /**
+      * Create a new user instance after a valid registration.
+
+
+8) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/RegisterController.php:55    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     protected function validator(array $data)
+     {
+-        return Validator::make($data, ['name' => ['required', 'string', 'max:255'], 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'password' => ['required', 'string', 'min:8', 'confirmed']]);
++        return Validator::make($data, ['name' => ['required', 'string', 'max:255'], 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'], 'password' => ['string', 'min:8', 'confirmed']]);
+     }
+     /**
+      * Create a new user instance after a valid registration.
+
+
+9) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/RegisterController.php:65    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  array  $data
+      * @return \App\User
+      */
+-    protected function create(array $data)
++    private function create(array $data)
+     {
+         return User::create(['name' => $data['name'], 'email' => $data['email'], 'password' => Hash::make($data['password'])]);
+     }
+ }
+
+
+10) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/RegisterController.php:67    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     protected function create(array $data)
+     {
+-        return User::create(['name' => $data['name'], 'email' => $data['email'], 'password' => Hash::make($data['password'])]);
++        return User::create(['email' => $data['email'], 'password' => Hash::make($data['password'])]);
+     }
+ }
+
+
+11) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/VerificationController.php:38    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     public function __construct()
+     {
+-        $this->middleware('auth');
++        
+         $this->middleware('signed')->only('verify');
+         $this->middleware('throttle:6,1')->only('verify', 'resend');
+     }
+ }
+
+
+12) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/VerificationController.php:39    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     public function __construct()
+     {
+         $this->middleware('auth');
+-        $this->middleware('signed')->only('verify');
++        
+         $this->middleware('throttle:6,1')->only('verify', 'resend');
+     }
+ }
+
+
+13) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/Auth/VerificationController.php:40    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     {
+         $this->middleware('auth');
+         $this->middleware('signed')->only('verify');
+-        $this->middleware('throttle:6,1')->only('verify', 'resend');
++        
+     }
+ }
+
+
+14) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:13    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+ use App\Promotion;
+ class CandidateController extends Controller
+ {
+-    protected function index()
++    private function index()
+     {
+         $candidates = Candidate::orderBy('status', 'ASC')->paginate(15);
+         return view('candidate.index', compact('candidates'));
+
+
+15) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:15    [M] DecrementInteger
+
+--- Original
++++ New
+@@ @@
+ {
+     protected function index()
+     {
+-        $candidates = Candidate::orderBy('status', 'ASC')->paginate(15);
++        $candidates = Candidate::orderBy('status', 'ASC')->paginate(14);
+         return view('candidate.index', compact('candidates'));
+     }
+     protected function create()
+
+
+16) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:15    [M] IncrementInteger
+
+--- Original
++++ New
+@@ @@
+ {
+     protected function index()
+     {
+-        $candidates = Candidate::orderBy('status', 'ASC')->paginate(15);
++        $candidates = Candidate::orderBy('status', 'ASC')->paginate(16);
+         return view('candidate.index', compact('candidates'));
+     }
+     protected function create()
+
+
+17) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:17    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+     protected function index()
+     {
+         $candidates = Candidate::orderBy('status', 'ASC')->paginate(15);
+-        return view('candidate.index', compact('candidates'));
++        view('candidate.index', compact('candidates'));
++        return null;
+     }
+     protected function create()
+     {
+
+
+18) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:21    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+         $candidates = Candidate::orderBy('status', 'ASC')->paginate(15);
+         return view('candidate.index', compact('candidates'));
+     }
+-    protected function create()
++    private function create()
+     {
+         $promotions = Promotion::all();
+         return view('candidate.create', compact('promotions'));
+
+
+19) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:26    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+     protected function create()
+     {
+         $promotions = Promotion::all();
+-        return view('candidate.create', compact('promotions'));
++        view('candidate.create', compact('promotions'));
++        return null;
+     }
+     protected function store(Request $request)
+     {
+
+
+20) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:30    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+         $promotions = Promotion::all();
+         return view('candidate.create', compact('promotions'));
+     }
+-    protected function store(Request $request)
++    private function store(Request $request)
+     {
+         $this->validate($request, ['name' => 'required', 'lastname' => 'required', 'email' => 'required']);
+         Candidate::create($request->all());
+
+
+21) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:32    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     protected function store(Request $request)
+     {
+-        $this->validate($request, ['name' => 'required', 'lastname' => 'required', 'email' => 'required']);
++        $this->validate($request, ['lastname' => 'required', 'email' => 'required']);
+         Candidate::create($request->all());
+         return redirect()->route('candidate.index')->with('success', 'Registro creado satisfactoriamente');
+     }
+
+
+22) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:32    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     protected function store(Request $request)
+     {
+-        $this->validate($request, ['name' => 'required', 'lastname' => 'required', 'email' => 'required']);
++        
+         Candidate::create($request->all());
+         return redirect()->route('candidate.index')->with('success', 'Registro creado satisfactoriamente');
+     }
+
+
+23) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:35    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     protected function store(Request $request)
+     {
+         $this->validate($request, ['name' => 'required', 'lastname' => 'required', 'email' => 'required']);
+-        Candidate::create($request->all());
++        
+         return redirect()->route('candidate.index')->with('success', 'Registro creado satisfactoriamente');
+     }
+     protected function show($id)
+
+
+24) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:42    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+         Candidate::create($request->all());
+         return redirect()->route('candidate.index')->with('success', 'Registro creado satisfactoriamente');
+     }
+-    protected function show($id)
++    private function show($id)
+     {
+         $candidate = Candidate::find($id);
+         return view('candidate.perfil', compact('candidate'));
+
+
+25) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:47    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+     protected function show($id)
+     {
+         $candidate = Candidate::find($id);
+-        return view('candidate.perfil', compact('candidate'));
++        view('candidate.perfil', compact('candidate'));
++        return null;
+     }
+     protected function edit($id)
+     {
+
+
+26) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:50    [M] ProtectedVisibility
+
+--- Original
++++ New
+@@ @@
+         $candidate = Candidate::find($id);
+         return view('candidate.perfil', compact('candidate'));
+     }
+-    protected function edit($id)
++    private function edit($id)
+     {
+         $candidate = Candidate::find($id);
+         $promotions = Promotion::all();
+
+
+27) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:56    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+     {
+         $candidate = Candidate::find($id);
+         $promotions = Promotion::all();
+-        return view('candidate.edit', compact('candidate', 'promotions'));
++        view('candidate.edit', compact('candidate', 'promotions'));
++        return null;
+     }
+     public function update(Request $request, $id)
+     {
+
+
+28) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:59    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+         $promotions = Promotion::all();
+         return view('candidate.edit', compact('candidate', 'promotions'));
+     }
+-    public function update(Request $request, $id)
++    protected function update(Request $request, $id)
+     {
+         $this->validate($request, ['name' => 'required', 'lastname' => 'required', 'email' => 'required']);
+         Candidate::find($id)->update($request->all());
+
+
+29) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:61    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     public function update(Request $request, $id)
+     {
+-        $this->validate($request, ['name' => 'required', 'lastname' => 'required', 'email' => 'required']);
++        
+         Candidate::find($id)->update($request->all());
+         return redirect()->route('candidate.index')->with('success', 'Registro actualizado satisfactoriamente');
+     }
+
+
+30) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:61    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     public function update(Request $request, $id)
+     {
+-        $this->validate($request, ['name' => 'required', 'lastname' => 'required', 'email' => 'required']);
++        $this->validate($request, ['lastname' => 'required', 'email' => 'required']);
+         Candidate::find($id)->update($request->all());
+         return redirect()->route('candidate.index')->with('success', 'Registro actualizado satisfactoriamente');
+     }
+
+
+31) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:63    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     public function update(Request $request, $id)
+     {
+         $this->validate($request, ['name' => 'required', 'lastname' => 'required', 'email' => 'required']);
+-        Candidate::find($id)->update($request->all());
++        
+         return redirect()->route('candidate.index')->with('success', 'Registro actualizado satisfactoriamente');
+     }
+     public function destroy($id)
+
+
+32) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:69    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+         Candidate::find($id)->update($request->all());
+         return redirect()->route('candidate.index')->with('success', 'Registro actualizado satisfactoriamente');
+     }
+-    public function destroy($id)
++    protected function destroy($id)
+     {
+         Candidate::find($id)->delete();
+         return redirect()->route('candidate.index')->with('success', 'Registro eliminado satisfactoriamente');
+     }
+ }
+
+
+33) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CandidateController.php:71    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     public function destroy($id)
+     {
+-        Candidate::find($id)->delete();
++        
+         return redirect()->route('candidate.index')->with('success', 'Registro eliminado satisfactoriamente');
+     }
+ }
+
+
+34) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CourseController.php:15    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      *
+      * @return \Illuminate\Http\Response
+      */
+-    public function index()
++    protected function index()
+     {
+         //
+     }
+
+
+35) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CourseController.php:25    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      *
+      * @return \Illuminate\Http\Response
+      */
+-    public function create()
++    protected function create()
+     {
+         //
+     }
+
+
+36) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CourseController.php:36    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  \Illuminate\Http\Request  $request
+      * @return \Illuminate\Http\Response
+      */
+-    public function store(Request $request)
++    protected function store(Request $request)
+     {
+         //
+     }
+
+
+37) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CourseController.php:47    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  \App\Course  $course
+      * @return \Illuminate\Http\Response
+      */
+-    public function show(Course $course)
++    protected function show(Course $course)
+     {
+         //
+     }
+
+
+38) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CourseController.php:58    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  \App\Course  $course
+      * @return \Illuminate\Http\Response
+      */
+-    public function edit(Course $course)
++    protected function edit(Course $course)
+     {
+         //
+     }
+
+
+39) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CourseController.php:70    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  \App\Course  $course
+      * @return \Illuminate\Http\Response
+      */
+-    public function update(Request $request, Course $course)
++    protected function update(Request $request, Course $course)
+     {
+         //
+     }
+
+
+40) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/CourseController.php:81    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  \App\Course  $course
+      * @return \Illuminate\Http\Response
+      */
+-    public function destroy(Course $course)
++    protected function destroy(Course $course)
+     {
+         //
+     }
+ }
+
+
+41) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/HomeController.php:11    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+ {
+     public function __construct()
+     {
+-        $this->middleware('auth');
++        
+     }
+     public function index()
+     {
+
+
+42) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/HomeController.php:14    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+     {
+         $this->middleware('auth');
+     }
+-    public function index()
++    protected function index()
+     {
+         return view('home');
+     }
+ }
+
+
+43) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/HomeController.php:16    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+     }
+     public function index()
+     {
+-        return view('home');
++        view('home');
++        return null;
+     }
+ }
+
+
+44) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/ProgressController.php:15    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      *
+      * @return \Illuminate\Http\Response
+      */
+-    public function index()
++    protected function index()
+     {
+         //
+     }
+
+
+45) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/ProgressController.php:25    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      *
+      * @return \Illuminate\Http\Response
+      */
+-    public function create()
++    protected function create()
+     {
+         //
+     }
+
+
+46) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/ProgressController.php:36    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  \Illuminate\Http\Request  $request
+      * @return \Illuminate\Http\Response
+      */
+-    public function store(Request $request)
++    protected function store(Request $request)
+     {
+         //
+     }
+
+
+47) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/ProgressController.php:47    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  \App\Progress  $progress
+      * @return \Illuminate\Http\Response
+      */
+-    public function show(Progress $progress)
++    protected function show(Progress $progress)
+     {
+         //
+     }
+
+
+48) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/ProgressController.php:58    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  \App\Progress  $progress
+      * @return \Illuminate\Http\Response
+      */
+-    public function edit(Progress $progress)
++    protected function edit(Progress $progress)
+     {
+         //
+     }
+
+
+49) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/ProgressController.php:70    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  \App\Progress  $progress
+      * @return \Illuminate\Http\Response
+      */
+-    public function update(Request $request, Progress $progress)
++    protected function update(Request $request, Progress $progress)
+     {
+         //
+     }
+
+
+50) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/ProgressController.php:81    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  \App\Progress  $progress
+      * @return \Illuminate\Http\Response
+      */
+-    public function destroy(Progress $progress)
++    protected function destroy(Progress $progress)
+     {
+         //
+     }
+ }
+
+
+51) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:14    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+ use App\Promotion;
+ class PromotionController extends Controller
+ {
+-    public function index()
++    protected function index()
+     {
+         $promotions = Promotion::orderBy('created_at', 'ASC')->paginate(15);
+         return view('promotion.index', compact('promotions'));
+
+
+52) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:16    [M] DecrementInteger
+
+--- Original
++++ New
+@@ @@
+ {
+     public function index()
+     {
+-        $promotions = Promotion::orderBy('created_at', 'ASC')->paginate(15);
++        $promotions = Promotion::orderBy('created_at', 'ASC')->paginate(14);
+         return view('promotion.index', compact('promotions'));
+     }
+     public function create()
+
+
+53) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:16    [M] IncrementInteger
+
+--- Original
++++ New
+@@ @@
+ {
+     public function index()
+     {
+-        $promotions = Promotion::orderBy('created_at', 'ASC')->paginate(15);
++        $promotions = Promotion::orderBy('created_at', 'ASC')->paginate(16);
+         return view('promotion.index', compact('promotions'));
+     }
+     public function create()
+
+
+54) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:18    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+     public function index()
+     {
+         $promotions = Promotion::orderBy('created_at', 'ASC')->paginate(15);
+-        return view('promotion.index', compact('promotions'));
++        view('promotion.index', compact('promotions'));
++        return null;
+     }
+     public function create()
+     {
+
+
+55) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:22    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+         $promotions = Promotion::orderBy('created_at', 'ASC')->paginate(15);
+         return view('promotion.index', compact('promotions'));
+     }
+-    public function create()
++    protected function create()
+     {
+         return view('promotion.create');
+     }
+
+
+56) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:24    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+     }
+     public function create()
+     {
+-        return view('promotion.create');
++        view('promotion.create');
++        return null;
+     }
+     public function store(Request $request)
+     {
+
+
+57) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:28    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+     {
+         return view('promotion.create');
+     }
+-    public function store(Request $request)
++    protected function store(Request $request)
+     {
+         $this->validate($request, ['name' => 'required']);
+         Promotion::create($request->all());
+
+
+58) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:30    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     public function store(Request $request)
+     {
+-        $this->validate($request, ['name' => 'required']);
++        
+         Promotion::create($request->all());
+         return redirect()->route('promotion.index')->with('success', 'Registro creado satisfactoriamente');
+     }
+
+
+59) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:30    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     public function store(Request $request)
+     {
+-        $this->validate($request, ['name' => 'required']);
++        $this->validate($request, []);
+         Promotion::create($request->all());
+         return redirect()->route('promotion.index')->with('success', 'Registro creado satisfactoriamente');
+     }
+
+
+60) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:33    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     public function store(Request $request)
+     {
+         $this->validate($request, ['name' => 'required']);
+-        Promotion::create($request->all());
++        
+         return redirect()->route('promotion.index')->with('success', 'Registro creado satisfactoriamente');
+     }
+     protected function show(Promotion $promotion)
+
+
+61) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:45    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+     {
+         return view('promotion.show', compact('promotion'));
+     }
+-    public function edit($id)
++    protected function edit($id)
+     {
+         $promotion = Promotion::find($id);
+         return view('promotion.edit', compact('promotion'));
+
+
+62) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:50    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+     public function edit($id)
+     {
+         $promotion = Promotion::find($id);
+-        return view('promotion.edit', compact('promotion'));
++        view('promotion.edit', compact('promotion'));
++        return null;
+     }
+     public function update(Request $request, $id)
+     {
+
+
+63) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:53    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+         $promotion = Promotion::find($id);
+         return view('promotion.edit', compact('promotion'));
+     }
+-    public function update(Request $request, $id)
++    protected function update(Request $request, $id)
+     {
+         $this->validate($request, ['name' => 'required']);
+         Promotion::find($id)->update($request->all());
+
+
+64) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:55    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     public function update(Request $request, $id)
+     {
+-        $this->validate($request, ['name' => 'required']);
++        $this->validate($request, []);
+         Promotion::find($id)->update($request->all());
+         return redirect()->route('promotion.index')->with('success', 'Registro actualizado satisfactoriamente');
+     }
+
+
+65) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:55    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     public function update(Request $request, $id)
+     {
+-        $this->validate($request, ['name' => 'required']);
++        
+         Promotion::find($id)->update($request->all());
+         return redirect()->route('promotion.index')->with('success', 'Registro actualizado satisfactoriamente');
+     }
+
+
+66) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:57    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     public function update(Request $request, $id)
+     {
+         $this->validate($request, ['name' => 'required']);
+-        Promotion::find($id)->update($request->all());
++        
+         return redirect()->route('promotion.index')->with('success', 'Registro actualizado satisfactoriamente');
+     }
+     public function destroy($id)
+
+
+67) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:63    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+         Promotion::find($id)->update($request->all());
+         return redirect()->route('promotion.index')->with('success', 'Registro actualizado satisfactoriamente');
+     }
+-    public function destroy($id)
++    protected function destroy($id)
+     {
+         Promotion::find($id)->delete();
+         return redirect()->route('promotion.index')->with('success', 'Registro eliminado satisfactoriamente');
+     }
+ }
+
+
+68) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/PromotionController.php:65    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+     }
+     public function destroy($id)
+     {
+-        Promotion::find($id)->delete();
++        
+         return redirect()->route('promotion.index')->with('success', 'Registro eliminado satisfactoriamente');
+     }
+ }
+
+
+69) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/ScrapingController.php:11    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+ use App\WebScrapping;
+ class ScrapingController extends Controller
+ {
+-    public function getSoloLearnData()
++    protected function getSoloLearnData()
+     {
+         $courseData = [];
+         $webScrapper = new WebScrapping();
+
+
+70) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/ScrapingController.php:22    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+             #string
+             $courseExperience = $courseNode->filter('p')->text();
+             #string
+-            array_push($courseData, [$courseTitle, $coursePercentage, $courseExperience]);
++            array_push($courseData, [$coursePercentage, $courseExperience]);
+         });
+         return $courseData;
+     }
+ }
+
+
+71) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Controllers/ScrapingController.php:22    [M] FunctionCallRemoval
+
+--- Original
++++ New
+@@ @@
+             $coursePercentage = $courseNode->filter('div[class="chart"]')->attr('data-percent');
+             #string
+             $courseExperience = $courseNode->filter('p')->text();
+-            #string
+-            array_push($courseData, [$courseTitle, $coursePercentage, $courseExperience]);
++            
+         });
+         return $courseData;
+     }
+ }
+
+
+72) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Middleware/Authenticate.php:17    [M] LogicalNot
+
+--- Original
++++ New
+@@ @@
+      */
+     protected function redirectTo($request)
+     {
+-        if (!$request->expectsJson()) {
++        if ($request->expectsJson()) {
+             return route('login');
+         }
+     }
+ }
+
+
+73) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Middleware/Authenticate.php:18    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+     protected function redirectTo($request)
+     {
+         if (!$request->expectsJson()) {
+-            return route('login');
++            route('login');
++            return null;
+         }
+     }
+ }
+
+
+74) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Middleware/RedirectIfAuthenticated.php:19    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      * @param  string|null  $guard
+      * @return mixed
+      */
+-    public function handle($request, Closure $next, $guard = null)
++    protected function handle($request, Closure $next, $guard = null)
+     {
+         if (Auth::guard($guard)->check()) {
+             return redirect(RouteServiceProvider::HOME);
+
+
+75) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Middleware/RedirectIfAuthenticated.php:22    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+     public function handle($request, Closure $next, $guard = null)
+     {
+         if (Auth::guard($guard)->check()) {
+-            return redirect(RouteServiceProvider::HOME);
++            redirect(RouteServiceProvider::HOME);
++            return null;
+         }
+         return $next($request);
+     }
+ }
+
+
+76) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Middleware/RedirectIfAuthenticated.php:25    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+         if (Auth::guard($guard)->check()) {
+             return redirect(RouteServiceProvider::HOME);
+         }
+-        return $next($request);
++        $next($request);
++        return null;
+     }
+ }
+
+
+77) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Http/Middleware/TrustHosts.php:16    [M] ArrayItemRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     public function hosts()
+     {
+-        return [$this->allSubdomainsOfApplicationUrl()];
++        return [];
+     }
+ }
+
+
+78) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Providers/BroadcastServiceProvider.php:15    [M] PublicVisibility
+
+--- Original
++++ New
+@@ @@
+      *
+      * @return void
+      */
+-    public function boot()
++    protected function boot()
+     {
+         Broadcast::routes();
+         require base_path('routes/channels.php');
+     }
+ }
+
+
+79) /Users/diegon/Desktop/Backend/code_talent_prueba/app/Providers/BroadcastServiceProvider.php:17    [M] MethodCallRemoval
+
+--- Original
++++ New
+@@ @@
+      */
+     public function boot()
+     {
+-        Broadcast::routes();
++        
+         require base_path('routes/channels.php');
+     }
+ }

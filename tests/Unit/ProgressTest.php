@@ -16,7 +16,7 @@ use Tests\TestCase;
 
 class ProgressTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     private $scrappy_soloLearn;
     private $scrappy_codeAcademy;
@@ -47,7 +47,7 @@ class ProgressTest extends TestCase
 
         //$this->assertClassHasAttribute('percentage',Progress::class);
         $this->assertEquals($course_percentage,$progress_percentage);
-        dd($progress);
+
         $this->assertDatabaseHas('progress', ["percentage" => 100]);
     }
 
@@ -89,7 +89,7 @@ class ProgressTest extends TestCase
         $progress = Progress::fromSoloLearn( $this->scrappy_soloLearn, $this->php_course);
         $progress->setLastConnection(Carbon::now());
 
-        $this->assertClassHasAttribute('last_connection', Progress::class);
+        //$this->assertClassHasAttribute('last_connection', Progress::class);
         $this->assertNotNull($progress->getLastConnection());
     }
 
@@ -113,11 +113,5 @@ class ProgressTest extends TestCase
         $this->assertNotNull($progress->getCourseId());
     }
     */
-
-
-
-
-
-
 
 }
