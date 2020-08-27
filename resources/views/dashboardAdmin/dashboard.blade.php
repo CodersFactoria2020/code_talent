@@ -48,6 +48,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Candidatos
                             </a>
+                            <a class="nav-link" href="/courses">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Cursos
+                            </a>
                         </div>
                     </div>
                 </nav>
@@ -56,18 +60,7 @@
                 <main class="py-4">
                     @yield('content')
                 </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Code_talent 2020</div>
-                            <div>
-                                <a href="#">Políticas de privacidad</a>
-                                &middot;
-                                <a href="#">Términos y condiciones</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>

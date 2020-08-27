@@ -40,6 +40,7 @@ class ProgressTest extends TestCase
 
     public function test_convert_percentage_string_to_integer()
     {
+
         $progress_percentage = Progress::fromSoloLearn($this->scrappy_soloLearn, $this->php_course)->getPercentage();
 
         $this->assertIsInt($progress_percentage);
@@ -47,6 +48,7 @@ class ProgressTest extends TestCase
 
     public function test_get_percentage_from_sololearn_course()
     {
+        factory(Progress::class)->create();
         $mock_courses = include 'tests/Unit/Mock_CoursesSoloLearn.php';
 
         $percentage = Progress::fromSoloLearn( $this->scrappy_soloLearn, $this->php_course)->getPercentage();

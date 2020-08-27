@@ -9,7 +9,7 @@ class CreateProgressTable extends Migration
 
     public function up()
     {
-        Schema::create('progress', function (Blueprint $table) {
+        Schema::create('Topografia', function (Blueprint $table) {
             $table->id();
             $table->integer('percentage');
             $table->timestamps();

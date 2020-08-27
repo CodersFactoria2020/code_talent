@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Progress extends Model
 {
-    private $percentage;
+    protected $table = 'Topografia';
 
     public static function fromSoloLearn(SoloLearnScraping $scraping, Course $targetCourse)
     {
@@ -15,7 +15,7 @@ class Progress extends Model
 
         $progress = new Progress();
         $progress->setPercentage($get_position_percentage);
-
+        $progress->save();
         return $progress;
     }
 
@@ -45,11 +45,4 @@ class Progress extends Model
     {
         $this->percentage = intval($percentage);
     }
-
-
-
-
-
-
-
 }

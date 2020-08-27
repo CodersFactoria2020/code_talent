@@ -62,7 +62,7 @@
 
                                             <td>{{$candidate->lastname}}</td>
 
-                                            <td>{{$candidate->status}}</td>
+                                            <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->sololearn_progress}}% ;" aria-valuenow="{{$candidate->sololearn_progress}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->sololearn_progress}}%</td>
 
                                             <td>{{$candidate->created_at}}</td>
 

@@ -5,10 +5,10 @@
     <section>
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Lista de Promotiones</h1>
+                <h1 class="mt-4">Lista de Promociones</h1>
                 <div class="pull-right">
                     <div class="btn-group">
-                        <a href="{{ route('promotion.create') }}" class="btn btn-info" >Añadir Promocion</a>
+                        <a href="{{ route('promotion.create') }}" class="btn btn-info" >Añadir Promoción</a>
                     </div>
                 </div>
                 <ol class="breadcrumb mb-4">
@@ -28,7 +28,9 @@
 
                                 <th>Nombre</th>
 
-                                <th>Creacion</th>
+                                <th>Cursos</th>
+
+                                <th>Creación</th>
 
                                 <th>Editar</th>
 
@@ -45,6 +47,8 @@
                                         <tr>
 
                                             <td><a href="{{action('PromotionController@show',$promotion->id)}}">{{$promotion->name}}</a></td>
+
+                                            <td>{{$promotion->courses}}</td>
 
                                             <td>{{$promotion->created_at}}</td>
 
