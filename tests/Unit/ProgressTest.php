@@ -7,24 +7,30 @@ use App\CodeAcademyScraping;
 use App\Course;
 use App\Progress;
 use App\SoloLearnScraping;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Date;
 use Tests\TestCase;
 
 
 class ProgressTest extends TestCase
 {
+    use RefreshDatabase;
+
     private $scrappy_soloLearn;
     private $scrappy_codeAcademy;
     private $php_course;
     private $html_course;
-    use DatabaseMigrations;
 
     public function setUp(): void
     {
         parent::setUp();
-        $candidate = factory(Candidate::class)->make(['sololearn' => 'https://www.sololearn.com/Profile/6700255',
-            'codeacademy'=>'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
+        $candidate = factory(Candidate::class)->make([
+            'sololearn' => 'https://www.sololearn.com/Profile/6700255',
+            'codeacademy'=>'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio'
+        ]);
+
         $this->scrappy_soloLearn = new SoloLearnScraping($candidate);
         $this->scrappy_codeAcademy = new CodeAcademyScraping($candidate);
 
@@ -34,16 +40,19 @@ class ProgressTest extends TestCase
 
     public function test_if_course_has_a_percentage()
     {
-        $data = $this->scrappy_soloLearn->getCourse($this->php_course);
-        $progress_percentage = Progress::fromSoloLearn($this->scrappy_soloLearn, $this->php_course)->getPercentage();
+        $scrappedCourse = $this->scrappy_soloLearn->getCourse($this->php_course);
+        $course_percentage = $scrappedCourse[1];
+        $progress = Progress::fromSoloLearn($this->scrappy_soloLearn, $this->php_course);
+        $progress_percentage = $progress->getPercentage();
 
         //$this->assertClassHasAttribute('percentage',Progress::class);
-        $this->assertEquals($data[1],$progress_percentage);
+        $this->assertEquals($course_percentage,$progress_percentage);
+
+        $this->assertDatabaseHas('progress', ["percentage" => 100]);
     }
 
     public function test_convert_percentage_string_to_integer()
     {
-
         $progress_percentage = Progress::fromSoloLearn($this->scrappy_soloLearn, $this->php_course)->getPercentage();
 
         $this->assertIsInt($progress_percentage);
@@ -51,13 +60,14 @@ class ProgressTest extends TestCase
 
     public function test_get_percentage_from_sololearn_course()
     {
-        factory(Progress::class)->create();
         $mock_courses = include 'tests/Unit/Mock_CoursesSoloLearn.php';
+        $php_course = $mock_courses[4];
+        $php_course_percentage = $mock_courses[4][1];
 
         $percentage = Progress::fromSoloLearn( $this->scrappy_soloLearn, $this->php_course)->getPercentage();
 
-        $this->assertTrue(in_array($percentage,$mock_courses[4]));
-        $this->assertEquals($percentage, $mock_courses[4][1]);
+        $this->assertTrue(in_array($percentage, $php_course));
+        $this->assertEquals($percentage, $php_course_percentage);
     }
 
     public function test_get_percentage_from_codeacademy_course_is_one_hundred()
@@ -73,5 +83,35 @@ class ProgressTest extends TestCase
 
         $this->assertEquals(0,$percentage);
     }
+
+    public function test_progress_has_last_connection()
+    {
+        $progress = Progress::fromSoloLearn( $this->scrappy_soloLearn, $this->php_course);
+        $progress->setLastConnection(Carbon::now());
+
+        //$this->assertClassHasAttribute('last_connection', Progress::class);
+        $this->assertNotNull($progress->getLastConnection());
+    }
+
+    public function test_last_connection_is_Carbon_object()
+    {
+        $sololearnProgress = Progress::fromSoloLearn( $this->scrappy_soloLearn, $this->php_course);
+        $sololearnProgress->setLastConnection(null);
+
+        $codeacademyProgress = Progress::fromCodeAcademy( $this->scrappy_codeAcademy, $this->php_course);
+
+        $this->assertInstanceOf(Carbon::class, $sololearnProgress->getLastConnection());
+        $this->assertInstanceOf(Carbon::class, $codeacademyProgress->getLastConnection());
+    }
+    /*
+    public function test_progress_has_a_course_id()
+    {
+        $progress = Progress::fromSoloLearn($this->scrappy_soloLearn, $this->php_course);
+        $progress->setCourseId(100);
+
+        $this->assertClassHasAttribute('course_id', Progress::class);
+        $this->assertNotNull($progress->getCourseId());
+    }
+    */
 
 }

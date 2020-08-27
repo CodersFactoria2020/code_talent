@@ -37,9 +37,8 @@ class PromotionController extends Controller
 
     }
 
-    public function show(Promotion $promotion)
+    protected function show(Promotion $promotion)
     {
-
         return  view('promotion.show',compact('promotion'));
     }
 

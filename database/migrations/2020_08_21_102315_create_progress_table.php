@@ -12,6 +12,7 @@ class CreateProgressTable extends Migration
         Schema::create('progress', function (Blueprint $table) {
             $table->id();
             $table->integer('percentage');
+            $table->date('last_connection');
             $table->timestamps();
         });
     }
