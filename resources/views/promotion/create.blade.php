@@ -40,7 +40,7 @@
 
                     <div class="panel-heading">
 
-                        <h3 class="panel-title">Nueva promocion</h3>
+                        <h3 class="panel-title">Nueva promoción</h3>
 
                     </div>
 
@@ -68,7 +68,15 @@
 
                                         <div class="form-group">
 
-                                            <input type="text" name="promotion" id="promotion" class="form-control input-sm" placeholder="Promocion">
+                                            <input type="text" name="promotion" id="promotion" class="form-control input-sm" placeholder="Promoción">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+
+                                        <div class="form-group">
+
+                                            <input type="text" name="courses" id="courses" class="form-control input-sm" placeholder="Cursos">
 
                                         </div>
                                     </div>
