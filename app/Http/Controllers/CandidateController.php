@@ -10,7 +10,7 @@ use App\Promotion;
 class CandidateController extends Controller
 {
 
-    public function index()
+    protected function index()
     {
         $candidates=Candidate::orderBy('status','ASC')->paginate(15);
 
@@ -18,7 +18,7 @@ class CandidateController extends Controller
     }
 
 
-    public function create()
+    protected function create()
     {
         $promotions= Promotion::all();
 
@@ -27,7 +27,7 @@ class CandidateController extends Controller
     }
 
 
-    public function store(Request $request)
+    protected function store(Request $request)
     {
         $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'email'=>'required']);
 
@@ -39,7 +39,7 @@ class CandidateController extends Controller
 
     }
 
-    public function show($id)
+    protected function show($id)
     {
         $candidate=Candidate::find($id);
 
@@ -47,7 +47,7 @@ class CandidateController extends Controller
         return  view('candidate.perfil',compact('candidate'));
     }
 
-    public function edit($id)
+    protected function edit($id)
     {
         $candidate=Candidate::find($id);
         $promotions= Promotion::all();

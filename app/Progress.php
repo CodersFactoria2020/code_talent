@@ -11,7 +11,7 @@ class Progress extends Model
 
     private function __construct()
     {
-        parent::__construct();
+
     }
 
     public static function fromSoloLearn(SoloLearnScraping $scrappy_soloLearn, Course $course)
@@ -49,7 +49,7 @@ class Progress extends Model
         return $this->percentage;
     }
 
-    public function setPercentage($percentage)
+    private function setPercentage($percentage)
     {
         $this->percentage = intval($percentage);
     }
@@ -65,15 +65,7 @@ class Progress extends Model
         $this->last_connection = $formattedDate;
     }
 
-    public function getCourseId()
-    {
-        return $this->course_id;
-    }
 
-    public function setCourseId($course_id)
-    {
-        $this->course_id = $course_id;
-    }
 
     private function calculatePercentage($scrapped_course): int
     {
