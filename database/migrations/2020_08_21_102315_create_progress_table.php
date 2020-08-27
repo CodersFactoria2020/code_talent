@@ -13,7 +13,6 @@ class CreateProgressTable extends Migration
             $table->id();
             $table->integer('percentage');
             $table->date('last_connection');
-            $table->foreignId('course_id');
             $table->timestamps();
         });
     }

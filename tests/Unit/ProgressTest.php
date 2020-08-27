@@ -8,6 +8,7 @@ use App\Course;
 use App\Progress;
 use App\SoloLearnScraping;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Date;
 use Tests\TestCase;
@@ -15,7 +16,7 @@ use Tests\TestCase;
 
 class ProgressTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     private $scrappy_soloLearn;
     private $scrappy_codeAcademy;
@@ -41,10 +42,13 @@ class ProgressTest extends TestCase
     {
         $scrappedCourse = $this->scrappy_soloLearn->getCourse($this->php_course);
         $course_percentage = $scrappedCourse[1];
-        $progress_percentage = Progress::fromSoloLearn($this->scrappy_soloLearn, $this->php_course)->getPercentage();
+        $progress = Progress::fromSoloLearn($this->scrappy_soloLearn, $this->php_course);
+        $progress_percentage = $progress->getPercentage();
 
-        $this->assertClassHasAttribute('percentage',Progress::class);
+        //$this->assertClassHasAttribute('percentage',Progress::class);
         $this->assertEquals($course_percentage,$progress_percentage);
+        dd($progress);
+        $this->assertDatabaseHas('progress', ["percentage" => 100]);
     }
 
     public function test_convert_percentage_string_to_integer()
@@ -99,7 +103,7 @@ class ProgressTest extends TestCase
         $this->assertInstanceOf(Carbon::class, $sololearnProgress->getLastConnection());
         $this->assertInstanceOf(Carbon::class, $codeacademyProgress->getLastConnection());
     }
-
+    /*
     public function test_progress_has_a_course_id()
     {
         $progress = Progress::fromSoloLearn($this->scrappy_soloLearn, $this->php_course);
@@ -108,6 +112,7 @@ class ProgressTest extends TestCase
         $this->assertClassHasAttribute('course_id', Progress::class);
         $this->assertNotNull($progress->getCourseId());
     }
+    */
 
 
 
