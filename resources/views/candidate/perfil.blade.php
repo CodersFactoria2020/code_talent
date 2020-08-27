@@ -57,21 +57,37 @@
 
                                                     <thead>
                                                         <th>SoloLearn</th>
-                                                        <th>CodeAcademy</th>
                                                     </thead>
 
                                                     <tbody>
                                                     <tr>
                                                         <td><a href="{{$candidate->sololearn}}">{{$candidate->sololearn}}</a></td>
-                                                        <td><a href="{{$candidate->codeacademy}}">{{$candidate->codeacademy}}</a></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->status}}% ;" aria-valuenow="{{$candidate->status}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->status}}%</td>
-                                                        <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->status}}% ;" aria-valuenow="{{$candidate->status}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->status}}%</td>
+                                                        <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->sololearn_progress}}% ;" aria-valuenow="{{$candidate->sololearn_progress}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->sololearn_progress}}%</td>
                                                     </tr>
                                                     </tbody>
 
                                                 </table>
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                                                        <thead>
+                                                        <th>CodeAcademy</th>
+                                                        </thead>
+
+                                                        <tbody>
+                                                        <tr>
+                                                            <td><a href="{{$candidate->codeacademy}}">{{$candidate->codeacademy}}</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->codeacademy_progress}}% ;" aria-valuenow="{{$candidate->codeacademy_progress}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->codeacademy_progress}}%</td>
+                                                        </tr>
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
 

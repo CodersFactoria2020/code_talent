@@ -30,7 +30,7 @@
 
                     <div class="panel-heading">
 
-                        <h3 class="panel-title">Nuevo Candidato</h3>
+                        <h3 class="panel-title">Editar Candidato</h3>
 
                     </div>
 

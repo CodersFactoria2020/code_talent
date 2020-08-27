@@ -5,39 +5,32 @@
     <section>
         <main>
             <div class="container-fluid">
-                <h1 class="mt-4">Lista de Candidatos</h1>
+                <h1 class="mt-4">Lista de Promociones</h1>
                 <div class="pull-right">
                     <div class="btn-group">
-                        <a href="{{ route('candidate.create') }}" class="btn btn-info" >Añadir Candidato</a>
+                        <a href="{{ route('promotion.create') }}" class="btn btn-info" >Añadir Promoción</a>
                     </div>
                 </div>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
-                    <li class="breadcrumb-item active">Candidatos</li>
+                    <li class="breadcrumb-item active">Promoción</li>
                 </ol>
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table mr-1"></i>
-                        Promoción <strong>{{ $promotion->name }}</strong>
+                        Promociones
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
                                 <thead>
-                                <th>Promoción</th>
-
-                                <th>Perfil</th>
-
-                                <th>ID</th>
 
                                 <th>Nombre</th>
 
-                                <th>Apellidos</th>
+                                <th>Cursos</th>
 
-                                <th>Estado</th>
-
-                                <th>Fecha de inicio</th>
+                                <th>Creación</th>
 
                                 <th>Editar</th>
 
@@ -46,31 +39,24 @@
                                 </thead>
                                 <tbody>
 
-                                @if($promotion->candidates->count())
+                                @if($promotions->count())
 
-                                    @foreach($promotion->candidates as $candidate)
+                                    @foreach($promotions as $promotion)
 
 
                                         <tr>
-                                            <td>{{$candidate->promotion->name}}</td>
 
-                                            <td><a class="btn btn-link btn-xs" href="{{action('CandidateController@show', $candidate->id)}}"><span class="glyphicon glyphicon-user"></span></a></td>
+                                            <td><a href="{{action('PromotionController@show',$promotion->id)}}">{{$promotion->name}}</a></td>
 
-                                            <td>{{$candidate->id}}</td>
+                                            <td>{{$promotion->courses}}</td>
 
-                                            <td>{{$candidate->name}}</td>
-
-                                            <td>{{$candidate->lastname}}</td>
-
-                                            <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->sololearn_progress}}% ;" aria-valuenow="{{$candidate->sololearn_progress}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->sololearn_progress}}%</td>
-
-                                            <td>{{$candidate->created_at}}</td>
+                                            <td>{{$promotion->created_at}}</td>
 
 
-                                            <td><a class="btn btn-primary btn-xs" href="{{action('CandidateController@edit', $candidate->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                            <td><a class="btn btn-primary btn-xs" href="{{action('PromotionController@edit', $promotion->id)}}" ><span class="glyphicon glyphicon-pencil"></span></a></td>
 
                                             <td>
-                                                <form action="{{action('CandidateController@destroy', $candidate->id)}}" method="post">
+                                                <form action="{{action('PromotionController@destroy', $promotion->id)}}" method="post">
 
                                                     {{csrf_field()}}
 
@@ -97,6 +83,7 @@
                         </div>
                     </div>
                 </div>
+                {{$promotions->links()}}
             </div>
             </div>
         </main>

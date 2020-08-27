@@ -12,7 +12,7 @@ class CandidateController extends Controller
 
     protected function index()
     {
-        $candidates=Candidate::orderBy('status','ASC')->paginate(15);
+        $candidates=Candidate::orderBy('sololearn_progress','ASC')->paginate(15);
 
         return view('candidate.index',compact('candidates'));
     }

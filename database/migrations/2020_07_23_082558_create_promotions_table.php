@@ -4,15 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProgressTable extends Migration
+class CreatePromotionsTable extends Migration
 {
-
     public function up()
     {
-        Schema::create('Topografia', function (Blueprint $table) {
+        Schema::create('promotions', function (Blueprint $table) {
+
             $table->id();
-            $table->integer('percentage');
-            $table->date('last_connection');
+
+            $table->string('name');
+
+            $table->string('courses');
+
             $table->timestamps();
         });
     }
@@ -20,6 +23,6 @@ class CreateProgressTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('progress');
+        Schema::dropIfExists('promotions');
     }
 }
