@@ -7,10 +7,6 @@ use Carbon\Carbon;
 
 class Progress extends Model
 {
-    protected $percentage;
-    protected $last_connection;
-    protected $course_id;
-
     protected $table = 'progress';
 
     private function __construct()
@@ -29,6 +25,7 @@ class Progress extends Model
         $progress->setPercentage($course_percentage);
         $progress->setLastConnection($updated_at);
         $progress->setCourseId($course->id);
+        $progress->save();
 
         return $progress;
     }

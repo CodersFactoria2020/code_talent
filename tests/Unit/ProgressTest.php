@@ -8,12 +8,15 @@ use App\Course;
 use App\Progress;
 use App\SoloLearnScraping;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Date;
 use Tests\TestCase;
 
 
 class ProgressTest extends TestCase
 {
+    use RefreshDatabase;
+
     private $scrappy_soloLearn;
     private $scrappy_codeAcademy;
     private $php_course;
