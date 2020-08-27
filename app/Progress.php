@@ -7,14 +7,21 @@ use Carbon\Carbon;
 
 class Progress extends Model
 {
-    private $percentage;
-    private $last_connection;
-    private $course_id;
+    protected $percentage;
+    protected $last_connection;
+    protected $course_id;
+
+    protected $table = 'progress';
+
+    private function __construct()
+    {
+        parent::__construct();
+    }
 
     public static function fromSoloLearn(SoloLearnScraping $scrappy_soloLearn, Course $course)
     {
-        $scrapped = $scrappy_soloLearn->getCourse($course);
-        $course_percentage = $scrapped[1];
+        $scrappedCourse = $scrappy_soloLearn->getCourse($course);
+        $course_percentage = $scrappedCourse[1];
 
         $progress = new Progress();
         $updated_at = $progress->getAttribute('updated_at');
@@ -82,7 +89,7 @@ class Progress extends Model
 
     private function checkFormat($last_connection): Carbon
     {
-        if (is_null($last_connection))
+        if (!$last_connection)
         {
             return Carbon::now();
         }
