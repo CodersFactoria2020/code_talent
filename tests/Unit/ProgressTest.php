@@ -113,5 +113,4 @@ class ProgressTest extends TestCase
         $this->assertNotNull($progress->getCourseId());
     }
     */
-
 }
