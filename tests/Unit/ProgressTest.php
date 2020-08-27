@@ -14,8 +14,6 @@ use Tests\TestCase;
 
 class ProgressTest extends TestCase
 {
-
-
     private $scrappy_soloLearn;
     private $scrappy_codeAcademy;
     private $php_course;
