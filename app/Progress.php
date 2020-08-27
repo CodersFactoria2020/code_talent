@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Progress extends Model
 {
-    protected $table = 'Topografia';
+    protected $table = 'progress';
 
     public static function fromSoloLearn(SoloLearnScraping $scraping, Course $targetCourse)
     {

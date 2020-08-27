@@ -35,7 +35,7 @@
 
                                 <th>Apellidos</th>
 
-                                <th>Estado</th>
+                                <th>Progreso general</th>
 
                                 <th>Fecha de inicio</th>
 
