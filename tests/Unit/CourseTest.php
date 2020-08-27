@@ -10,8 +10,7 @@ class CourseTest extends TestCase
     public function test_course_have_a_name()
     {
         $courseName = 'PHP';
-        $course = new Course();
-        $course->setName($courseName);
+        $course = new Course($courseName);
 
         $this->assertClassHasAttribute('name', Course::class );
         $this->assertEquals($courseName, $course->getName());

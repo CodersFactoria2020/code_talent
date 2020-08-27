@@ -10,13 +10,13 @@ use App\CodeAcademyScraping;
 
 class CodeAcademyScrapingTest extends TestCase
 {
-    public function test_returns_an_array()
+    public function test_mockedCourses_and_scrappedCourses_are_equal()
     {
         $mockedCourses = include 'tests/Unit/Mock_CoursesCodeAcademy.php';
         $candidate = factory(Candidate::class)->make(['codeacademy' => 'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
-        $scraper = new CodeAcademyScraping();
+        $scraper = new CodeAcademyScraping($candidate);
 
-        $scrappedCourses = $scraper->getAllCourses($candidate);
+        $scrappedCourses = $scraper->getAllCourses();
         $this->assertIsArray($scrappedCourses);
         $this->assertEquals($mockedCourses, $scrappedCourses);
     }
@@ -25,8 +25,8 @@ class CodeAcademyScrapingTest extends TestCase
     {
         $candidate = factory(Candidate::class)->make(['codeacademy' => 'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
 
-        $scraper = new CodeAcademyScraping();
-        $lastConnection = $scraper->lastConnection($candidate);
+        $scraper = new CodeAcademyScraping($candidate);
+        $lastConnection = $scraper->lastConnection();
 
         $this->assertTrue(str_contains($lastConnection, 'Last coded'));
 

@@ -16,11 +16,9 @@ class PromotionTest extends TestCase
 
     public function test_if_can_see_promotion_name()
     {
-
         $promotion = factory(Promotion::class)->create();
         $response = $this->get('/promotion/'.$promotion->id);
 
-        $response->assertStatus(200);
         $response->assertSee($promotion->name);
     }
 

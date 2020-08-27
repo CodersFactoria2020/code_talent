@@ -26,9 +26,7 @@ class SoloLearnScrapingTest extends TestCase
 
     public function test_get_about_course( )
     {
-        $targetCourse = new Course();
-        $targetCourse->setName('PHP');
-
+        $targetCourse = new Course('PHP');
         $php_course = $this->scrapy->getCourse($targetCourse);
 
         $this->assertContains('PHP Tutorial',$php_course);
@@ -38,8 +36,7 @@ class SoloLearnScrapingTest extends TestCase
 
     public function test_if_dont_exist_this_course()
     {
-        $targetCourse = new Course();
-        $targetCourse->setName('Ruby');
+        $targetCourse = new Course('Ruby');
 
         $ruby_course = $this->scrapy->getCourse($targetCourse);
 
@@ -48,9 +45,7 @@ class SoloLearnScrapingTest extends TestCase
 
      public function test_if_progress_is_equal_to_zero()
     {
-        $targetCourse = new Course();
-        $targetCourse->setName('Java');
-
+        $targetCourse = new Course('Java');
         $java_course = $this->scrapy->getCourse($targetCourse);
 
         $this->assertContains('0',$java_course);
@@ -58,8 +53,7 @@ class SoloLearnScrapingTest extends TestCase
 
     public function test_if_is_java_or_javascript()
     {
-        $targetCourse = new Course();
-        $targetCourse->setName('Java');
+        $targetCourse = new Course('Java');
         $java_course = $this->scrapy->getCourse($targetCourse);
 
         $this->assertNotEquals('JavaScript Tutorial',$java_course[0]);
