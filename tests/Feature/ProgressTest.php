@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use App\Candidate;
 use App\CodeAcademyScraping;
@@ -28,8 +28,8 @@ class ProgressTest extends TestCase
         $this->scrappy_soloLearn = new SoloLearnScraping($candidate);
         $this->scrappy_codeAcademy = new CodeAcademyScraping($candidate);
 
-        $this->html_course = new Course('HTML');
-        $this->php_course = new Course('PHP');
+        $this->html_course = factory(Course::class)->create(['name'=>'HTML']);;
+        $this->php_course = factory(Course::class)->create(['name'=>'PHP']);;
     }
 
     public function test_if_course_has_a_percentage()

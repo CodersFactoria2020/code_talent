@@ -3,11 +3,14 @@
 namespace Tests\Unit;
 
 use App\Course;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\CodeAcademyScraping;
 
 class CodeAcademyScrapingTest extends TestCase
 {
+    use RefreshDatabase;
+
     private $all_courses;
     private $scrappy;
 
@@ -35,7 +38,7 @@ class CodeAcademyScrapingTest extends TestCase
 
     public function test_get_completed_course()
     {
-        $targetCourse = new Course('HTML');
+        $targetCourse = factory(Course::class)->create(['name'=>'HTML']);
         $course = $this->scrappy->getCourse($targetCourse);
 
         $this->assertStringContainsString( $course->getName(),'Learn HTML');
@@ -43,7 +46,7 @@ class CodeAcademyScrapingTest extends TestCase
 
     public function test_if_course_dont_exist_return_message()
     {
-        $targetCourse = new Course('Go');
+        $targetCourse = factory(Course::class)->create(['name'=>'Go']);
         $course = $this->scrappy->getCourse($targetCourse);
 
         $this->assertEquals('No existe el curso seleccionado',$course);
