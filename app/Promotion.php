@@ -8,14 +8,14 @@ class Promotion extends Model
 {
     protected $fillable = ['name','course_id'];
 
-    protected function candidates()
+    public function candidates()
     {
         return $this->hasMany(Candidate::class);
     }
 
-    protected function courses()
+    public function courses()
     {
-        return $this->hasMany(Course::class);
+        return $this->belongsToMany(Course::class, 'course_promotion', 'promotion_id', 'course_id');
     }
 
 }

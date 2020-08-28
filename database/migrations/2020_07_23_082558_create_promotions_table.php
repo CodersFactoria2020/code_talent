@@ -11,14 +11,7 @@ class CreatePromotionsTable extends Migration
         Schema::create('promotions', function (Blueprint $table) {
 
             $table->id();
-
             $table->string('name');
-
-            $table->foreignId('course_id')->default(1);
-
-            //$table->foreign('course_id')->references('id')->on('courses')
-                //->onDelete('cascade')->onUpdate('cascade');
-
             $table->timestamps();
         });
     }
