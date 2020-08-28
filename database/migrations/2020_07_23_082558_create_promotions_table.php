@@ -14,7 +14,10 @@ class CreatePromotionsTable extends Migration
 
             $table->string('name');
 
-            $table->string('courses');
+            $table->foreignId('course_id')->default(1);
+
+            //$table->foreign('course_id')->references('id')->on('courses')
+                //->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });
