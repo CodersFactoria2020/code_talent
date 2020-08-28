@@ -11,8 +11,4 @@ class Course extends Model
         return $this->name;
     }
 
-    private function setName(string $name)
-    {
-        $this->name = $name;
-    }
 }
