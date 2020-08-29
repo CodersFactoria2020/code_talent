@@ -13,11 +13,14 @@ class CandidateObserver
     public function created(Candidate $candidate)
     {
         $scrappy_codeAcademy = new CodeAcademyScraping($candidate);
-        $course = $candidate->promotion->courses[0];
+        $courses = $candidate->promotion->courses;
+        foreach ($courses as $course)
+        {
+            Progress::fromCodeAcademy($scrappy_codeAcademy, $course);
+        }
 
-        $progress_codeAcademy = Progress::fromCodeAcademy($scrappy_codeAcademy, $course);
 
-        return $progress_codeAcademy;
+        //return $progress_codeAcademy;
     }
 
     public function updated(Candidate $candidate)

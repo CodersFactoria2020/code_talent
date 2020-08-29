@@ -18,17 +18,36 @@ class CandidateObserverTest extends TestCase
         $promotion = factory(Promotion::class)->create();
         $courses = factory(Course::class,2)->create(['name'=>'CSS']);
 
-        Promotion::all()->each(function ($pro) use ($courses){$pro->courses()->saveMany($courses);
+        Promotion::all()->each(function ($pro) use ($courses)
+        {
+            $pro->courses()->saveMany($courses);
         });
 
         $candidate = factory(Candidate::class)->create(['promotion_id'=>$promotion->id,
             'sololearn' => 'https://www.sololearn.com/Profile/6700255',
             'codeacademy'=>'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
         $observer = new CandidateObserver;
-        $progress =$observer->created($candidate);
+        //$progress =$observer->created($candidate);
 
-
-        $this->assertEquals('100', $progress->percentage);
-
+        $this->assertDatabaseHas('progress', ['percentage'=>100]);
+        //$this->assertEquals('100', $progress->percentage);
     }
+
+    public function test_creates_a_progres_for_each_course()
+    {
+        $promotion = factory(Promotion::class)->create();
+        $courses = factory(Course::class,8)->create(['name'=>'CSS']);
+
+        Promotion::all()->each(function ($pro) use ($courses){$pro->courses()->saveMany($courses);
+        });
+
+        factory(Candidate::class)->create(['promotion_id'=>$promotion->id,
+            'sololearn' => 'https://www.sololearn.com/Profile/6700255',
+            'codeacademy'=>'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
+
+        $this->assertDatabaseCount('progress', 8);
+    }
+
+
+
 }
