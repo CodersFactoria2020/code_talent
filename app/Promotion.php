@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Promotion extends Model
 {
-    protected $fillable = ['name','courses'];
+    protected $fillable = ['name','course_id'];
 
-    protected function candidates()
+    public function candidates()
     {
         return $this->hasMany(Candidate::class);
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'course_promotion', 'promotion_id', 'course_id');
     }
 
 }

@@ -6,20 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    private $name;
-
-    public function __construct(string $name)
-    {
-        $this->setName($name);
-    }
-
     public function getName()
     {
         return $this->name;
     }
 
-    private function setName(string $name)
+    public function promotions()
     {
-        $this->name = $name;
+        return $this->belongsToMany(Promotion::class, 'course_promotion', 'course_id', 'promotion_id');
     }
 }
