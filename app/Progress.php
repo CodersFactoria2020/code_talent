@@ -67,7 +67,6 @@ class Progress extends Model
     }
 
 
-
     private function calculatePercentage($scrapped_course): int
     {
         if ($scrapped_course === 'No existe el curso seleccionado')
@@ -91,6 +90,5 @@ class Progress extends Model
 
         return $last_connection;
     }
-
 
 }
