@@ -34,7 +34,7 @@ class CandidateObserverTest extends TestCase
     public function test_creates_one_progress_for_each_course()
     {
         $promotion = factory(Promotion::class)->create();
-        $courses = factory(Course::class,4)->create(['name'=>'CSS']);
+        $courses = factory(Course::class,3)->create(['name'=>'CSS', 'platform'=>'sololearn']);
 
         Promotion::all()->each(function ($pro) use ($courses)
         {
@@ -45,13 +45,13 @@ class CandidateObserverTest extends TestCase
             'sololearn' => 'https://www.sololearn.com/Profile/6700255',
             'codeacademy'=>'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
 
-       $this->assertDatabaseCount('progress',4);
+       $this->assertDatabaseCount('progress',3);
     }
 
     public function test_creates_progress_from_soloLearn()
     {
         $promotion = factory(Promotion::class)->create();
-        $courses = factory(Course::class,2)->create(['name'=>'PHP', 'platform' => 'soloLearn']);
+        $courses = factory(Course::class,2)->create(['name'=>'PHP', 'platform' => 'sololearn']);
 
         Promotion::all()->each(function ($pro) use ($courses)
         {
