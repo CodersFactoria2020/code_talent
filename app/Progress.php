@@ -44,8 +44,8 @@ class Progress extends Model
 
         $progress->setLastConnection($lastConnection);
         $progress->setPercentage($percentage);
-        $progress->save();
         $progress->setCourseId($course->id);
+        $progress->save();
 
         return $progress;
     }
