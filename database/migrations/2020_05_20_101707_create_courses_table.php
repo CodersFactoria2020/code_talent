@@ -11,8 +11,8 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('progress_id')->default(1);
-            $table->foreign('progress_id')->references('id')->on('progress');
+            //$table->foreignId('progress_id')->default(1);
+            //$table->foreign('progress_id')->references('id')->on('progress');
             $table->string('name');
             $table->string('platform');
             $table->timestamps();
