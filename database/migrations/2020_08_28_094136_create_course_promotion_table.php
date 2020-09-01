@@ -12,9 +12,7 @@ class CreateCoursePromotionTable extends Migration
         Schema::create('course_promotion', function (Blueprint $table) {
             $table->id();
             $table->integer('course_id')->unsigned();
-            //$table->foreign('course_id')->references('id')->on('courses');
-            $table->integer('promotion_id')->unsigned();
-            //$table->foreign('promotion_id')->references('id')->on('promotions');
+            $table->integer('promotion_id')->unsigned();            ;
             $table->timestamps();
         });
     }

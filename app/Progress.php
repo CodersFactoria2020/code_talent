@@ -9,6 +9,11 @@ class Progress extends Model
 {
     protected $table = 'progress';
 
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
     private function __construct()
     {
 

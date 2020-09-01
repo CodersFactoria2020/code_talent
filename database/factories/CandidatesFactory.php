@@ -14,7 +14,7 @@ $factory->define(Candidate::class, function (Faker $faker) {
         'promotion_id' => $faker->numberBetween(1,3),
         'sololearn_progress' => $faker->numberBetween(0,100),
         'codeacademy_progress' => $faker->numberBetween(0,100),
-        'sololearn' => $faker->url(),
-        'codeacademy' => $faker->url(),
+        'sololearn' => 'https://www.sololearn.com/Profile/6700255',
+        'codeacademy' => 'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio',
          ];
 });
