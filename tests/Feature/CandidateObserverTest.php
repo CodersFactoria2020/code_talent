@@ -68,4 +68,5 @@ class CandidateObserverTest extends TestCase
 
 
 
+
 }

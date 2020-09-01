@@ -17,7 +17,6 @@ class CandidateObserver
         $scrappy_soloLearn = new SoloLearnScraping($candidate);
         $courses = $candidate->promotion->courses;
 
-
         foreach($courses as $course)
         {
             if($course->platform == 'codeacademy')
@@ -30,7 +29,6 @@ class CandidateObserver
                 Progress::fromSoloLearn($scrappy_soloLearn, $course);
             }
         }
-
 
     }
 
