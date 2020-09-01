@@ -29,7 +29,7 @@ class Progress extends Model
 
         $progress->setPercentage($course_percentage);
         $progress->setLastConnection($updated_at);
-        //$progress->setCourseId($course->id);
+        $progress->setCourseId($course->id);
         $progress->save();
 
         return $progress;
@@ -45,7 +45,7 @@ class Progress extends Model
         $progress->setLastConnection($lastConnection);
         $progress->setPercentage($percentage);
         $progress->save();
-        //$progress->setCourseId($course->id);
+        $progress->setCourseId($course->id);
 
         return $progress;
     }
@@ -71,6 +71,10 @@ class Progress extends Model
         $this->last_connection = $formattedDate;
     }
 
+    private function setCourseId(int $id)
+    {
+        $this->course_id = $id;
+    }
 
     private function calculatePercentage($scrapped_course): int
     {

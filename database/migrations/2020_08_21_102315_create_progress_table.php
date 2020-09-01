@@ -12,6 +12,8 @@ class CreateProgressTable extends Migration
         Schema::create('progress', function (Blueprint $table) {
             $table->id();
             $table->integer('percentage');
+            $table->foreignId('course_id');
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->date('last_connection');
             $table->timestamps();
         });
