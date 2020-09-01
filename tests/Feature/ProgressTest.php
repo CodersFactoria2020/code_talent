@@ -111,4 +111,15 @@ class ProgressTest extends TestCase
         $this->assertInstanceOf(Carbon::class, $sololearnProgress->getLastConnection());
         $this->assertInstanceOf(Carbon::class, $codeacademyProgress->getLastConnection());
     }
+
+    public function test_progress_has_a_course_id()
+    {
+        $sololearnProgress = Progress::fromSoloLearn( $this->scrappy_soloLearn, $this->php_course);
+        $sololearnProgress->setLastConnection(null);
+
+        $codeacademyProgress = Progress::fromCodeAcademy( $this->scrappy_codeAcademy, $this->php_course);
+
+        $this->assertNotNull($codeacademyProgress->course_id);
+        //$this->assertDatabaseHas('progress', ['course_id' => 1]);
+    }
 }
