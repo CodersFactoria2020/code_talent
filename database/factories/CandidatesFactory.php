@@ -12,8 +12,8 @@ $factory->define(Candidate::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail(),
         'phone_number' => $faker->phoneNumber(),
         'promotion_id' => $faker->numberBetween(1,3),
-        'sololearn_progress' => $faker->numberBetween(0,100),
-        'codeacademy_progress' => $faker->numberBetween(0,100),
+        'percentage' => null,
+        'last_connection' => null,
         'sololearn' => 'https://www.sololearn.com/Profile/6700255',
         'codeacademy' => 'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio',
          ];
