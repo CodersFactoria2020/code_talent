@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Candidate;
 use App\Course;
 use App\Promotion;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 ;
@@ -23,7 +24,7 @@ class CandidateTest extends TestCase
             $pro->courses()->saveMany($courses);
         });
 
-        factory(Candidate::class)->create(['promotion_id'=>$promotion->id,
+        $candidate = factory(Candidate::class)->create(['promotion_id'=>$promotion->id,
             'sololearn' => 'https://www.sololearn.com/Profile/6700255',
             'codeacademy'=>'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
 
@@ -32,6 +33,13 @@ class CandidateTest extends TestCase
             'last_connection' => null
         ]);
 
-        //Candidate::updateProgress($candidate, $progress, $);
+        $percentage = 80.0;
+        $last_connection = Carbon::now();
+        Candidate::updateProgress($candidate, $percentage, $last_connection);
+
+        $this->assertDatabaseHas('candidates', [
+            'percentage' => $percentage,
+            'last_connection' => $last_connection
+        ]);
     }
 }
