@@ -7,6 +7,7 @@ use App\CodeAcademyScraping;
 use App\Course;
 use App\Progress;
 use App\SoloLearnScraping;
+use Carbon\Carbon;
 
 class CandidateObserver
 {
@@ -17,41 +18,41 @@ class CandidateObserver
         $scrappy_soloLearn = new SoloLearnScraping($candidate);
         $courses = $candidate->promotion->courses;
 
+        $percentageSum = 0;
+        $lastConnections = [];
         foreach($courses as $course)
         {
             if($course->platform == 'codeacademy')
             {
-                Progress::fromCodeAcademy($scrappy_codeAcademy, $course);
+                $progress = Progress::fromCodeAcademy($scrappy_codeAcademy, $course);
             }
 
             if($course->platform == 'sololearn')
             {
-                Progress::fromSoloLearn($scrappy_soloLearn, $course);
+                $progress = Progress::fromSoloLearn($scrappy_soloLearn, $course);
             }
+            $percentageSum += $progress->percentage;
+            array_push($lastConnections, $progress->getLastConnection());
         }
 
-    }
+        //Obterner la media de los progresoso: Suma de los porcentages / numero de cursos (redondeado)
+        $average_progress = floor($percentageSum/count($courses));
 
-    public function updated(Candidate $candidate)
+        //Obtener la last connection más cercana
+        $lastConnection = $this->findClosestDate($lastConnections);
+
+        // Hacer la query en la db para que actualice el candidato con el progreso medio
+
+
+
+    private function findClosestDate(array $lastConnections)
     {
-        //
-    }
+        foreach ($lastConnections as $date) {
+            $interval[] = abs(strtotime(Carbon::now()) - strtotime($date));
+        }
+        asort($interval);
+        $closest = key($interval);
 
-
-    public function deleted(Candidate $candidate)
-    {
-        //
-    }
-
-
-    public function restored(Candidate $candidate)
-    {
-        //
-    }
-
-
-    public function forceDeleted(Candidate $candidate)
-    {
-        //
+        return $lastConnections[$closest];
     }
 }
