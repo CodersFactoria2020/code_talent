@@ -20,15 +20,12 @@ class CandidateObserver
 
         $percentageSum = 0;
         $lastConnections = [];
-        foreach($courses as $course)
-        {
-            if($course->platform == 'codeacademy')
-            {
+        foreach ($courses as $course) {
+            if ($course->platform == 'codeacademy') {
                 $progress = Progress::fromCodeAcademy($scrappy_codeAcademy, $course);
             }
 
-            if($course->platform == 'sololearn')
-            {
+            if ($course->platform == 'sololearn') {
                 $progress = Progress::fromSoloLearn($scrappy_soloLearn, $course);
             }
             $percentageSum += $progress->percentage;
@@ -36,13 +33,13 @@ class CandidateObserver
         }
 
         //Obterner la media de los progresoso: Suma de los porcentages / numero de cursos (redondeado)
-        $average_progress = floor($percentageSum/count($courses));
+        //$average_progress = floor($percentageSum / count($courses));
 
         //Obtener la last connection más cercana
-        $lastConnection = $this->findClosestDate($lastConnections);
+        //$lastConnection = $this->findClosestDate($lastConnections);
 
         // Hacer la query en la db para que actualice el candidato con el progreso medio
-
+    }
 
 
     private function findClosestDate(array $lastConnections)
