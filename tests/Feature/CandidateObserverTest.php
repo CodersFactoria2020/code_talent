@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Candidate;
 use App\Course;
-use App\Observers\CandidateObserver;
 use App\Promotion;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -13,7 +12,7 @@ class CandidateObserverTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_when_created_candidate_create_progress()
+    public function test_creates_a_progress_when_a_candodate_is_created()
     {
         $promotion = factory(Promotion::class)->create();
         $courses = factory(Course::class,2)->create(['name'=>'CSS', 'platform' => 'sololearn']);

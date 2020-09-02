@@ -11,7 +11,6 @@ use Carbon\Carbon;
 
 class CandidateObserver
 {
-
     public function created(Candidate $candidate)
     {
         $scrappy_codeAcademy = new CodeAcademyScraping($candidate);
@@ -20,8 +19,10 @@ class CandidateObserver
 
         $percentageSum = 0;
         $lastConnections = [];
-        foreach ($courses as $course) {
-            if ($course->platform == 'codeacademy') {
+        foreach ($courses as $course)
+        {
+            if ($course->platform == 'codeacademy')
+            {
                 $progress = Progress::fromCodeAcademy($scrappy_codeAcademy, $course);
             }
 
@@ -38,10 +39,10 @@ class CandidateObserver
         Candidate::updateProgress($candidate, $average_progress, $lastConnection);
     }
 
-
-    private function findClosestDate(array $lastConnections)
+    function findClosestDate(array $lastConnections)
     {
-        foreach ($lastConnections as $date) {
+        foreach ($lastConnections as $date)
+        {
             $interval[] = abs(strtotime(Carbon::now()) - strtotime($date));
         }
         asort($interval);
