@@ -32,13 +32,10 @@ class CandidateObserver
             array_push($lastConnections, $progress->getLastConnection());
         }
 
-        //Obterner la media de los progresoso: Suma de los porcentages / numero de cursos (redondeado)
-        //$average_progress = floor($percentageSum / count($courses));
+        $average_progress = floor($percentageSum / count($courses));
+        $lastConnection = $this->findClosestDate($lastConnections);
 
-        //Obtener la last connection más cercana
-        //$lastConnection = $this->findClosestDate($lastConnections);
-
-        // Hacer la query en la db para que actualice el candidato con el progreso medio
+        Candidate::updateProgress($candidate, $average_progress, $lastConnection);
     }
 
 
