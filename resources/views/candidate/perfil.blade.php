@@ -64,7 +64,7 @@
                                                         <td><a href="{{$candidate->sololearn}}">{{$candidate->sololearn}}</a></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->sololearn_progress}}% ;" aria-valuenow="{{$candidate->sololearn_progress}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->sololearn_progress}}%</td>
+                                                        <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->percentage}}% ;" aria-valuenow="{{$candidate->percentage}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->percentage}}%</td>
                                                     </tr>
                                                     </tbody>
 

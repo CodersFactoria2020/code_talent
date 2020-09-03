@@ -77,10 +77,10 @@
 
                                 <div class="form-group">
 
-                                   <select name="promotion" class="form-control" id="promotionSelect"  placeholder="Promocion">
+                                   <select name="promotion_id" class="form-control" id="promotion_id"  placeholder="Promocion">
                                        <option selected>Promociones...</option>
                                        @foreach($promotions as $promotion)
-                                        <option>{{$promotion->name}}</option>
+                                        <option value="{{$promotion->id}}">{{$promotion->name}}</option>
                                        @endforeach
                                     </select>
                                 </div>

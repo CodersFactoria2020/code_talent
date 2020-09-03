@@ -29,7 +29,7 @@ class CandidateController extends Controller
 
     protected function store(Request $request)
     {
-        $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'email'=>'required']);
+        $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'email'=>'required', 'sololearn'=>'required', 'codeacademy'=>'required']);
 
 
         Candidate::create($request->all());
@@ -58,7 +58,7 @@ class CandidateController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'email'=>'required']);
+        $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'email'=>'required', 'sololearn'=>'required', 'codeacademy'=>'required']);
 
         Candidate::find($id)->update($request->all());
 
