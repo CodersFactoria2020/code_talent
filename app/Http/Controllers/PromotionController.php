@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Candidate;
 use App\Course;
 use Illuminate\Http\Request;
-
 use App\Promotion;
 
 
@@ -35,8 +34,9 @@ class PromotionController extends Controller
     {
         $this->validate($request,[ 'name'=>'required','course_id'=>'required']);
 
-        Promotion::create($request->all());
-
+        $promotion = Promotion::create($request->all());
+        $course_id = $request->input('course_id');
+        $promotion->courses()->attach($course_id);
 
         return redirect()->route('promotion.index')->with('success','Registro creado satisfactoriamente');
 
@@ -49,7 +49,7 @@ class PromotionController extends Controller
 
     public function edit($id)
     {
-        $promotion=Promotion::find($id);
+        $promotion = Promotion::find($id);
         $courses = Course::all();
 
 
@@ -60,7 +60,11 @@ class PromotionController extends Controller
     {
         $this->validate($request,[ 'name'=>'required']);
 
-        Promotion::find($id)->update($request->all());
+        $promotion = Promotion::find($id);
+        $promotion->update($request->all());
+
+        $course_id = $request->input('course_id');
+        $promotion->courses()->attach($course_id);
 
         return redirect()->route('promotion.index')->with('success','Registro actualizado satisfactoriamente');
 
