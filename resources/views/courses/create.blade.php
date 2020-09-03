@@ -40,7 +40,7 @@
 
                     <div class="panel-heading">
 
-                        <h3 class="panel-title">Nuevo Candidato</h3>
+                        <h3 class="panel-title">Nuevo Curso</h3>
 
                     </div>
 
@@ -48,7 +48,7 @@
 
                         <div class="table-container">
 
-                            <form method="POST" action="{{ route('candidate.store') }}"  role="form">
+                            <form method="POST" action="{{ route('courses.store') }}"  role="form">
 
                                 {{ csrf_field() }}
 
@@ -62,43 +62,16 @@
 
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="lastname" id="lastname" class="form-control input-sm" placeholder="Apellido">
+                                            <input type="text" name="platform" id="platform" class="form-control input-sm" placeholder="Plataforma">
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <input name="email" class="form-control input-sm" placeholder="Email">
-                                </div>
 
-                                <div class="form-group">
-                                    <input name="phone_number" class="form-control input-sm" placeholder="Telefono">
-                                </div>
-
-                                <div class="form-group">
-
-                                   <select name="promotion" class="form-control" id="promotionSelect"  placeholder="Promocion">
-                                       <option selected>Promociones...</option>
-                                       @foreach($promotions as $promotion)
-                                        <option>{{$promotion->name}}</option>
-                                       @endforeach
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <input name="sololearn" class="form-control input-sm" placeholder="Link SoloLearn">
-                                </div>
-
-                                <div class="form-group">
-                                    <input name="codeacademy" class="form-control input-sm" placeholder="Link CodeAcademy">
-                                </div>
-
-                                <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
 
                                         <input type="submit"  value="Guardar" class="btn btn-success btn-block">
 
-                                        <a href="{{ route('candidate.index') }}" class="btn btn-info btn-block" >Atrás</a>
+                                        <a href="{{ route('courses.index') }}" class="btn btn-info btn-block" >Atrás</a>
 
                                     </div>
 

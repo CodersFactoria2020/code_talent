@@ -42,7 +42,7 @@ class CourseController extends Controller
         //
     }
 
-    public function edit(Course $id)
+    public function edit($id)
     {
         $course=Course::find($id);
 
@@ -50,19 +50,19 @@ class CourseController extends Controller
         return view('courses.edit',compact('course'));
     }
 
-    public function update(Request $request, Course $id)
+    public function update(Request $request,$id)
     {
-        $this->validate($request,[ 'name'=>'required']);
+        $this->validate($request,[ 'name'=>'required', 'platform'=>'required']);
 
         Course::find($id)->update($request->all());
 
         return redirect()->route('courses.index')->with('success','Registro actualizado satisfactoriamente');
     }
 
-    public function destroy(Course $id)
+    public function destroy($id)
     {
         Course::find($id)->delete();
 
-        return redirect()->route('couses.index')->with('success','Registro eliminado satisfactoriamente');
+        return redirect()->route('courses.index')->with('success','Registro eliminado satisfactoriamente');
     }
 }

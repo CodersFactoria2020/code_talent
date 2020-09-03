@@ -48,7 +48,10 @@
 
                                             <td><a href="{{action('PromotionController@show',$promotion->id)}}">{{$promotion->name}}</a></td>
 
-                                            <td>{{$promotion->courses}}</td>
+
+                                            <td>{{$promotion->course_id}}</td>
+
+
 
                                             <td>{{$promotion->created_at}}</td>
 

@@ -44,10 +44,16 @@
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-
                                             <input type="text" name="name" id="name" class="form-control input-sm" value="{{$promotion->name}}">
-
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="course_id" class="form-control" id="course_id"  placeholder="Cursos">
+                                            <option selected>Cursos...</option>
+                                            @foreach($courses as $course)
+                                                <option value="{{$course->id}}" >{{$course->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                 </div>

@@ -11,7 +11,7 @@ use Carbon\Carbon;
 
 class CandidateObserver
 {
-    public function created(Candidate $candidate)
+    /*public function created(Candidate $candidate)
     {
         $scrappy_codeAcademy = new CodeAcademyScraping($candidate);
         $scrappy_soloLearn = new SoloLearnScraping($candidate);
@@ -49,5 +49,5 @@ class CandidateObserver
         $closest = key($interval);
 
         return $lastConnections[$closest];
-    }
+    }*/
 }

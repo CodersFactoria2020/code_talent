@@ -12,6 +12,7 @@ class CreatePromotionsTable extends Migration
 
             $table->id();
             $table->string('name');
+            $table->integer('course_id')->default(1);
             $table->timestamps();
         });
     }
