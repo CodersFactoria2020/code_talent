@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Candidate;
+use App\Course;
 use Illuminate\Http\Request;
 
 use App\Promotion;
@@ -14,21 +15,25 @@ class PromotionController extends Controller
     public function index()
     {
         $promotions=Promotion::orderBy('created_at','ASC')->paginate(15);
+        //$course = Course::where($promotions)->get();
 
-        return view('promotion.index',compact('promotions'));
+        $course = Course::find($promotions);
+
+        return view('promotion.index',compact('promotions','course'));
     }
 
 
     public function create()
     {
-        return view('promotion.create');
+        $courses = Course::all();
+
+        return view('promotion.create',compact('courses'));
     }
 
 
     public function store(Request $request)
     {
-        $this->validate($request,[ 'name'=>'required']);
-
+        $this->validate($request,[ 'name'=>'required','course_id'=>'required']);
 
         Promotion::create($request->all());
 
@@ -45,9 +50,10 @@ class PromotionController extends Controller
     public function edit($id)
     {
         $promotion=Promotion::find($id);
+        $courses = Course::all();
 
 
-        return view('promotion.edit',compact('promotion'));
+        return view('promotion.edit',compact('promotion','courses'));
     }
 
     public function update(Request $request, $id)
