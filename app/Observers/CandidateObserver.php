@@ -33,18 +33,21 @@ class CandidateObserver
             array_push($lastConnections, $progress->getLastConnection());
         }
 
-        $average_progress = $this->calculatePercentage($percentageSum, count($courses));
+        $numberCourses = count($courses);
+        $average_progress = $this->calculateAverageProgress($percentageSum, $numberCourses);
+
         $lastConnection = $this->findClosestDate($lastConnections);
 
         Candidate::updateProgress($candidate, $average_progress, $lastConnection);
+
     }
 
-    function findClosestDate(array $lastConnections)
+    private function findClosestDate(array $lastConnections)
     {
-        if(empty($lastConnections))
+        if (empty($lastConnections))
         {
             return Carbon::now();
-        }
+        };
 
         foreach ($lastConnections as $date)
         {
@@ -53,15 +56,15 @@ class CandidateObserver
         asort($interval);
         $closest = key($interval);
 
+
         return $lastConnections[$closest];
     }
 
-    private function calculatePercentage(int $percentageSum, int $coursesNumber)
+    private function calculateAverageProgress($percentageSum, $numberCourses)
     {
-        if($coursesNumber == 0)
-        {
+        if ($numberCourses == 0){
             return 0;
         }
-        return floor($percentageSum / $coursesNumber);
+        return floor($percentageSum / $numberCourses);
     }
 }
