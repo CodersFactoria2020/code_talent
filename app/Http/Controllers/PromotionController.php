@@ -36,14 +36,14 @@ class PromotionController extends Controller
 
         $promotion = Promotion::create($request->all());
         $courses_id = $request->input('courses_id');
+
+        $courses = [];
         foreach ($courses_id as $id)
         {
-           array_push($courses, Course::where('id',$id));
+           array_push($courses, Course::find($id));
         }
-            $cur = Course::get($courses_id);
-            dd($cur);
-        $promotion->courses()->saveMany($courses_id);
 
+        $promotion->courses()->saveMany($courses);
 
         return redirect()->route('promotion.index')->with('success','Registro creado satisfactoriamente');
 
