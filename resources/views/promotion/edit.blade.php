@@ -48,13 +48,16 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <select name="course_id" class="form-control" id="course_id"  placeholder="Cursos">
-                                            <option selected>Cursos...</option>
+                                        <div class="form-group">
                                             @foreach($courses as $course)
-                                                <option value="{{$course->id}}" >{{$course->name}}</option>
+                                                <input  name="courses_id[]" id="course_id[]" class="form-control input-sm" type="checkbox" value="{{$course->id}}"
+                                                        @if (count($promotion->courses->where('id', $course->id)))
+                                                        checked
+                                                        @endif >{{$course->name}}
                                             @endforeach
-                                        </select>
+                                        </div>
                                     </div>
+
 
                                 </div>
 
