@@ -69,8 +69,6 @@
                                         @foreach($courses as $course)
                                                 <input  name="courses_id[]" id="course_id[]" class="form-control input-sm" type="checkbox" value="{{$course->id}}" >{{$course->name}}
                                         @endforeach
-
-
                                     </div>
                                 </div>
 
