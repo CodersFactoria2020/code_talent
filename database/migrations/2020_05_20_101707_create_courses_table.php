@@ -12,7 +12,7 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('platform');
+            $table->enum('platform', ['sololearn', 'codeacademy']);
             $table->foreignId('progress_id')->nullable();
             $table->timestamps();
         });

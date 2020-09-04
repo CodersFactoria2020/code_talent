@@ -62,7 +62,11 @@
 
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="platform" id="platform" class="form-control input-sm" placeholder="Plataforma">
+                                            <select class="form-control" name="platform" id="platform">
+                                                <option>Plataforma...</option>
+                                                <option value="sololearn">SoloLearn</option>
+                                                <option value="codeacademy">CodeAcademy</option>
+                                            </select>
                                         </div>
                                     </div>
 
