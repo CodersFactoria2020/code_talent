@@ -14,11 +14,8 @@ class PromotionController extends Controller
     public function index()
     {
         $promotions=Promotion::orderBy('created_at','ASC')->paginate(15);
-        //$course = Course::where($promotions)->get();
 
-        $course = Course::find($promotions);
-
-        return view('promotion.index',compact('promotions','course'));
+        return view('promotion.index',compact('promotions'));
     }
 
 
