@@ -56,7 +56,6 @@ class PromotionController extends Controller
         $promotion = Promotion::find($id);
         $courses = Course::all();
 
-
         return view('promotion.edit',compact('promotion','courses'));
     }
 
@@ -69,13 +68,7 @@ class PromotionController extends Controller
 
 
         $courses_ids = $request->courses_id;
-        /*
-        foreach($promotion->courses as $course)
-        {
-            $database_courses_ids[] = $course->id;
-        }
-        $course_ids = array_diff($from_courses_ids, $database_courses_ids);
-        */
+        $promotion->courses()->detach();
         $promotion->courses()->attach($courses_ids);
 
         return redirect()->route('promotion.index')->with('success','Registro actualizado satisfactoriamente');
