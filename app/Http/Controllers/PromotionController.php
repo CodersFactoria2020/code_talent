@@ -36,7 +36,7 @@ class PromotionController extends Controller
 
         $promotion = Promotion::create($request->all());
         $course_id = $request->input('course_id');
-        $promotion->courses()->attach($course_id);
+        $promotion->courses()->save($course_id);
 
         return redirect()->route('promotion.index')->with('success','Registro creado satisfactoriamente');
 
