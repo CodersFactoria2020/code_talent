@@ -3,6 +3,7 @@
 
 @section('content')
 
+
     <div class="row">
         <section class="content">
             <div class="col-md-8 col-md-offset-2">
@@ -65,12 +66,11 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <select name="course_id" class="form-control" id="course_id"  placeholder="Cursos">
-                                            <option selected>Cursos...</option>
-                                            @foreach($courses as $course)
-                                                <option value="{{$course->id}}" >{{$course->name}}</option>
-                                            @endforeach
-                                        </select>
+                                        @foreach($courses as $course)
+                                                <input  name="courses_id[]" id="course_id[]" class="form-control input-sm" type="checkbox" value="{{$course->id}}" >{{$course->name}}
+                                        @endforeach
+
+
                                     </div>
                                 </div>
 
@@ -94,6 +94,7 @@
                 </div>
 
             </div>
+
 
         </section>
 @endsection

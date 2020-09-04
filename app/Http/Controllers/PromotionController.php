@@ -32,11 +32,18 @@ class PromotionController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,[ 'name'=>'required','course_id'=>'required']);
+        $this->validate($request,[ 'name'=>'required']);
 
         $promotion = Promotion::create($request->all());
-        $course_id = $request->input('course_id');
-        $promotion->courses()->save($course_id);
+        $courses_id = $request->input('courses_id');
+        foreach ($courses_id as $id)
+        {
+           array_push($courses, Course::where('id',$id));
+        }
+            $cur = Course::get($courses_id);
+            dd($cur);
+        $promotion->courses()->saveMany($courses_id);
+
 
         return redirect()->route('promotion.index')->with('success','Registro creado satisfactoriamente');
 
