@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Candidate;
 use App\Promotion;
+use Illuminate\Support\Facades\DB;
 
 class CandidateController extends Controller
 {
@@ -42,9 +43,12 @@ class CandidateController extends Controller
     protected function show($id)
     {
         $candidate=Candidate::find($id);
-
-
-        return  view('candidate.perfil',compact('candidate'));
+        $courses = $candidate->promotion->courses;
+        foreach($courses as $course)
+        {
+            $progress[] = DB::table('progress')->where('course_id', $course->id)->get();
+        }
+        return  view('candidate.perfil',compact('candidate', 'courses', 'progress'));
     }
 
     protected function edit($id)
