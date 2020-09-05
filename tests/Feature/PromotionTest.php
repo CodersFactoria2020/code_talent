@@ -43,7 +43,6 @@ class PromotionTest extends TestCase
 
         $response->assertSee('No hay registro !!');
 
-
     }
 
 }

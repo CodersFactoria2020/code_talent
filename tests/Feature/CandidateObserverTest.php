@@ -97,7 +97,9 @@ class CandidateObserverTest extends TestCase
             'sololearn' => 'https://www.sololearn.com/Profile/6700255',
             'codeacademy'=>'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
 
+
         $percentage = 80.0;
+
         $last_connection = Carbon::now();
         Candidate::updateProgress($candidate, $percentage, $last_connection);
 

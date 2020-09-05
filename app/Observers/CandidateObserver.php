@@ -34,12 +34,14 @@ class CandidateObserver
         }
 
         $average_progress = $this->calculatePercentage($percentageSum, count($courses));
+
         $lastConnection = $this->findClosestDate($lastConnections);
 
         Candidate::updateProgress($candidate, $average_progress, $lastConnection);
+
     }
 
-    function findClosestDate(array $lastConnections)
+    private function findClosestDate(array $lastConnections)
     {
         if(empty($lastConnections))
         {
@@ -52,6 +54,7 @@ class CandidateObserver
         }
         asort($interval);
         $closest = key($interval);
+
 
         return $lastConnections[$closest];
     }
