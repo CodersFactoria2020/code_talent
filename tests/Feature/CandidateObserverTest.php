@@ -13,7 +13,8 @@ class CandidateObserverTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_creates_a_progress_when_a_candodate_is_created()
+
+    public function test_creates_a_progress_from_sololearn()
     {
         $promotion = factory(Promotion::class)->create();
         $courses = factory(Course::class,2)->create(['name'=>'CSS', 'platform' => 'sololearn']);
@@ -29,6 +30,25 @@ class CandidateObserverTest extends TestCase
 
         $this->assertDatabaseHas('progress', ['percentage' => 100]);
         $this->assertDatabaseCount('progress', 2);
+    }
+
+
+    public function test_creates_a_progress_from_codeacademy()
+    {
+        $promotion = factory(Promotion::class)->create();
+        $courses = factory(Course::class)->create(['name'=>'CSS', 'platform' => 'codeacademy']);
+
+        Promotion::all()->each(function ($pro) use ($courses)
+        {
+            $pro->courses()->attach($courses);
+        });
+
+        factory(Candidate::class)->create(['promotion_id'=>$promotion->id,
+            'sololearn' => 'https://www.sololearn.com/Profile/6700255',
+            'codeacademy'=>'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
+
+        $this->assertDatabaseHas('progress', ['percentage' => 100]);
+        $this->assertDatabaseCount('progress', 1);
     }
 
     public function test_creates_one_progress_for_each_course()
@@ -79,8 +99,8 @@ class CandidateObserverTest extends TestCase
             'sololearn' => 'https://www.sololearn.com/Profile/6700255',
             'codeacademy'=>'https://www.codecademy.com/profiles/sergioliveresamor_fullstackphysio']);
 
+        $percentage = 80.0;
 
-        $percentage = 100.0;
         $last_connection = Carbon::now();
         Candidate::updateProgress($candidate, $percentage, $last_connection);
 
