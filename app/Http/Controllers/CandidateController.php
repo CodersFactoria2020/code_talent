@@ -13,7 +13,7 @@ class CandidateController extends Controller
 
     protected function index()
     {
-        $candidates=Candidate::orderBy('percentage','ASC')->paginate(15);
+        $candidates=Candidate::orderBy('percentage','ASC')->paginate(50);
 
         return view('candidate.index',compact('candidates'));
     }

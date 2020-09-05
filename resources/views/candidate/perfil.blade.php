@@ -30,6 +30,11 @@
 
                                                     <th>Última modificación</th>
 
+                                                    <th>Link SoloLearn</th>
+
+                                                    <th><a href="{{$candidate->sololearn}}"><span class="glyphicon glyphicon-eye-open"></span></a></th>
+
+
                                                     </thead>
                                                     <tbody>
                                                             <tr>
@@ -46,6 +51,10 @@
                                                                 <td>{{$candidate->created_at}}</td>
 
                                                                 <td>{{$candidate->updated_at}}</td>
+
+                                                                <th>Link CodeAcademy</th>
+
+                                                                <th><a href="{{$candidate->codeacademy}}"><span class="glyphicon glyphicon-eye-open"></span></a></th>
 
                                                             </tr>
                                                     </tbody>
@@ -65,38 +74,7 @@
                                                         </tr>
                                                         </tbody>
                                                     @endfor
-                                                    <!--
-                                                    <thead>
-                                                        <th>SoloLearn</th>
-                                                    </thead>
 
-                                                    <tbody>
-                                                    <tr>
-                                                        <td><a href="{{$candidate->sololearn}}">{{$candidate->sololearn}}</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->percentage}}% ;" aria-valuenow="{{$candidate->percentage}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->percentage}}%</td>
-                                                    </tr>
-                                                    </tbody>
-
-                                                </table>
-
-                                                <div class="table-responsive">
-                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                                                        <thead>
-                                                        <th>CodeAcademy</th>
-                                                        </thead>
-
-                                                        <tbody>
-                                                        <tr>
-                                                            <td><a href="{{$candidate->codeacademy}}">{{$candidate->codeacademy}}</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->codeacademy_progress}}% ;" aria-valuenow="{{$candidate->codeacademy_progress}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->codeacademy_progress}}%</td>
-                                                        </tr>
-                                                        </tbody>
-                                                       -->
                                                     </table>
                                                 </div>
                                             </div>

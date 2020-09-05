@@ -12,7 +12,7 @@ class CourseController extends Controller
 
     public function index()
     {
-        $courses=Course::orderBy('name','ASC')->paginate(15);
+        $courses=Course::orderBy('name','ASC')->paginate(50);
 
         return view('courses.index',compact('courses'));
     }
