@@ -11,8 +11,8 @@ class CreateCoursePromotionTable extends Migration
     {
         Schema::create('course_promotion', function (Blueprint $table) {
             $table->id();
-            $table->integer('course_id')->unsigned();
-            $table->integer('promotion_id')->unsigned();            ;
+            $table->integer('course_id')->nullable();
+            $table->integer('promotion_id')->nullable();            ;
             $table->timestamps();
         });
     }

@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Course::class, function (Faker $faker) {
     return [
         'name' => $faker->word,
-        'platform' => array_rand(['codeacademy', 'sololearn'])
+        'platform' => 'codeacademy'
     ];
 });

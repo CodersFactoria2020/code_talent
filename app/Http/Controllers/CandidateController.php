@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Candidate;
 use App\Promotion;
+use Illuminate\Support\Facades\DB;
 
 class CandidateController extends Controller
 {
 
     protected function index()
     {
-        $candidates=Candidate::orderBy('sololearn_progress','ASC')->paginate(15);
+        $candidates=Candidate::orderBy('percentage','ASC')->paginate(50);
 
         return view('candidate.index',compact('candidates'));
     }
@@ -29,7 +30,7 @@ class CandidateController extends Controller
 
     protected function store(Request $request)
     {
-        $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'email'=>'required']);
+        $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'email'=>'required', 'sololearn'=>'required', 'codeacademy'=>'required']);
 
 
         Candidate::create($request->all());
@@ -42,9 +43,12 @@ class CandidateController extends Controller
     protected function show($id)
     {
         $candidate=Candidate::find($id);
-
-
-        return  view('candidate.perfil',compact('candidate'));
+        $courses = $candidate->promotion->courses;
+        foreach($courses as $course)
+        {
+            $progress[] = DB::table('progress')->where('course_id', $course->id)->get();
+        }
+        return  view('candidate.perfil',compact('candidate', 'courses', 'progress'));
     }
 
     protected function edit($id)
@@ -58,7 +62,7 @@ class CandidateController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'email'=>'required']);
+        $this->validate($request,[ 'name'=>'required', 'lastname'=>'required', 'email'=>'required', 'sololearn'=>'required', 'codeacademy'=>'required']);
 
         Candidate::find($id)->update($request->all());
 
