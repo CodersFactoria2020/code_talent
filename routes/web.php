@@ -1,5 +1,7 @@
 <?php
 
+use App\Candidate;
+use App\Promotion;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,7 +25,9 @@ Route::resource('/courses', 'CourseController');
 
 
 Route::get('/dashboard', function () {
-    return view('dashboardAdmin.dashboard');
+    $promotion= Promotion::all()->last();
+    $have_finished = count($promotion->candidates->where('percentage', 100));
+    return view('dashboardAdmin.general', compact('promotion', 'have_finished'));
 });
 
 Route::get('/charts', function () {

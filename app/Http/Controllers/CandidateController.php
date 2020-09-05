@@ -75,7 +75,7 @@ class CandidateController extends Controller
         Candidate::find($id)->delete();
 
         return redirect()->route('candidate.index')->with('success','Registro eliminado satisfactoriamente');
-
     }
+
 
 }
