@@ -9,16 +9,17 @@ use Goutte\Client;
 class SoloLearnScraping implements WebScraping
 {
     private $candidate;
+    private $client;
 
     public function __construct(Candidate $candidate)
     {
         $this->candidate = $candidate;
+        $this->client = new Client();
     }
 
     public function getAllCourses($candidate)
     {
-        $client = new Client();
-        $crawler = $client->request('GET', $candidate->sololearn);
+        $crawler = $this->client->request('GET', $candidate->sololearn);
 
         $all_courses = [];
 

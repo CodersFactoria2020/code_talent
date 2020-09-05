@@ -30,11 +30,6 @@
 
                                                     <th>Última modificación</th>
 
-                                                    <th>Link SoloLearn</th>
-
-                                                    <th><a href="{{$candidate->sololearn}}"><span class="glyphicon glyphicon-eye-open"></span></a></th>
-
-
                                                     </thead>
                                                     <tbody>
                                                             <tr>
@@ -52,10 +47,6 @@
 
                                                                 <td>{{$candidate->updated_at}}</td>
 
-                                                                <th>Link CodeAcademy</th>
-
-                                                                <th><a href="{{$candidate->codeacademy}}"><span class="glyphicon glyphicon-eye-open"></span></a></th>
-
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -64,16 +55,36 @@
                                             <div class="table-responsive">
                                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-                                                        @for ($i = 0; $i < count($courses); $i++)
+                                                    <thead>
+                                                        <th>SoloLearn</th>
+                                                    </thead>
+
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><a href="{{$candidate->sololearn}}">{{$candidate->sololearn}}</a></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->sololearn_progress}}% ;" aria-valuenow="{{$candidate->sololearn_progress}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->sololearn_progress}}%</td>
+                                                    </tr>
+                                                    </tbody>
+
+                                                </table>
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
                                                         <thead>
-                                                        <th>{{$courses[$i]->name}}</th>
+                                                        <th>CodeAcademy</th>
                                                         </thead>
+
                                                         <tbody>
                                                         <tr>
-                                                            <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$progress[$i][0]->percentage}}% ;" aria-valuenow="{{$progress[$i][0]->percentage}}" aria-valuemin="0" aria-valuemax="100" >{{$progress[$i][0]->percentage}}%</td>
+                                                            <td><a href="{{$candidate->codeacademy}}">{{$candidate->codeacademy}}</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar" style="width: {{$candidate->codeacademy_progress}}% ;" aria-valuenow="{{$candidate->codeacademy_progress}}" aria-valuemin="0" aria-valuemax="100" >{{$candidate->codeacademy_progress}}%</td>
                                                         </tr>
                                                         </tbody>
-                                                    @endfor
 
                                                     </table>
                                                 </div>

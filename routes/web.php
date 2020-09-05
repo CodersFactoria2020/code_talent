@@ -19,6 +19,7 @@ Route::match(['get', 'post'], '/promotion', function () {
 
 Route::resource('/candidate', 'CandidateController');
 Route::resource('/promotion', 'PromotionController');
+Route::resource('/courses', 'CourseController');
 
 
 Route::get('/dashboard', function () {

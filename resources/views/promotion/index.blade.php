@@ -47,8 +47,11 @@
                                         <tr>
 
                                             <td><a href="{{action('PromotionController@show',$promotion->id)}}">{{$promotion->name}}</a></td>
-
-                                            <td>{{$promotion->courses}}</td>
+                                            <td>
+                                            @foreach($promotion->courses as $course)
+                                                <p>{{$course->name}}</p>
+                                            @endforeach
+                                            </td>
 
                                             <td>{{$promotion->created_at}}</td>
 

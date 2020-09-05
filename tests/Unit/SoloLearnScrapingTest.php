@@ -4,12 +4,15 @@ namespace Tests\Unit;
 
 use App\Candidate;
 use App\Course;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 use App\SoloLearnScraping;
 
 class SoloLearnScrapingTest extends TestCase
 {
+    use RefreshDatabase;
+
     private $scrappedCourses;
     private $scrapy;
 
@@ -26,7 +29,7 @@ class SoloLearnScrapingTest extends TestCase
 
     public function test_get_about_course( )
     {
-        $targetCourse = new Course('PHP');
+        $targetCourse = factory(Course::class)->create(['name'=>'PHP']);;
         $php_course = $this->scrapy->getCourse($targetCourse);
 
         $this->assertContains('PHP Tutorial',$php_course);
@@ -36,7 +39,7 @@ class SoloLearnScrapingTest extends TestCase
 
     public function test_if_dont_exist_this_course()
     {
-        $targetCourse = new Course('Ruby');
+        $targetCourse = factory(Course::class)->create(['name'=>'Ruby']);;
 
         $ruby_course = $this->scrapy->getCourse($targetCourse);
 
@@ -45,7 +48,7 @@ class SoloLearnScrapingTest extends TestCase
 
      public function test_if_progress_is_equal_to_zero()
     {
-        $targetCourse = new Course('Java');
+        $targetCourse = factory(Course::class)->create(['name'=>'Java']);
         $java_course = $this->scrapy->getCourse($targetCourse);
 
         $this->assertContains('0',$java_course);
@@ -53,7 +56,7 @@ class SoloLearnScrapingTest extends TestCase
 
     public function test_if_is_java_or_javascript()
     {
-        $targetCourse = new Course('Java');
+        $targetCourse = factory(Course::class)->create(['name'=>'Java']);
         $java_course = $this->scrapy->getCourse($targetCourse);
 
         $this->assertNotEquals('JavaScript Tutorial',$java_course[0]);

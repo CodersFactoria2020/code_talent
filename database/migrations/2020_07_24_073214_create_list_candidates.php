@@ -26,9 +26,9 @@ class CreateListCandidates extends Migration
             $table->foreign("promotion_id")->references("id")->on("promotions") ->onDelete("cascade")
                 ->onUpdate("cascade");
 
-            $table->integer('sololearn_progress')->default(0);
+            $table->double('percentage')->nullable();
 
-            $table->integer('codeacademy_progress')->default(0);
+            $table->date('last_connection')->nullable();
 
             $table->string('sololearn')->default('falta link');
 

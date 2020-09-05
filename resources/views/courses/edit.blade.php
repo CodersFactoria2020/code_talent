@@ -1,5 +1,7 @@
 @extends('layouts.layouts')
+
 @section('content')
+
 
     <div class="row">
         <section class="content">
@@ -28,7 +30,7 @@
 
                     <div class="panel-heading">
 
-                        <h3 class="panel-title">Nueva Promocion</h3>
+                        <h3 class="panel-title">Editar Curso</h3>
 
                     </div>
 
@@ -36,7 +38,7 @@
 
                         <div class="table-container">
 
-                            <form method="POST" action="{{ route('promotion.update',$promotion->id) }}"  role="form">
+                            <form method="POST" action="{{ route('courses.update',$course->id) }}"  role="form">
 
                                 {{ csrf_field() }}
 
@@ -44,21 +46,19 @@
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            <input type="text" name="name" id="name" class="form-control input-sm" value="{{$promotion->name}}">
+
+                                            <input type="text" name="name" id="name" class="form-control input-sm" value="{{$course->name}}">
+
                                         </div>
                                     </div>
-                                    <div class="form-group">
+
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
-                                            @foreach($courses as $course)
-                                                <input  name="courses_id[]" id="course_id[]" class="form-control input-sm" type="checkbox" value="{{$course->id}}"
-                                                        @if (count($promotion->courses->where('id', $course->id)))
-                                                        checked
-                                                        @endif >{{$course->name}}
-                                            @endforeach
+
+                                            <input type="text" name="platform" id="platform" class="form-control input-sm" value="{{$course->platform}}">
+
                                         </div>
                                     </div>
-
-
                                 </div>
 
                                 <div class="row">
@@ -66,7 +66,7 @@
 
                                         <input type="submit"  value="Actualizar" class="btn btn-success btn-block">
 
-                                        <a href="{{ route('promotion.index') }}" class="btn btn-info btn-block" >Atrás</a>
+                                        <a href="{{ route('courses.index') }}" class="btn btn-info btn-block" >Atrás</a>
 
                                     </div>
                                 </div>
@@ -78,4 +78,3 @@
 
         </section>
 @endsection
-

@@ -6,25 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCoursesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('platform', ['sololearn', 'codeacademy']);
+            $table->foreignId('progress_id')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('courses');

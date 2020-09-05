@@ -9,6 +9,11 @@ class Progress extends Model
 {
     protected $table = 'progress';
 
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
     private function __construct()
     {
 
@@ -24,7 +29,7 @@ class Progress extends Model
 
         $progress->setPercentage($course_percentage);
         $progress->setLastConnection($updated_at);
-        //$progress->setCourseId($course->id);
+        $progress->setCourseId($course->id);
         $progress->save();
 
         return $progress;
@@ -39,7 +44,8 @@ class Progress extends Model
 
         $progress->setLastConnection($lastConnection);
         $progress->setPercentage($percentage);
-        //$progress->setCourseId($course->id);
+        $progress->setCourseId($course->id);
+        $progress->save();
 
         return $progress;
     }
@@ -65,7 +71,10 @@ class Progress extends Model
         $this->last_connection = $formattedDate;
     }
 
-
+    private function setCourseId(int $id)
+    {
+        $this->course_id = $id;
+    }
 
     private function calculatePercentage($scrapped_course): int
     {
@@ -90,6 +99,5 @@ class Progress extends Model
 
         return $last_connection;
     }
-
 
 }
