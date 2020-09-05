@@ -13,7 +13,7 @@ class PromotionController extends Controller
 
     public function index()
     {
-        $promotions=Promotion::orderBy('created_at','ASC')->paginate(15);
+        $promotions=Promotion::orderBy('created_at','ASC')->paginate(50);
 
         return view('promotion.index',compact('promotions'));
     }
